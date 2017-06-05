@@ -7,8 +7,8 @@ import {Topic} from './topic';
 import {Talk} from './talk';
 import {Book} from './book';
 import {writeFile} from '../utils/futils';
-import {Video} from "./video";
-import {Portfolio} from "./portfolio";
+import {Video} from './video';
+import {Portfolio} from './portfolio';
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
