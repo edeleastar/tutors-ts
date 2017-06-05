@@ -3,3 +3,4 @@ node_modules/
 *.js
 *.map
 !utilsjs/*.js
+!views/js/*.js
