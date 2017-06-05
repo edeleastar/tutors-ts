@@ -1,0 +1,36 @@
+{
+  "name": "ts-tutor",
+  "version": "0.0.1",
+  "description": "Static course web site generator",
+  "main": "tutor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eamonn de Leastar (edeleastar@wit.ie)",
+  "license": "MIT Licence",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edeleastar/tutor.git"
+  },
+  "bin": {
+    "tutors": "./tutor-ts.js"
+  },
+  "dependencies": {
+    "@types/commander": "^2.9.0",
+    "@types/node": "^7.0.22",
+    "@types/shelljs": "^0.7.1",
+    "@types/yamljs": "^0.2.30",
+    "commander": "^2.9.0",
+    "glob": "^7.0.3",
+    "marked": "^0.3.5",
+    "nunjucks": "^2.5.2",
+    "path": "^0.12.7",
+    "shelljs": "^0.7.7",
+    "ts-node": "^3.0.4",
+    "yamljs": "^0.2.10"
+  },
+  "devDependencies": {
+    "tslint": "^5.3.2",
+    "typescript": "^2.3.3"
+  }
+}

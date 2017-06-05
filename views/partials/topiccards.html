@@ -1,0 +1,22 @@
+{% macro topiccards(title, los) %}
+
+{% import "partials/card.html" as card %}
+
+{% if los.length > 0 %}
+
+<h3 class="ui top attached header">
+  {{title}}
+</h3>
+<section class="ui attached segment">
+  <div class="ui four doubling stackable cards">
+    {% for resource in los %}
+      {{ card.card (resource.icon,
+          resource.folder + '/' + resource.link,
+          resource.folder + '/' + resource.img, resource.title,
+          resource.objectivesWithoutHeader) }}
+    {% endfor %}
+  </div>
+</section>
+
+{% endif %}
+{% endmacro %}

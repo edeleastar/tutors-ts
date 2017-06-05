@@ -1,0 +1,35 @@
+{% import "partials/gitterbadge.html" as gitterbadge %}
+
+
+{% macro card (type, contentLink, imgLink, title, objectives, extra, gitterid) %}
+<div class="ui raised link card">
+  <div class="content">
+    <div class="right floated meta"><i class="{{type}} large icon"></i></div>
+    <div class="header"> {{title}}</div>
+  </div>
+    {% if (type == "film") %}
+    <a href="{{contentLink}}" target="_blank">
+    {% else %}
+    <a href="{{contentLink}}">
+      {% endif %}
+      <div class="image">
+        <img class="ui bordered rounded image" src="{{imgLink}}">
+      </div>
+    </a>
+    <div class="content">
+      <div class="description">
+        {{objectives}}
+      </div>
+    </div>
+  {% if extra %}
+  <div class="extra content center aligned">
+    {{extra}}
+  </div>
+  {% endif %}
+  {% if gitterid %}
+  <div class="extra content center aligned">
+    {{ gitterbadge.gitterbadge(gitterid) }}
+  </div>
+  {% endif %}
+</div>
+{% endmacro %}

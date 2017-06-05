@@ -1,0 +1,32 @@
+{% macro subtopicheader(parent, icon, title, subtitle, credits, gitterid) %}
+
+{% import "partials/gitterbadge.html" as gitterbadge %}
+{% import "partials/gittersidecar.html" as gittersidecar %}
+{% import "headelements/walllinks.html" as walllinks %}
+{% import "headelements/topics.html" as topics %}
+{% import "headelements/subtopics.html" as subtopics %}
+{% import "headelements/creditsmsg.html" as creditsmsg %}
+
+  <header class="ui middle aligned center aligned stackable grid segment">
+
+    {% include "headelements/sidebarlink.html" %}
+
+    <div class="ui seven wide center aligned column grid">
+      <div class="ui row">
+        <h2> {{title}} </h2>
+      </div>
+      <div class="ui row">
+        {% if gitterid %}
+        {{ gitterbadge.gitterbadge(gitterid) }}
+        {% endif %}
+      </div>
+    </div>
+
+    {{ subtopics.subtopics ("../index.html") }}
+    {{ creditsmsg.creditsmsg(credits, gitterid) }}
+
+  </header>
+
+{{ gittersidecar.gittersidecar(gitterid) }}
+
+{% endmacro %}

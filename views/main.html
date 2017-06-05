@@ -1,0 +1,61 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     {% if standalone %}
+
+     <style>
+       @font-face {
+         font-family: 'Open Sans';
+         font-style: normal;
+         font-weight: 400;
+         src: local('Open Sans'), local('OpenSans'),
+         url('{{assetprefix}}/fonts/open-sans-v13-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('{{assetprefix}}/fonts/open-sans-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       }
+     </style>
+     <link rel="stylesheet" type="text/css" href="{{assetprefix}}/semantic/semantic.min.css">
+     <link rel="stylesheet" href="{{assetprefix}}/highlight/solarized-light.css" rel="stylesheet" />
+     <script src="{{assetprefix}}/jquery-3.1.1.min.js"></script>
+     <script src="{{assetprefix}}/jquery.address.min.js"></script>
+     <script src="{{assetprefix}}/semantic/semantic.min.js"></script>
+     <script type="text/javascript" src="{{assetprefix}}/highlight/highlight.pack.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+     {% else %}
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/solarized-light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+     {% endif %}
+
+     <style>
+       {% include "css/main.css" %}
+     </style>
+
+   </head>
+
+  <body>
+    {% block content %}
+    {% endblock %}
+    <footer>
+
+    </footer>
+    <script>
+      {% include "js/main.js" %}
+    </script>
+  </body>
+
+ </html>

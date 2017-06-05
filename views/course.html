@@ -1,0 +1,43 @@
+{% import "partials/header.html" as header %}
+{% import "partials/card.html" as card %}
+
+{% set assetprefix = "./assets" %}
+
+{% extends "main.html" %}
+{% block content %}
+
+{{ header.header("#", "sitemap", title, "Topics", credits, portfolio, gitterid) }}
+
+<div class="ui segment pushable">
+  <div class="ui inverted inline vertical sidebar menu">
+    {% for topic in los %}
+    <div class="header">
+      <a class="item" href="{{topic.folder}}/index.html">
+        {{topic.title}}
+      </a>
+    </div>
+    <div class="menu">
+      {% for resource in topic.los %}
+      <div class="menu">
+        <a class="item" href="{{topic.folder}}/{{resource.folder}}/{{resource.link}}">
+          {{resource.title}}</a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="pusher">
+    <div class="ui container">
+      <div class="ui basic segment">
+        <div class="ui four doubling stackable cards">
+          {% for topic in los %}
+          {{ card.card ("sitemap", "./" + topic.folder + "/" + topic.link, "./" + topic.folder + "/" + topic.img,
+          topic.title, topic.objectivesWithoutHeader) }}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% macro header(parent, type, title, subtitle, credits, portfolio, gitterid) %}
+
+{% import "partials/gitterbadge.html" as gitterbadge %}
+{% import "partials/gittersidecar.html" as gittersidecar %}
+{% import "headelements/walllinks.html" as walllinks %}
+{% import "headelements/topics.html" as topics %}
+{% import "headelements/portfoliolink.html" as portfoliolink %}
+{% import "headelements/creditsmsg.html" as creditsmsg %}
+
+<header class="ui middle aligned center aligned stackable grid segment">
+
+  {% include "headelements/sidebarlink.html" %}
+
+  <div class="ui seven wide center aligned column grid">
+    <div class="ui row">
+      <h2> {{title}} </h2>
+    </div>
+    <div class="ui row">
+      {% if gitterid %}
+      {{ gitterbadge.gitterbadge(gitterid) }}
+      {% endif %}
+    </div>
+  </div>
+
+  {% if portfolio %}
+    {{ portfoliolink.portfoliolink ("../index.html", "Workshops") }}
+  {% endif %}
+
+  {{ creditsmsg.creditsmsg(credits) }}
+
+  {{ walllinks.walllinks ("talkwall.html", "labwall.html") }}
+
+
+</header>
+
+{{ gittersidecar.gittersidecar(gitterid) }}
+
+
+{% endmacro %}

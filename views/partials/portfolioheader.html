@@ -1,0 +1,25 @@
+{% macro header(parent, type, title, subtitle, credits, gitterid) %}
+
+{% import "headelements/walllinks.html" as walllinks %}
+{% import "headelements/topics.html" as topics %}
+{% import "headelements/creditsmsg.html" as creditsmsg %}
+{% import "partials/gitterbadge.html" as gitterbadge %}
+
+<header class="ui middle aligned center aligned stackable grid segment">
+
+  <div class="ui seven wide center aligned column grid">
+    <div class="ui row">
+      <h2> {{title}} </h2>
+    </div>
+    <div class="ui row">
+      {% if gitterid %}
+      {{ gitterbadge.gitterbadge(gitterid) }}
+      {% endif %}
+    </div>
+  </div>
+
+  {{ creditsmsg.creditsmsg(credits) }}
+
+</header>
+{% endmacro %}
+

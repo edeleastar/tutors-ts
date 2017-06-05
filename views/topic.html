@@ -1,0 +1,43 @@
+{% import "partials/topicheader.html" as topicheader %}
+{% import "partials/subtopicheader.html" as subtopicheader %}
+{% import "partials/topiccards.html" as topiccards %}
+{% import "partials/videocards.html" as videocards %}
+
+{% set assetprefix = "../assets" %}
+
+{% extends "main.html" %}
+{% block content %}
+
+{% if subtopic %}
+  {{ subtopicheader.subtopicheader("../index.html", "glyphicon-chevron-left", title, "", credits, gitterid) }}
+{% else %}
+  {{ topicheader.topicheader("../index.html", "glyphicon-chevron-left", title, "", credits, gitterid) }}
+{% endif %}
+
+
+<div class="ui segment pushable">
+  <div class="ui inverted labeled icon left inline vertical sidebar menu">
+    <div class="header">
+      <a class="item" href="#">
+        {{title}}
+      </a>
+    </div>
+    <div class="menu">
+      {% for resource in los %}
+      <a class="item" href="{{resource.folder}}/{{resource.link}}">
+        {{resource.title}}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="pusher">
+    <div class="ui basic container segment">
+      {{ videocards.videocards ("Videos", videos) }}
+      {{ topiccards.topiccards ("Slides & Presentations", talks) }}
+      {{ topiccards.topiccards ("Labs", labs) }}
+      {{ topiccards.topiccards ("Sub Topics", topics) }}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
