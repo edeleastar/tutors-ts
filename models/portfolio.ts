@@ -1,6 +1,6 @@
 import {CompositeLearningObject, LearningObject} from './learningobjects';
-import {publishTemplate, reapLos} from './loutils';
-import {copyFileToFolder, getCurrentDirectory, verifyFolder} from '../utils/futils';
+import {publishTemplate} from './loutils';
+import {getCurrentDirectory, verifyFolder} from '../utils/futils';
 import {Course} from './course';
 import * as fs from 'fs';
 import * as sh from 'shelljs';

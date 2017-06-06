@@ -1,7 +1,4 @@
 import {LearningObject} from './learningobjects';
-import * as path from 'path';
-const glob = require('glob');
-import * as sh from 'shelljs';
 import {readFile} from '../utils/futils';
 
 export class Video extends LearningObject {
