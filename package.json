@@ -10,7 +10,7 @@
   "license": "MIT Licence",
   "repository": {
     "type": "git",
-    "url": "https://github.com/edeleastar/tutor.git"
+    "url": "https://github.com/edeleastar/tutors-ts.git"
   },
   "bin": {
     "tutors-ts": "./tutor-ts.js"
