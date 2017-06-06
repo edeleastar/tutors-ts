@@ -55,7 +55,7 @@ export class Course extends CompositeLearningObject {
   }
 
   publish(path: string): void {
-    console.log(':', this.title);
+    console.log(':: ', this.title);
     if (path.charAt(0) !== '/') {
       path = getCurrentDirectory() + '/' + path;
     }

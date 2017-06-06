@@ -15,6 +15,5 @@ export class Video extends LearningObject {
   }
 
   publish(path: string): void {
-    console.log('  -->' + this.title);
   }
 }

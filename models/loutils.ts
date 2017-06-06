@@ -51,7 +51,7 @@ export function publishTemplate(path: string, file: string, template: string, lo
 
 export function publishLos(path: string, los: Array<LearningObject>): void {
   los.forEach(lo => {
-    console.log('  -->', lo.title);
+    console.log('  --> ', lo.title);
     lo.publish(path);
   });
 }

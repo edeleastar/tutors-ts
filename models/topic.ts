@@ -26,6 +26,15 @@ export class Topic extends CompositeLearningObject {
     if (parent instanceof Topic) {
       this.subtopic = true;
     }
+    if (!this.img) {
+      if (this.talks.length > 0) {
+        this.img = this.talks[0].folder + '/' + this.talks[0].img;
+      } else {
+        if (this.labs.length > 0) {
+          this.img = this.labs[0].folder + '/' + this.labs[0].img;
+        }
+      }
+    }
   }
 
   publish(path: string): void {

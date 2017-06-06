@@ -29,7 +29,7 @@
   <div class="pusher">
     <div class="ui container">
       <div class="ui basic segment">
-        <div class="ui four doubling stackable cards">
+        <div class="ui centered four doubling stackable cards">
           {% for topic in los %}
           {{ card.card ("sitemap", "./" + topic.folder + "/" + topic.link, "./" + topic.folder + "/" + topic.img,
           topic.title, topic.objectivesWithoutHeader) }}

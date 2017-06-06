@@ -24,7 +24,7 @@ export class Portfolio extends CompositeLearningObject {
       courseGroup.courses = [];
       for (let module of courseGroup.modules) {
         if (fs.existsSync(module)) {
-          console.log('- ' + module);
+          // console.log('- ' + module);
           sh.cd(module);
           const course = new Course(this);
           if (course) {
