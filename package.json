@@ -2,7 +2,7 @@
   "name": "ts-tutor",
   "version": "0.0.1",
   "description": "Static course web site generator",
-  "main": "tutor.js",
+  "main": "tutor-ts.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,7 +13,7 @@
     "url": "https://github.com/edeleastar/tutor.git"
   },
   "bin": {
-    "tutors": "./tutor-ts.js"
+    "tutors-ts": "./tutor-ts.js"
   },
   "dependencies": {
     "@types/commander": "^2.9.0",

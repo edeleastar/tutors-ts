@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import program = require('commander');
 
 import * as fs from 'fs';
