@@ -2,5 +2,5 @@ node_modules/
 .idea
 *.js
 *.map
-!utilsjs/*.js
-!views/js/*.js
+!src/utilsjs/*.js
+!src/views/js/*.js

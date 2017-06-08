@@ -1,25 +1,10 @@
 #!/usr/bin/env node
 
-import program = require('commander');
-
-import * as fs from 'fs';
+import {Commands} from './src/controllers/commands';
 const nunjucks = require('nunjucks');
-
-import {createRoot} from './models/loutils';
-
 const root = __dirname;
-nunjucks.configure(root + '/views', {autoescape: false});
+nunjucks.configure(root + '/src/views', {autoescape: false});
 nunjucks.installJinjaCompat();
 
-program.arguments('<file>')
-    .version(require('./package.json').version)
-    .parse(process.argv);
-
-let rootLearnongObject = createRoot();
-
-if (rootLearnongObject) {
-  rootLearnongObject.publish('public-site');
-} else {
-  console.log('Course or Portfolio not found');
-}
-
+const commands = new Commands();
+commands.exec();

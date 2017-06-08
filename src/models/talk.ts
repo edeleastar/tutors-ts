@@ -2,17 +2,7 @@ import {LearningObject} from './learningobjects';
 import * as path from 'path';
 const glob = require('glob');
 import * as sh from 'shelljs';
-
-export function copyTalk(src: string, dest: string): void {
-  dest = dest + '/' + src;
-  sh.mkdir('-p', dest);
-  sh.cp('-rf', src + '/*.pdf', dest);
-  sh.cp('-rf', src + '/*.zip', dest);
-  sh.cp('-rf', src + '/*.png', dest);
-  sh.cp('-rf', src + '/*.jpg', dest);
-  sh.cp('-rf', src + '/*.jpeg', dest);
-  sh.cp('-rf', src + '/*.gif', dest);
-}
+import {copyResource} from './loutils';
 
 export class Talk extends LearningObject {
   constructor(parent: LearningObject) {
@@ -32,6 +22,6 @@ export class Talk extends LearningObject {
   }
 
   publish(path: string): void {
-    copyTalk(this.folder, path);
+    copyResource(this.folder, path);
   }
 }

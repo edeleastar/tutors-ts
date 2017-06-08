@@ -9,13 +9,13 @@ import {Book} from './book';
 import {writeFile} from '../utils/futils';
 import {Video} from './video';
 import {Portfolio} from './portfolio';
+import {Archive} from './archive';
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
   let los: Array<LearningObject> = reapLoType('course*', parent, folder => {
     return new Course(parent);
   });
-
   los = los.concat(reapLoType('topic*', parent, parent => {
     return new Topic(parent);
   }));
@@ -27,6 +27,9 @@ export function reapLos(parent: LearningObject): Array<LearningObject> {
   }));
   los = los.concat(reapLoType('video*', parent, parent => {
     return new Video(parent);
+  }));
+  los = los.concat(reapLoType('archive*', parent, parent => {
+    return new Archive(parent);
   }));
   return los;
 }
@@ -56,11 +59,13 @@ export function publishLos(path: string, los: Array<LearningObject>): void {
   });
 }
 
-export function createRoot(): CompositeLearningObject | null {
-  if (fs.existsSync('portfolio.yaml')) {
-    return new Portfolio();
-  } else if (fs.existsSync('course.md')) {
-    return new Course();
-  }
-  return null;
+export function copyResource(src: string, dest: string): void {
+  dest = dest + '/' + src;
+  sh.mkdir('-p', dest);
+  sh.cp('-rf', src + '/*.pdf', dest);
+  sh.cp('-rf', src + '/*.zip', dest);
+  sh.cp('-rf', src + '/*.png', dest);
+  sh.cp('-rf', src + '/*.jpg', dest);
+  sh.cp('-rf', src + '/*.jpeg', dest);
+  sh.cp('-rf', src + '/*.gif', dest);
 }
