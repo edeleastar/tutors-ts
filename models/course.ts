@@ -4,6 +4,7 @@ import {Talk} from './talk';
 import {Topic} from './topic';
 import {publishLos, publishTemplate, reapLos} from './loutils';
 import {copyFileToFolder, getCurrentDirectory} from '../utils/futils';
+import * as fs from "fs";
 
 export class Course extends CompositeLearningObject {
   labs: Book[] = [];
@@ -41,6 +42,17 @@ export class Course extends CompositeLearningObject {
     });
   }
 
+  getIgnoreList(): string[] {
+    const ignoreList: string[] = [];
+    if (fs.existsSync('mbignore')) {
+      const array = fs.readFileSync('mbignore').toString().split('\n');
+      for (let i = 0; i < array.length; i++) {
+        ignoreList[i] = array[i].trim();
+      }
+    }
+    return ignoreList;
+  }
+
   constructor(parent?: LearningObject) {
     super(parent);
     if (parent) {
@@ -61,6 +73,9 @@ export class Course extends CompositeLearningObject {
     }
     publishTemplate(path, 'index.html', 'course.html', this);
     copyFileToFolder(this.img, path);
+
+    const ignoreList = this.getIgnoreList();
+    this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
     publishLos(path, this.los);
 
     this.talks.forEach(talk => {
