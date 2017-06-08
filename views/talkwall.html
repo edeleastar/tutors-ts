@@ -21,11 +21,19 @@
       <div class="ui basic segment">
         <div class="ui four doubling stackable cards">
           {% for resource in talks %}
-          {{ card.card (resource.icon,
-              resource.parentFolder + '/' + resource.folder + '/' + resource.link,
-              resource.parentFolder + '/' + resource.folder + '/' + resource.img,
-              resource.title,
-              resource.objectivesWithoutHeader) }}
+            {% if resource.parent.subtopic %}
+              {{ card.card (resource.icon,
+                  resource.parent.parentFolder + '/' + resource.parentFolder + '/' + resource.folder + '/' +resource.link,
+                  resource.parent.parentFolder + '/' + resource.parentFolder + '/' + resource.folder + '/' + resource.img,
+                  resource.title,
+                  resource.objectivesWithoutHeader) }}
+            {% else %}
+              {{ card.card (resource.icon,
+                   resource.parentFolder + '/' + resource.folder + '/' + resource.link,
+                   resource.parentFolder + '/' + resource.folder + '/' + resource.img,
+                   resource.title,
+                   resource.objectivesWithoutHeader) }}
+            {% endif %}
           {% endfor %}
         </div>
       </div>
