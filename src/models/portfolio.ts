@@ -5,18 +5,23 @@ import {Course} from './course';
 import * as fs from 'fs';
 import * as sh from 'shelljs';
 import * as yaml from 'yamljs';
+import {CommandOptions} from '../controllers/commands';
 
 interface CourseGroup {
   title: string;
+  description: string;
   modules: string[];
   courses: Array<Course>;
 }
 
 export class Portfolio extends CompositeLearningObject {
   courseGroups: Array<CourseGroup> = [];
+  options: CommandOptions;
+  subtitle: string;
 
-  constructor(parent?: LearningObject) {
+  constructor(options: CommandOptions, parent?: LearningObject) {
     super(parent);
+    this.options = options;
     this.icon = 'film';
     this.reap();
   }
@@ -24,6 +29,7 @@ export class Portfolio extends CompositeLearningObject {
   reap(): void {
     const yamlData = yaml.load('./portfolio.yaml');
     this.title = yamlData.title;
+    this.subtitle = yamlData.subtitle;
     this.gitterid = yamlData.gitterid;
     this.credits = yamlData.credits;
     yamlData.courseGroups.forEach((courseGroup: CourseGroup) => {
@@ -31,7 +37,7 @@ export class Portfolio extends CompositeLearningObject {
       courseGroup.modules.forEach((module: string) => {
         if (fs.existsSync(module)) {
           sh.cd(module);
-          const course = new Course(this);
+          const course = new Course(this.options, this);
           if (course) {
             courseGroup.courses.push(course);
           }

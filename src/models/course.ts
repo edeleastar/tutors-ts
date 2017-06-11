@@ -4,12 +4,14 @@ import {Talk} from './talk';
 import {Topic} from './topic';
 import {publishLos, publishTemplate, reapLos} from './loutils';
 import {copyFileToFolder, getCurrentDirectory} from '../utils/futils';
-import * as fs from "fs";
+import * as fs from 'fs';
+import {CommandOptions} from '../controllers/commands';
 
 export class Course extends CompositeLearningObject {
   labs: Book[] = [];
   talks: Talk[] = [];
   portfolio: boolean;
+  options: CommandOptions;
 
   findLabs(los: Array<LearningObject>): void {
     los.forEach(lo => {
@@ -53,8 +55,9 @@ export class Course extends CompositeLearningObject {
     return ignoreList;
   }
 
-  constructor(parent?: LearningObject) {
+  constructor(options: CommandOptions, parent?: LearningObject) {
     super(parent);
+    this.options = options;
     if (parent) {
       this.portfolio = true;
     }
