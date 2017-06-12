@@ -4,3 +4,4 @@ node_modules/
 *.map
 !src/utilsjs/*.js
 !src/views/js/*.js
+npm-debug.log
