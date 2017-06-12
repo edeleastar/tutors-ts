@@ -8,7 +8,6 @@ import {copyFolder} from '../utils/futils';
 
 export interface CommandOptions {
   version: string;
-  // standalone: boolean;
   templates: boolean;
   'new': boolean;
   'private': boolean;
@@ -33,7 +32,6 @@ export class Commands {
     program.arguments('<file>').version(require('../../package.json').version)
         .option('-n, --new', 'Create a template course')
         .option('-p, --private', 'Generate full private site')
-        // .option('-s, --standalone', 'Generate standalone site')
         .option('-t, --templates', 'Emit templates & stylesheets')
         .parse(process.argv);
   }
@@ -48,9 +46,8 @@ export class Commands {
       const rootLearningObject = createRoot(options);
       if (rootLearningObject) {
         rootLearningObject.publish('public-site');
-        // if (options.standalone) {
-        //   copyFolder(`${this.rootPath}/src/views/assets`, './public-site');
-        // }
+      } else {
+        console.log ('Cannot locate course.md or portfolio.yaml');
       }
     }
   }

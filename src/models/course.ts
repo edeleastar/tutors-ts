@@ -55,9 +55,11 @@ export class Course extends CompositeLearningObject {
     return ignoreList;
   }
 
-  constructor(options: CommandOptions, parent?: LearningObject) {
+  constructor(options?: CommandOptions, parent?: LearningObject) {
     super(parent);
-    this.options = options;
+    if (options) {
+      this.options = options;
+    }
     if (parent) {
       this.portfolio = true;
     }

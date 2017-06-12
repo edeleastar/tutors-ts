@@ -17,11 +17,13 @@ export abstract class LearningObject {
   objectivesWithoutHeader: string;
   credits: string;
   gitterid: string;
+  absoluteLink: boolean;
 
   constructor(parent?: LearningObject) {
     if (parent) {
       this.parent = parent;
     }
+
   }
 
   reap(pattern: string): void {

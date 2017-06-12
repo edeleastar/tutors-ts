@@ -12,8 +12,13 @@ export function writeFile(folder: string, filename: string, contents: string): v
 }
 
 export function readFile(path: string): string {
-  const array = fs.readFileSync(path).toString().split('\n');
-  return array[0];
+  if (fs.existsSync(path)) {
+    const array = fs.readFileSync(path).toString().split('\n');
+    return array[0];
+  } else {
+    console.log ('unable to locate ' + path);
+  }
+  return '';
 }
 
 export function readFileFromTree(path: string): string {

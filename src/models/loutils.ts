@@ -10,11 +10,12 @@ import {writeFile} from '../utils/futils';
 import {Video} from './video';
 import {Portfolio} from './portfolio';
 import {Archive} from './archive';
+import {Git} from './git';
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
   let los: Array<LearningObject> = reapLoType('course*', parent, folder => {
-    return new Course(parent);
+    return new Course(undefined, parent);
   });
   los = los.concat(reapLoType('topic*', parent, parent => {
     return new Topic(parent);
@@ -30,6 +31,9 @@ export function reapLos(parent: LearningObject): Array<LearningObject> {
   }));
   los = los.concat(reapLoType('archive*', parent, parent => {
     return new Archive(parent);
+  }));
+  los = los.concat(reapLoType('github*', parent, parent => {
+    return new Git(parent);
   }));
   return los;
 }

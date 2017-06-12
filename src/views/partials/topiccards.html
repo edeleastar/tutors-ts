@@ -10,10 +10,17 @@
 <section class="ui attached segment">
   <div class="ui centered four doubling stackable cards">
     {% for resource in los %}
-      {{ card.card (resource.icon,
-          resource.folder + '/' + resource.link,
-          resource.folder + '/' + resource.img, resource.title,
-          resource.objectivesWithoutHeader) }}
+      {% if resource.absoluteLink %}
+        {{ card.card (resource.icon,
+             resource.link,
+             resource.folder + '/' + resource.img, resource.title,
+             resource.objectivesWithoutHeader) }}
+      {% else %}
+        {{ card.card (resource.icon,
+             resource.folder + '/' + resource.link,
+             resource.folder + '/' + resource.img, resource.title,
+             resource.objectivesWithoutHeader) }}
+      {% endif %}
     {% endfor %}
   </div>
 </section>

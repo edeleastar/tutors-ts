@@ -6,11 +6,13 @@ import {Talk} from './talk';
 import {Book} from './book';
 import {Video} from './video';
 import {Archive} from './archive';
+import {Git} from "./git";
 
 export class Topic extends CompositeLearningObject {
 
   talks: Array<LearningObject>;
   labs: Array<LearningObject>;
+  githubrepos: Array<LearningObject>;
   archives: Array<LearningObject>;
   videos: Array<LearningObject>;
   topics: Array<LearningObject>;
@@ -23,6 +25,7 @@ export class Topic extends CompositeLearningObject {
     this.reap('topic');
     this.talks = this.los.filter(lo => lo instanceof Talk);
     this.labs = this.los.filter(lo => lo instanceof Book);
+    this.labs = this.labs.concat(this.los.filter(lo => lo instanceof Git));
     this.archives = this.los.filter(lo => lo instanceof Archive);
     this.videos = this.los.filter(lo => lo instanceof Video);
     this.topics = this.los.filter(lo => lo instanceof Topic);
