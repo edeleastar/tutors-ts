@@ -6,7 +6,7 @@ import {Talk} from './talk';
 import {Book} from './book';
 import {Video} from './video';
 import {Archive} from './archive';
-import {Git} from "./git";
+import {Git} from './git';
 
 export class Topic extends CompositeLearningObject {
 

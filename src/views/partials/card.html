@@ -3,7 +3,7 @@
 
 {% macro card (type, contentLink, imgLink, title, objectives, extra, gitterid) %}
 <div class="ui raised link card">
-  <div class="content">
+  <div class="center aligned content">
     <div class="right floated meta"><i class="{{type}} large icon"></i></div>
     <div class="header"> {{title}}</div>
   </div>
@@ -16,7 +16,7 @@
         <img class="ui bordered rounded image" src="{{imgLink}}">
       </div>
     </a>
-    <div class="content">
+    <div class="center aligned content">
       <div class="description">
         {{objectives}}
       </div>

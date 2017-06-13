@@ -1,17 +1,15 @@
-{% macro videocards(maintitle, videos) %}
+{% macro videocards(title, los) %}
 
-{% if videos.length > 0 %}
+{% import "partials/videocard.html" as videocard %}
 
-  <section class="ui attached segment">
-    {% for resource in videos %}
-      <h3 class="ui top attached header">
-        {{resource.title}}
-      </h3>
-      <div class="ui attached segment">
-        <div class="ui embed" data-source="youtube" data-id="{{resource.videoid}}"></div>
-      </div>
+{% if los.length > 0 %}
+<section class="ui attached segment">
+  <div class="ui centered four doubling stackable cards">
+    {% for resource in los %}
+      {{ videocard.videocard (resource.icon, resource.videoid, resource.title, resource.objectivesWithoutHeader) }}
     {% endfor %}
-  </section>
-
+  </div>
+</section>
 {% endif %}
+
 {% endmacro %}
