@@ -23,7 +23,7 @@
     <div class="ui twelve wide column">
       <div class="ui stackable cards">
         {% for course in courseGroup.courses %}
-        {{ card.card ("sitemap", "./" + course.folder + "/index.html", "./" + course.folder + "/" + course.img,
+        {{ card.card ("huge grid layout", "./" + course.folder + "/index.html", "./" + course.folder + "/" + course.img,
         course.title, course.objectivesWithoutHeader, course.credits) }}
         {% endfor %}
       </div>
@@ -39,7 +39,7 @@
   <a class="ui blue left ribbon large label">{{courseGroup.title}}</a>
   <div class="ui centered four stackable cards">
     {% for course in courseGroup.courses %}
-    {{ card.card ("sitemap", "./" + course.folder + "/index.html", "./" + course.folder + "/" + course.img,
+    {{ card.card ("huge grid layout", "./" + course.folder + "/index.html", "./" + course.folder + "/" + course.img,
     course.title, course.objectivesWithoutHeader, course.credits) }}
     {% endfor %}
   </div>

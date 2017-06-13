@@ -7,7 +7,7 @@ import {copyResource} from './loutils';
 export class Talk extends LearningObject {
   constructor(parent: LearningObject) {
     super(parent);
-    this.icon = 'film';
+    this.icon = 'huge object group';
     this.reap();
   }
 

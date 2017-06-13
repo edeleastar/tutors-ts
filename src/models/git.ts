@@ -7,7 +7,7 @@ export class Git extends LearningObject {
 
   constructor(parent: LearningObject) {
     super(parent);
-    this.icon = 'github';
+    this.icon = 'huge git square';
     super.reap('github');
     this.link = readFile('githubid');
     this.absoluteLink = true;

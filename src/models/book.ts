@@ -20,7 +20,7 @@ export class Book extends LearningObject {
 
   constructor(parent: LearningObject) {
     super(parent);
-    this.icon = 'lab';
+    this.icon = 'huge lab';
     this.reap();
   }
 

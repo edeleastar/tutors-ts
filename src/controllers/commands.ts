@@ -47,7 +47,7 @@ export class Commands {
       if (rootLearningObject) {
         rootLearningObject.publish('public-site');
       } else {
-        console.log ('Cannot locate course.md or portfolio.yaml');
+        console.log ('Cannot locate course.md or portfolio.yaml. Change to course folder and try again. ');
       }
     }
   }

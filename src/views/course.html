@@ -31,7 +31,7 @@
       <div class="ui basic segment">
         <div class="ui centered four doubling stackable cards">
           {% for topic in los %}
-          {{ card.card ("sitemap", "./" + topic.folder + "/" + topic.link, "./" + topic.folder + "/" + topic.img,
+          {{ card.card (topic.icon, "./" + topic.folder + "/" + topic.link, "./" + topic.folder + "/" + topic.img,
           topic.title, topic.objectivesWithoutHeader) }}
           {% endfor %}
         </div>
