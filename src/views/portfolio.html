@@ -11,13 +11,23 @@
 {% for courseGroup in courseGroups %}
 <div class="ui raised stackable segment container">
   <a class="ui blue left ribbon large label">{{courseGroup.title}}</a>
-
-  {% if courseGroup.description %}
-    <div class="ui segment">
-      {{courseGroup.description}}
-      {{ topiccards.topiccards ("Slides & Presentations", talks) }}
-    </div>
-  {% endif %}
+    {% if courseGroup.description %}
+      <div class="ui middle aligned center aligned two column centered grid">
+        <div class="ui column">
+          {{courseGroup.description}}
+        </div>
+        {% if los.length > 0 %}
+        <div class="ui column center aligned cards grid">
+          {% for resource in los %}
+          {{ card.card (resource.icon,
+          resource.folder + '/' + resource.link,
+          resource.folder + '/' + resource.img, resource.title,
+          resource.objectivesWithoutHeader) }}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    {% endif %}
 
   <div class="ui centered four stackable cards">
     {% for course in courseGroup.courses %}
