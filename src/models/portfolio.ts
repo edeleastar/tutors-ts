@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import * as sh from 'shelljs';
 import * as yaml from 'yamljs';
 import {CommandOptions} from '../controllers/commands';
-import {parse} from "../utils/mdutils";
+import {parse} from '../utils/mdutils';
 
 interface CourseGroup {
   title: string;
