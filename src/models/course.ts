@@ -66,6 +66,8 @@ export class Course extends CompositeLearningObject {
     this.los = reapLos(this);
     this.icon = 'film';
     this.reap('course');
+    const ignoreList = this.getIgnoreList();
+    this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
     this.findLabs(this.los);
     this.findTalks(this.los);
     this.insertCourseRef(this.los);
@@ -78,11 +80,7 @@ export class Course extends CompositeLearningObject {
     }
     publishTemplate(path, 'index.html', 'course.html', this);
     copyFileToFolder(this.img, path);
-
-    const ignoreList = this.getIgnoreList();
-    this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
     publishLos(path, this.los);
-
     this.talks.forEach(talk => {
       if (talk.parent === this) {
         talk.parentFolder = './';
