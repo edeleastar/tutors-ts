@@ -12,17 +12,17 @@
 <div class="ui raised stackable segment container">
   <a class="ui blue left ribbon large label">{{courseGroup.title}}</a>
     {% if courseGroup.description %}
-      <div class="ui middle aligned center aligned two column centered grid">
-        <div class="ui column">
+      <div class="ui middle aligned center aligned two column centered stackable grid">
+        <div class="ui column basic segment">
           {{courseGroup.description}}
         </div>
         {% if los.length > 0 %}
-        <div class="ui column center aligned cards grid">
+        <div class="ui column centered cards basic segment">
           {% for resource in los %}
           {{ card.card (resource.icon,
-          resource.folder + '/' + resource.link,
-          resource.folder + '/' + resource.img, resource.title,
-          resource.objectivesWithoutHeader) }}
+              resource.folder + '/' + resource.link,
+              resource.folder + '/' + resource.img, resource.title,
+              resource.objectivesWithoutHeader) }}
           {% endfor %}
         </div>
         {% endif %}

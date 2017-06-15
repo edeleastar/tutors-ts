@@ -6,10 +6,12 @@ import * as fs from 'fs';
 import * as sh from 'shelljs';
 import * as yaml from 'yamljs';
 import {CommandOptions} from '../controllers/commands';
+import {parse} from "../utils/mdutils";
 
 interface CourseGroup {
   title: string;
   description: string;
+  outline: string;
   modules: string[];
   courses: Array<Course>;
 }
@@ -35,6 +37,9 @@ export class Portfolio extends CompositeLearningObject {
     this.credits = yamlData.credits;
     yamlData.courseGroups.forEach((courseGroup: CourseGroup) => {
       courseGroup.courses = new Array<Course>();
+      if (courseGroup.outline) {
+        courseGroup.description = parse (courseGroup.outline);
+      }
       if (courseGroup.modules) {
         courseGroup.modules.forEach((module: string) => {
           if (fs.existsSync(module)) {
