@@ -1,42 +1,24 @@
 {% import "partials/portfolioheader.html" as header %}
 {% import "partials/card.html" as card %}
 {% import "partials/gittersidecar.html" as gittersidecar %}
+{% import "partials/topiccards.html" as topiccards %}
 
 {% extends "main.html" %}
 {% block content %}
 
 {{ header.header("#", "", title, subtitle, credits, gitterid) }}
 
-{% if courseGroups[0].description %}
-
-<div class="ui">
-  {% for courseGroup in courseGroups %}
-  <div class="ui raised grid stackable padded segment">
-    <div class="ui middle aligned center aligned four wide column">
-      <div class="ui header">
-        {{courseGroup.title}}
-      </div>
-      <p>
-        {{courseGroup.description}}
-      </p>
-    </div>
-    <div class="ui twelve wide column">
-      <div class="ui stackable cards">
-        {% for course in courseGroup.courses %}
-        {{ card.card ("huge grid layout", "./" + course.folder + "/index.html", "./" + course.folder + "/" + course.img,
-        course.title, course.objectivesWithoutHeader, course.credits) }}
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-</div>
-
-{% else %}
-
 {% for courseGroup in courseGroups %}
 <div class="ui raised stackable segment container">
   <a class="ui blue left ribbon large label">{{courseGroup.title}}</a>
+
+  {% if courseGroup.description %}
+    <div class="ui segment">
+      {{courseGroup.description}}
+      {{ topiccards.topiccards ("Slides & Presentations", talks) }}
+    </div>
+  {% endif %}
+
   <div class="ui centered four stackable cards">
     {% for course in courseGroup.courses %}
     {{ card.card ("huge grid layout", "./" + course.folder + "/index.html", "./" + course.folder + "/" + course.img,
@@ -45,8 +27,6 @@
   </div>
 </div>
 {% endfor %}
-
-{% endif %}
 
 {{ gittersidecar.gittersidecar(gitterid) }}
 
