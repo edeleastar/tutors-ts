@@ -1,36 +1,32 @@
 {% macro header(parent, type, title, subtitle, credits, portfolio, gitterid) %}
 
-{% import "partials/gitterbadge.html" as gitterbadge %}
 {% import "partials/gittersidecar.html" as gittersidecar %}
 {% import "headelements/walllinks.html" as walllinks %}
 {% import "headelements/topics.html" as topics %}
 {% import "headelements/portfoliolink.html" as portfoliolink %}
 {% import "headelements/creditsmsg.html" as creditsmsg %}
 
-<header class="ui middle aligned center aligned stackable grid segment">
+<header class="ui center aligned middle aligned stackable grid segment">
 
   {% include "headelements/sidebarlink.html" %}
 
-  <div class="ui seven wide center aligned column grid">
-    <div class="ui row">
-      <h2> {{title}} </h2>
-    </div>
-    <div class="ui row">
-      {% if gitterid %}
-      {{ gitterbadge.gitterbadge(gitterid) }}
-      {% endif %}
-    </div>
+  <div class="ui five wide column">
+    <h2> {{title}} </h2>
   </div>
 
-  {% if portfolio %}
-    {{ portfoliolink.portfoliolink ("../index.html", "Programme") }}
-  {% endif %}
+  <div class="ui two wide column">
+    {% if portfolio %}
+      {{ portfoliolink.portfoliolink ("../index.html", "Programme") }}
+    {% endif %}
+  </div>
 
-  {{ creditsmsg.creditsmsg(credits) }}
+  <div class="ui five wide column">
+    {{ creditsmsg.creditsmsg(credits) }}
+  </div>
 
-  {{ walllinks.walllinks ("talkwall.html", "labwall.html") }}
-
-
+  <div class="four wide column">
+    {{ walllinks.walllinks ("talkwall.html", "labwall.html", "videowall.html", "repowall.html") }}
+  </div>
 </header>
 
 {{ gittersidecar.gittersidecar(gitterid) }}

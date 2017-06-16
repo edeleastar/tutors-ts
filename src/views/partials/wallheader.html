@@ -1,21 +1,32 @@
-{% macro wallheader(parent, type, title, subtitle, credits) %}
+{% macro wallheader(parent, type, title, subtitle, credits, portfolio, gitterid) %}
 
+{% import "partials/gitterbadge.html" as gitterbadge %}
+{% import "partials/gittersidecar.html" as gittersidecar %}
 {% import "headelements/walllinks.html" as walllinks %}
 {% import "headelements/topics.html" as topics %}
+{% import "headelements/portfoliolink.html" as portfoliolink %}
 {% import "headelements/creditsmsg.html" as creditsmsg %}
+{% import "headelements/topics.html" as topics %}
 
 <header class="ui middle aligned center aligned stackable grid segment">
 
   {% include "headelements/sidebarlink.html" %}
 
-  <div class="seven wide center aligned column">
-    <h2 class="headder"> {{title}}</h2>
-    <p> {{subtitle}} </p>
+  <div class="ui five wide column">
+    <h2> {{title}} </h2>
   </div>
 
-  {{ topics.topics ("index.html") }}
-  {{ creditsmsg.creditsmsg(credits) }}
-  {{ walllinks.walllinks ("talkwall.html", "labwall.html") }}
-
+  <div class="ui two wide column">
+    {{ topics.topics ("index.html") }}
+  </div>
+  <div class="ui five wide column">
+    {{ creditsmsg.creditsmsg(credits) }}
+  </div>
+  <div class="four wide column">
+    {{ walllinks.walllinks ("talkwall.html", "labwall.html", "videowall.html", "repowall.html") }}
+  </div>
 </header>
+
+{{ gittersidecar.gittersidecar(gitterid) }}
 {% endmacro %}
+

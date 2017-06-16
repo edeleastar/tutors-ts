@@ -6,12 +6,17 @@ import {publishLos, publishTemplate, reapLos} from './loutils';
 import {copyFileToFolder, getCurrentDirectory} from '../utils/futils';
 import * as fs from 'fs';
 import {CommandOptions} from '../controllers/commands';
+import {Git} from './git';
+import {Video} from './video';
 
 export class Course extends CompositeLearningObject {
   labs: Book[] = [];
   talks: Talk[] = [];
+  repos: Git[] = [];
+  videos: Video[] = [];
   portfolio: boolean;
   options: CommandOptions;
+  resources: LearningObject[];
 
   findLabs(los: Array<LearningObject>): void {
     los.forEach(lo => {
@@ -31,6 +36,28 @@ export class Course extends CompositeLearningObject {
       }
       if (lo instanceof Topic) {
         this.findTalks(lo.los);
+      }
+    });
+  }
+
+  findRepos(los: Array<LearningObject>): void {
+    los.forEach(lo => {
+      if (lo instanceof Git) {
+        this.repos.push(lo);
+      }
+      if (lo instanceof Topic) {
+        this.findRepos(lo.los);
+      }
+    });
+  }
+
+  findVideos(los: Array<LearningObject>): void {
+    los.forEach(lo => {
+      if (lo instanceof Video) {
+        this.videos.push(lo);
+      }
+      if (lo instanceof Topic) {
+        this.findVideos(lo.los);
       }
     });
   }
@@ -70,6 +97,8 @@ export class Course extends CompositeLearningObject {
     this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
     this.findLabs(this.los);
     this.findTalks(this.los);
+    this.findRepos(this.los);
+    this.findVideos(this.los);
     this.insertCourseRef(this.los);
   }
 
@@ -86,7 +115,13 @@ export class Course extends CompositeLearningObject {
         talk.parentFolder = './';
       }
     });
-    publishTemplate(path, '/labwall.html', 'labwall.html', this);
-    publishTemplate(path, '/talkwall.html', 'talkwall.html', this);
+    this.resources = this.labs;
+    publishTemplate(path, '/labwall.html', 'wall.html', this);
+    this.resources = this.talks;
+    publishTemplate(path, '/talkwall.html', 'wall.html', this);
+    this.resources = this.videos;
+    publishTemplate(path, '/videowall.html', 'videowall.html', this);
+    this.resources = this.repos;
+    publishTemplate(path, '/repowall.html', 'wall.html', this);
   }
 }

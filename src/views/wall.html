@@ -1,16 +1,17 @@
 {% import "partials/wallheader.html" as wallheader %}
 {% import "partials/card.html" as card %}
+{% import "partials/header.html" as header %}
 
 {% set assetprefix = "./assets" %}
 
 {% extends "main.html" %}
 {% block content %}
 
-{{ wallheader.wallheader("#", icon, title, "All Slides in the Course", credits) }}
+{{ wallheader.wallheader("#", icon, title, "", credits, "", gitterid) }}
 
 <div class="ui bottom attached segment pushable">
   <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    {% for resource in talks %}
+    {% for resource in resources %}
     <a class="item" href="{{resource.parentFolder}}/{{resource.folder}}/{{resource.link}}">
       {{resource.title}}
     </a>
@@ -20,7 +21,7 @@
     <div class="ui container">
       <div class="ui basic segment">
         <div class="ui centered four doubling stackable cards">
-          {% for resource in talks %}
+          {% for resource in resources %}
             {% if resource.parent.subtopic %}
               {{ card.card (resource.icon,
                   resource.parent.parentFolder + '/' + resource.parentFolder + '/' + resource.folder + '/' +resource.link,

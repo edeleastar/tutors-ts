@@ -7,20 +7,18 @@
 
 <header class="ui middle aligned center aligned stackable grid segment">
 
-  <div class="ui seven wide center aligned column grid">
+  <div class="ui seven wide column">
     <div class="ui row">
       <h2> {{title}} </h2>
       <p> {{subtitle}} </p>
     </div>
-    <div class="ui row">
-      {% if gitterid %}
-      {{ gitterbadge.gitterbadge(gitterid) }}
-      {% endif %}
-    </div>
   </div>
 
+  <div class="ui five wide column">
   {{ creditsmsg.creditsmsg(credits) }}
-
+  </div>
+  <div class="ui four wide column">
+  </div>
 </header>
 {% endmacro %}
 
