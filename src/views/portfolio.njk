@@ -17,7 +17,7 @@
           {% if lo.los.length > 0 %}
             <div class="ui column centered cards basic segment">
               {% for resource in lo.los %}
-                {{ card (resource, resource.folder + '/') }}
+                {{ card (resource) }}
               {% endfor %}
             </div>
           {% endif %}
@@ -26,7 +26,7 @@
 
       <div class="ui centered four stackable cards">
         {% for course in courseGroup.courses %}
-          {{ card (course, "./" + course.folder) }}
+          {{ card (course) }}
         {% endfor %}
       </div>
     </div>

@@ -6,32 +6,32 @@
 {% extends "main.html" %}
 {% block content %}
 
-{{ header(lo) }}
+  {{ header(lo) }}
 
-<div class="ui segment pushable">
-  <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    <div class="header">
-      <a class="item" href="#">
-        {{title}}
-      </a>
+  <div class="ui segment pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <div class="header">
+        <a class="item" href="#">
+          {{ title }}
+        </a>
+      </div>
+      <div class="menu">
+        {% for resource in lo.los %}
+          <a class="item" href="{{ resource.folder }}/{{ resource.link }}">
+            {{ resource.title }}
+          </a>
+        {% endfor %}
+      </div>
     </div>
-    <div class="menu">
-      {% for resource in lo.los %}
-      <a class="item" href="{{resource.folder}}/{{resource.link}}">
-        {{resource.title}}
-      </a>
-      {% endfor %}
+    <div class="pusher">
+      <div class="ui basic container segment">
+        {{ topiccards (lo.videos) }}
+        {{ topiccards (lo.talks) }}
+        {{ topiccards (lo.labs) }}
+        {{ topiccards (lo.archives) }}
+        {{ topiccards (lo.topics) }}
+      </div>
     </div>
   </div>
-  <div class="pusher">
-    <div class="ui basic container segment">
-      {{ topiccards ("Videos", lo.videos) }}
-      {{ topiccards ("Slides & Presentations", lo.talks) }}
-      {{ topiccards ("Labs & Repos", lo.labs) }}
-      {{ topiccards ("Archives", lo.archives) }}
-      {{ topiccards ("Sub Topics", lo.topics) }}
-    </div>
-  </div>
-</div>
 
 {% endblock %}

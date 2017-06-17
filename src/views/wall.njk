@@ -25,9 +25,9 @@
               {% if (resource.lotype == 'video') %}
                 {{ videocard (resource) }}
               {% elif (resource.parent.lotype == 'topic') and (resource.parent.parent.lotype == 'topic') %}
-                {{ card (resource, resource.parent.parentFolder + '/' + resource.parentFolder + '/' + resource.folder) }}
+                {{ card (resource, resource.parent.parentFolder + '/' + resource.parentFolder + '/') }}
               {% else %}
-                {{ card (resource, resource.parentFolder + '/' + resource.folder) }}
+                {{ card (resource, resource.parentFolder + '/') }}
               {% endif %}
             {% endfor %}
           </div>

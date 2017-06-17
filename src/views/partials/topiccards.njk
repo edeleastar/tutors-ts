@@ -1,7 +1,7 @@
 {% from "partials/card.njk" import card %}
 {% from "partials/videocard.njk" import videocard %}
 
-{% macro topiccards(title, los) %}
+{% macro topiccards(los) %}
   {% if los.length > 0 %}
     <section class="ui attached segment">
       <div class="ui centered four doubling stackable cards">
@@ -9,7 +9,7 @@
           {% if resource.lotype == 'video' %}
             {{ videocard (resource) }}
           {% else %}
-            {{ card (resource, resource.folder) }}
+            {{ card (resource) }}
           {% endif %}
         {% endfor %}
       </div>
