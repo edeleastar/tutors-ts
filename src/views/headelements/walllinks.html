@@ -1,28 +1,38 @@
-{% macro walllinks(talks, labs, videos, repos) %}
-<div class="ui two column grid">
-  <div class="ui eight wide column">
-    <div class="row">
-      <div class="popup" data-content="All Slides in Course">
-        <a href="{{talks}}"> <i class="large object group icon"></i> All Slides </a>
+{% macro walllinks(lo) %}
+
+  <div class="ui two column grid">
+    <div class="ui eight wide column">
+      <div class="row">
+        {% if lo.talks.length > 0 %}
+        <div class="popup" data-content="All Slides in Course">
+          <a href="talkwall.html"> <i class="large object group icon"></i> All Slides </a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="row">
+        {% if lo.labs.length > 0 %}
+        <div class="popup" data-content="All Labs in Course">
+          <a href="labwall.html"> <i class="large lab icon"></i> All Labs </a>
+        </div>
+        {% endif %}
       </div>
     </div>
-    <div class="row">
-      <div class="popup" data-content="All Labs in Course">
-        <a href="{{labs}}"> <i class="large lab icon"></i> All Labs </a>
+    <div class="ui eight wide column">
+      <div class="row">
+        {% if lo.videos.length > 0 %}
+        <div class="popup" data-content="All Videos in Course">
+          <a href="videowall.html"> <i class="large film icon"></i> All Videos </a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="row">
+        {% if lo.repos.length > 0 %}
+        <div class="popup" data-content="All Repos in Course">
+          <a href="repowall.html"> <i class="large git icon"></i> All Repos </a>
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>
-  <div class="ui eight wide column">
-    <div class="row">
-      <div class="popup" data-content="All Videos in Course">
-        <a href="{{videos}}"> <i class="large film icon"></i> All Videos </a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="popup" data-content="All Repos in Course">
-        <a href="{{repos}}"> <i class="large git icon"></i> All Repos </a>
-      </div>
-    </div>
-  </div>
-</div>
+
 {% endmacro %}

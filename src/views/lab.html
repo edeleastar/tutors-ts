@@ -12,18 +12,18 @@
   <header class="header item">
     <i id="toc" class="sitemap icon"></i>
     <a href="../index.html">
-      {{parent.title}}
+      {{lo.parent.title}}
     </a>
   </header>
   <div class="right tab-menu menu">
-    {% for chapter in chapters %}
+    {% for chapter in lo.chapters %}
     <a class="item" data-tab="{{chapter.shortTitle}}">
       {{chapter.shortTitle}}
     </a>
     {% endfor %}
     <div class="item">
       {% if gitterid %}
-      {{ gitterbadge.gitterbadge(gitterid) }}
+      {{ gitterbadge.gitterbadge(lo.gitterid) }}
       {% endif %}
     </div>
   </div>
@@ -32,7 +32,7 @@
 <div class="ui segment pushable" >
 
   <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    {% for resource in course.labs %}
+    {% for resource in lo.course.labs %}
       {% if resource.title == title %}
         <a class="active item" href="../../{{resource.parentFolder}}/{{resource.folder}}/{{resource.link}}">
           {{resource.title}}
@@ -47,7 +47,7 @@
   <div class="pusher" tabindex="-1">
     <div class="ui basic segment" id="labchat">
       <br>
-      {% for chapter in chapters %}
+      {% for chapter in lo.chapters %}
       <div  class="ui tab segment lab" data-tab="{{chapter.shortTitle}}">
         {{ chapter.content }}
       </div>

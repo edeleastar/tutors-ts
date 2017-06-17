@@ -1,4 +1,4 @@
-{% import "partials/header.html" as header %}
+{% import "headelements/header.html" as header %}
 {% import "partials/card.html" as card %}
 
 {% set assetprefix = "./assets" %}
@@ -6,11 +6,11 @@
 {% extends "main.html" %}
 {% block content %}
 
-{{ header.header("#", "sitemap", title, "Topics", credits, portfolio, gitterid) }}
+{{ header.header(lo) }}
 
 <div class="ui segment pushable">
   <div class="ui inverted inline vertical sidebar menu">
-    {% for topic in los %}
+    {% for topic in lo.los %}
     <div class="header">
       <a class="item" href="{{topic.folder}}/index.html">
         {{topic.title}}
@@ -30,7 +30,7 @@
     <div class="ui container">
       <div class="ui basic segment">
         <div class="ui centered four doubling stackable cards">
-          {% for topic in los %}
+          {% for topic in lo.los %}
           {{ card.card (topic.icon, "./" + topic.folder + "/" + topic.link, "./" + topic.folder + "/" + topic.img,
           topic.title, topic.objectivesWithoutHeader) }}
           {% endfor %}

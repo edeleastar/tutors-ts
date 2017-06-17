@@ -9,6 +9,7 @@ export class Talk extends LearningObject {
     super(parent);
     this.icon = 'huge object group';
     this.reap();
+    this.lotype = 'talk';
   }
 
   reap(): void {

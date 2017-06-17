@@ -18,6 +18,7 @@ export class Archive extends LearningObject {
     if (resourceList.length > 0) {
       const resourceName = path.parse(resourceList[0]).name;
       super.reap(resourceName);
+      this.lotype = 'archive';
       this.link = resourceList[0];
     }
   }

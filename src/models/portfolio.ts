@@ -26,6 +26,7 @@ export class Portfolio extends CompositeLearningObject {
     this.options = options;
     this.icon = 'film';
     this.reap();
+    this.lotype = 'portfolio';
   }
 
   reap(): void {
@@ -38,7 +39,7 @@ export class Portfolio extends CompositeLearningObject {
     yamlData.courseGroups.forEach((courseGroup: CourseGroup) => {
       courseGroup.courses = new Array<Course>();
       if (courseGroup.outline) {
-        courseGroup.description = parse (courseGroup.outline);
+        courseGroup.description = parse(courseGroup.outline);
       }
       if (courseGroup.modules) {
         courseGroup.modules.forEach((module: string) => {

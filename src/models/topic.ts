@@ -12,26 +12,25 @@ export class Topic extends CompositeLearningObject {
 
   talks: Array<LearningObject>;
   labs: Array<LearningObject>;
-  githubrepos: Array<LearningObject>;
+  repos: Array<LearningObject>;
   archives: Array<LearningObject>;
   videos: Array<LearningObject>;
   topics: Array<LearningObject>;
-  subtopic: boolean;
 
   constructor(parent: LearningObject) {
     super(parent);
     super.los = reapLos(this);
     this.icon = 'huge sitemap';
     this.reap('topic');
+    this.lotype = 'topic';
     this.talks = this.los.filter(lo => lo instanceof Talk);
     this.labs = this.los.filter(lo => lo instanceof Book);
     this.labs = this.labs.concat(this.los.filter(lo => lo instanceof Git));
     this.archives = this.los.filter(lo => lo instanceof Archive);
     this.videos = this.los.filter(lo => lo instanceof Video);
     this.topics = this.los.filter(lo => lo instanceof Topic);
-    if (parent instanceof Topic) {
-      this.subtopic = true;
-    }
+    this.repos = this.los.filter(lo => lo instanceof Git);
+
     if (!this.img) {
       if (this.talks.length > 0) {
         this.img = this.talks[0].folder + '/' + this.talks[0].img;

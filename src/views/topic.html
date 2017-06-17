@@ -1,19 +1,12 @@
-{% import "partials/topicheader.html" as topicheader %}
-{% import "partials/subtopicheader.html" as subtopicheader %}
+{% import "headelements/header.html" as header %}
 {% import "partials/topiccards.html" as topiccards %}
-{% import "partials/videocards.html" as videocards %}
 
 {% set assetprefix = "../assets" %}
 
 {% extends "main.html" %}
 {% block content %}
 
-{% if subtopic %}
-  {{ subtopicheader.subtopicheader("../index.html", "glyphicon-chevron-left", title, "", credits, gitterid) }}
-{% else %}
-  {{ topicheader.topicheader("../index.html", "glyphicon-chevron-left", title, "", credits, gitterid) }}
-{% endif %}
-
+{{ header.header(lo) }}
 
 <div class="ui segment pushable">
   <div class="ui inverted labeled icon left inline vertical sidebar menu">
@@ -23,7 +16,7 @@
       </a>
     </div>
     <div class="menu">
-      {% for resource in los %}
+      {% for resource in lo.los %}
       <a class="item" href="{{resource.folder}}/{{resource.link}}">
         {{resource.title}}
       </a>
@@ -32,11 +25,11 @@
   </div>
   <div class="pusher">
     <div class="ui basic container segment">
-      {{ videocards.videocards ("Videos", videos) }}
-      {{ topiccards.topiccards ("Slides & Presentations", talks) }}
-      {{ topiccards.topiccards ("Labs & Repos", labs) }}
-      {{ topiccards.topiccards ("Archives", archives) }}
-      {{ topiccards.topiccards ("Sub Topics", topics) }}
+      {{ topiccards.topiccards ("Videos", lo.videos) }}
+      {{ topiccards.topiccards ("Slides & Presentations", lo.talks) }}
+      {{ topiccards.topiccards ("Labs & Repos", lo.labs) }}
+      {{ topiccards.topiccards ("Archives", lo.archives) }}
+      {{ topiccards.topiccards ("Sub Topics", lo.topics) }}
     </div>
   </div>
 </div>

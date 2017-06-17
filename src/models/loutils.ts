@@ -53,7 +53,12 @@ function reapLoType(pattern: string, parent: LearningObject, locreator: (parent:
 }
 
 export function publishTemplate(path: string, file: string, template: string, lo: LearningObject): void {
-  writeFile(path, file, nunjucks.render(template, lo));
+  // writeFile(path, file, nunjucks.render(template, lo));
+  writeFile(path, file, nunjucks.render(template, {lo: lo}));
+}
+
+export function publishTemplate2(path: string, file: string, template: string, lo: LearningObject): void {
+  writeFile(path, file, nunjucks.render(template, {lo: lo}));
 }
 
 export function publishLos(path: string, los: Array<LearningObject>): void {

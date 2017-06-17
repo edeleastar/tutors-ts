@@ -1,35 +1,44 @@
-{% macro header(parent, type, title, subtitle, credits, portfolio, gitterid) %}
+{% macro header(lo) %}
 
 {% import "partials/gittersidecar.html" as gittersidecar %}
 {% import "headelements/walllinks.html" as walllinks %}
 {% import "headelements/topics.html" as topics %}
 {% import "headelements/portfoliolink.html" as portfoliolink %}
 {% import "headelements/creditsmsg.html" as creditsmsg %}
+{% import "headelements/subtopics.html" as subtopics %}
 
 <header class="ui center aligned middle aligned stackable grid segment">
 
   {% include "headelements/sidebarlink.html" %}
 
   <div class="ui five wide column">
-    <h2> {{title}} </h2>
+    <h2> {{lo.title}} </h2>
   </div>
 
   <div class="ui two wide column">
-    {% if portfolio %}
+    {% if (lo.lotype == 'portfolio') %}
+    {% elif (lo.lotype == 'course') and lo.parent %}
       {{ portfoliolink.portfoliolink ("../index.html", "Programme") }}
+    {% elif (lo.lotype == 'topic') and (lo.parent.lotype == 'topic') %}
+      {{ subtopics.subtopics ("../index.html") }}
+    {% elif (lo.lotype == 'topic') %}
+      {{ topics.topics ("../index.html") }}
+    {% else %}
+      {{ topics.topics ("index.html") }}
     {% endif %}
   </div>
 
   <div class="ui five wide column">
-    {{ creditsmsg.creditsmsg(credits) }}
+    {{ creditsmsg.creditsmsg(lo.credits) }}
+  </div>
+  <div class="four wide column">
+    {% if lo.lotype == 'course' %}
+      {{ walllinks.walllinks (lo) }}
+    {% endif %}
   </div>
 
-  <div class="four wide column">
-    {{ walllinks.walllinks ("talkwall.html", "labwall.html", "videowall.html", "repowall.html") }}
-  </div>
 </header>
 
-{{ gittersidecar.gittersidecar(gitterid) }}
-
+{{ gittersidecar.gittersidecar(lo.gitterid) }}
 
 {% endmacro %}

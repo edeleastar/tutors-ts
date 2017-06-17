@@ -18,12 +18,13 @@ export abstract class LearningObject {
   credits: string;
   gitterid: string;
   absoluteLink: boolean;
+  lotype: string;
 
   constructor(parent?: LearningObject) {
     if (parent) {
       this.parent = parent;
     }
-
+    this.lotype = 'lo';
   }
 
   reap(pattern: string): void {

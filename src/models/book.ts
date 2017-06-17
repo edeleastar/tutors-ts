@@ -22,6 +22,7 @@ export class Book extends LearningObject {
     super(parent);
     this.icon = 'huge lab';
     this.reap();
+    this.lotype = 'lab';
   }
 
   reapChapters(mdFiles: Array<string>): Array<Chapter> {

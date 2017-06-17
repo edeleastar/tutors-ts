@@ -2,7 +2,7 @@ import {CompositeLearningObject, LearningObject} from './learningobjects';
 import {Book} from './book';
 import {Talk} from './talk';
 import {Topic} from './topic';
-import {publishLos, publishTemplate, reapLos} from './loutils';
+import {publishLos, publishTemplate, publishTemplate2, reapLos} from './loutils';
 import {copyFileToFolder, getCurrentDirectory} from '../utils/futils';
 import * as fs from 'fs';
 import {CommandOptions} from '../controllers/commands';
@@ -14,7 +14,6 @@ export class Course extends CompositeLearningObject {
   talks: Talk[] = [];
   repos: Git[] = [];
   videos: Video[] = [];
-  portfolio: boolean;
   options: CommandOptions;
   resources: LearningObject[];
 
@@ -87,10 +86,8 @@ export class Course extends CompositeLearningObject {
     if (options) {
       this.options = options;
     }
-    if (parent) {
-      this.portfolio = true;
-    }
     this.los = reapLos(this);
+    this.lotype = 'course';
     this.icon = 'film';
     this.reap('course');
     const ignoreList = this.getIgnoreList();
@@ -107,7 +104,7 @@ export class Course extends CompositeLearningObject {
     if ((path.charAt(0) !== '/') && (path.charAt(1) !== ':')) {
       path = getCurrentDirectory() + '/' + path;
     }
-    publishTemplate(path, 'index.html', 'course.html', this);
+    publishTemplate2(path, 'index.html', 'course.html', this);
     copyFileToFolder(this.img, path);
     publishLos(path, this.los);
     this.talks.forEach(talk => {
@@ -120,7 +117,7 @@ export class Course extends CompositeLearningObject {
     this.resources = this.talks;
     publishTemplate(path, '/talkwall.html', 'wall.html', this);
     this.resources = this.videos;
-    publishTemplate(path, '/videowall.html', 'videowall.html', this);
+    publishTemplate(path, '/videowall.html', 'wall.html', this);
     this.resources = this.repos;
     publishTemplate(path, '/repowall.html', 'wall.html', this);
   }

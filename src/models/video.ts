@@ -9,6 +9,7 @@ export class Video extends LearningObject {
     this.icon = 'huge film';
     super.reap('video');
     this.videoid = readFile('videoid');
+    this.lotype = 'video';
   }
 
   publish(path: string): void {
