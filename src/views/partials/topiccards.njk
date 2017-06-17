@@ -1,0 +1,18 @@
+{% from "partials/card.njk" import card %}
+{% from "partials/videocard.njk" import videocard %}
+
+{% macro topiccards(title, los) %}
+  {% if los.length > 0 %}
+    <section class="ui attached segment">
+      <div class="ui centered four doubling stackable cards">
+        {% for resource in los %}
+          {% if resource.lotype == 'video' %}
+            {{ videocard (resource) }}
+          {% else %}
+            {{ card (resource, resource.folder) }}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% endmacro %}

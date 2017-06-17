@@ -62,7 +62,7 @@ export class Portfolio extends CompositeLearningObject {
   publish(path: string): void {
     const absPath = getCurrentDirectory() + '/' + path;
 
-    publishTemplate(absPath, 'index.html', 'portfolio.html', this);
+    publishTemplate(absPath, 'index.html', 'portfolio.njk', this);
     publishLos(path, this.los);
 
     for (let courseGroup of this.courseGroups) {

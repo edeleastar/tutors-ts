@@ -1,12 +1,12 @@
-{% import "headelements/header.html" as header %}
-{% import "partials/topiccards.html" as topiccards %}
+{% from "headelements/header.njk" import header %}
+{% from "partials/topiccards.njk" import topiccards %}
 
 {% set assetprefix = "../assets" %}
 
 {% extends "main.html" %}
 {% block content %}
 
-{{ header.header(lo) }}
+{{ header(lo) }}
 
 <div class="ui segment pushable">
   <div class="ui inverted labeled icon left inline vertical sidebar menu">
@@ -25,11 +25,11 @@
   </div>
   <div class="pusher">
     <div class="ui basic container segment">
-      {{ topiccards.topiccards ("Videos", lo.videos) }}
-      {{ topiccards.topiccards ("Slides & Presentations", lo.talks) }}
-      {{ topiccards.topiccards ("Labs & Repos", lo.labs) }}
-      {{ topiccards.topiccards ("Archives", lo.archives) }}
-      {{ topiccards.topiccards ("Sub Topics", lo.topics) }}
+      {{ topiccards ("Videos", lo.videos) }}
+      {{ topiccards ("Slides & Presentations", lo.talks) }}
+      {{ topiccards ("Labs & Repos", lo.labs) }}
+      {{ topiccards ("Archives", lo.archives) }}
+      {{ topiccards ("Sub Topics", lo.topics) }}
     </div>
   </div>
 </div>

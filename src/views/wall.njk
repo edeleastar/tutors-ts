@@ -1,0 +1,39 @@
+{% from "headelements/header.njk" import header %}
+{% from "partials/card.njk" import card %}
+{% from "partials/videocard.njk" import videocard %}
+
+{% set assetprefix = "./assets" %}
+
+{% extends "main.html" %}
+{% block content %}
+
+{{ header(lo, true) }}
+
+  <div class="ui bottom attached segment pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      {% for resource in lo.resources %}
+        <a class="item" href="{{ resource.parentFolder }}/{{ resource.folder }}/{{ resource.link }}">
+          {{ resource.title }}
+        </a>
+      {% endfor %}
+    </div>
+    <div class="pusher">
+      <div class="ui container">
+        <div class="ui basic segment">
+          <div class="ui centered four doubling stackable cards">
+            {% for resource in lo.resources %}
+              {% if (resource.lotype == 'video') %}
+                {{ videocard (resource) }}
+              {% elif (resource.parent.lotype == 'topic') and (resource.parent.parent.lotype == 'topic') %}
+                {{ card (resource, resource.parent.parentFolder + '/' + resource.parentFolder + '/' + resource.folder) }}
+              {% else %}
+                {{ card (resource, resource.parentFolder + '/' + resource.folder) }}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}}

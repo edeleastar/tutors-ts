@@ -88,7 +88,7 @@ export class Course extends CompositeLearningObject {
     }
     this.los = reapLos(this);
     this.lotype = 'course';
-    this.icon = 'film';
+    this.icon = 'grid';
     this.reap('course');
     const ignoreList = this.getIgnoreList();
     this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
@@ -104,7 +104,7 @@ export class Course extends CompositeLearningObject {
     if ((path.charAt(0) !== '/') && (path.charAt(1) !== ':')) {
       path = getCurrentDirectory() + '/' + path;
     }
-    publishTemplate2(path, 'index.html', 'course.html', this);
+    publishTemplate2(path, 'index.html', 'course.njk', this);
     copyFileToFolder(this.img, path);
     publishLos(path, this.los);
     this.talks.forEach(talk => {
@@ -113,12 +113,12 @@ export class Course extends CompositeLearningObject {
       }
     });
     this.resources = this.labs;
-    publishTemplate(path, '/labwall.html', 'wall.html', this);
+    publishTemplate(path, '/labwall.html', 'wall.njk', this);
     this.resources = this.talks;
-    publishTemplate(path, '/talkwall.html', 'wall.html', this);
+    publishTemplate(path, '/talkwall.html', 'wall.njk', this);
     this.resources = this.videos;
-    publishTemplate(path, '/videowall.html', 'wall.html', this);
+    publishTemplate(path, '/videowall.html', 'wall.njk', this);
     this.resources = this.repos;
-    publishTemplate(path, '/repowall.html', 'wall.html', this);
+    publishTemplate(path, '/repowall.html', 'wall.njk', this);
   }
 }

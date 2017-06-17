@@ -60,7 +60,7 @@ export class Book extends LearningObject {
     this.directories.forEach(directory => {
       copyFolder(directory, labPath);
     });
-    publishTemplate(labPath, 'index.html', 'lab.html', this);
+    publishTemplate(labPath, 'index.html', 'lab.njk', this);
     sh.cd('..');
   }
 }

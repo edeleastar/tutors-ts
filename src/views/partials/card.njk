@@ -1,0 +1,34 @@
+{% from "headelements/gitterbadge.njk" import gitterbadge %}
+
+{% macro card (lo, path) %}
+  <div class="ui raised link card">
+    <div class="center aligned content">
+      <div class="right floated meta"><i class="huge {{ lo.icon }} icon"></i></div>
+      <div class="header"> {{ lo.title }}</div>
+    </div>
+    {% if (lo.absoluteLink) %}
+    <a href="{{ lo.link }}" target="_blank">
+      {% else %}
+      <a href="{{ path }}/{{ lo.link }}">
+        {% endif %}
+        <div class="image">
+          <img class="ui bordered rounded image" src="{{ path }}/{{ lo.img }}">
+        </div>
+      </a>
+      <div class="center aligned content">
+        <div class="description">
+          {{ lo.objectivesWithoutHeader }}
+        </div>
+      </div>
+      {% if lo.credits %}
+        <div class="extra content center aligned">
+          {{ lo.credits }}
+        </div>
+      {% endif %}
+      {% if lo.gitterid %}
+        <div class="extra content center aligned">
+          {{ gitterbadge(lo.gitterid) }}
+        </div>
+      {% endif %}
+  </div>
+{% endmacro %}

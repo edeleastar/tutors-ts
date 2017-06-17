@@ -1,5 +1,5 @@
 {% set assetprefix = "../../assets" %}
-{% import "headelements/gitterbadge.html" as gitterbadge %}
+{% from "headelements/gitterbadge.njk" import gitterbadge %}
 {% extends "main.html" %}
 
 {% block content %}
@@ -23,7 +23,7 @@
     {% endfor %}
     <div class="item">
       {% if gitterid %}
-      {{ gitterbadge.gitterbadge(lo.gitterid) }}
+      {{ gitterbadge(lo.gitterid) }}
       {% endif %}
     </div>
   </div>
@@ -57,7 +57,7 @@
   </div>
 
 </div>
-<!--{% include "partials/labcredits.html" %}-->
+<!--{% include "partials/labcredits.njk" %}-->
 
 <script>
   {% include "js/lab.js" %}

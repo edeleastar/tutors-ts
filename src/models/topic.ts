@@ -47,7 +47,7 @@ export class Topic extends CompositeLearningObject {
     sh.cd(this.folder);
     const topicPath = path + '/' + this.folder;
     copyFileToFolder(this.img, topicPath);
-    publishTemplate(topicPath, 'index.html', 'topic.html', this);
+    publishTemplate(topicPath, 'index.html', 'topic.njk', this);
 
     publishLos(topicPath, this.los);
     sh.cd('..');
