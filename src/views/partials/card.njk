@@ -1,31 +1,36 @@
 {% from "headelements/gitterbadge.njk" import gitterbadge %}
 
 {% macro card (lo, path) %}
-  <div class="ui raised link card">
-    <div class="center aligned content">
-      <div class="right floated meta"><i class="huge {{lo.icon}} icon"></i></div>
-      <div class="header"> {{ lo.title }}</div>
-    </div>
-    {% if (lo.absoluteLink) %}
-      <a href="{{lo.link}}" target="_blank">
-      {% else %}
-      <a href="{{path}}{{lo.folder}}/{{lo.link}}">
-        {% endif %}
-        <div class="image">
-          <img class="ui bordered rounded image" src="{{path}}{{lo.folder}}/{{ lo.img }}">
-        </div>
-      </a>
+
+  {% if (lo.absoluteLink) %}
+    <a class="ui raised link card" href="{{lo.link}}" target="_blank">
+  {% elif (lo.lotype == "talk") %}
+     <a class="ui raised link card" href="{{path}}{{lo.folder}}/{{lo.link}}" target="_blank">
+  {% else %}
+    <a class="ui raised link card" href="{{path}}{{lo.folder}}/{{lo.link}}">
+  {% endif %}
+
+      <div class="center aligned content">
+        <div class="right floated meta"><i class="huge {{ lo.icon }} icon"></i></div>
+        <div class="header"> {{ lo.title }}</div>
+      </div>
+
+      <div class="image">
+        <img class="ui bordered rounded image" src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
+      </div>
+
       <div class="center aligned content">
         <div class="description">
           {{ lo.objectivesWithoutHeader }}
         </div>
       </div>
+
       {% if (lo.credits and (lo.lotype == 'course')) %}
         <div class="extra content center aligned">
           {{ lo.credits }}
         </div>
       {% endif %}
-      {% if lo.gitterid %}
-      {% endif %}
-  </div>
+
+    </a>
+
 {% endmacro %}
