@@ -20,15 +20,15 @@
           {{ lo.objectivesWithoutHeader }}
         </div>
       </div>
-      {% if lo.credits %}
+      {% if (lo.credits and (lo.lotype == 'course')) %}
         <div class="extra content center aligned">
           {{ lo.credits }}
         </div>
       {% endif %}
       {% if lo.gitterid %}
-        <div class="extra content center aligned">
+      <!--  <div class="extra content center aligned">
           {{ gitterbadge(lo.gitterid) }}
-        </div>
+        </div> -->
       {% endif %}
   </div>
 {% endmacro %}
