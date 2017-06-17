@@ -1,4 +1,4 @@
-{% macro header(lo) %}
+{% macro header(lo, iswall) %}
 
 {% import "partials/gittersidecar.html" as gittersidecar %}
 {% import "headelements/walllinks.html" as walllinks %}
@@ -16,15 +16,16 @@
   </div>
 
   <div class="ui two wide column">
-    {% if (lo.lotype == 'portfolio') %}
+    {% if iswall %}
+      {{ topics.topics ("index.html") }}
     {% elif (lo.lotype == 'course') and lo.parent %}
       {{ portfoliolink.portfoliolink ("../index.html", "Programme") }}
     {% elif (lo.lotype == 'topic') and (lo.parent.lotype == 'topic') %}
       {{ subtopics.subtopics ("../index.html") }}
     {% elif (lo.lotype == 'topic') %}
       {{ topics.topics ("../index.html") }}
+    {% elif (lo.lotype == 'portfolio') %}
     {% else %}
-      {{ topics.topics ("index.html") }}
     {% endif %}
   </div>
 
