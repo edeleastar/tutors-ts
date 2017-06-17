@@ -88,7 +88,7 @@ export class Course extends CompositeLearningObject {
     }
     this.los = reapLos(this);
     this.lotype = 'course';
-    this.icon = 'grid';
+    this.icon = 'huge book';
     this.reap('course');
     const ignoreList = this.getIgnoreList();
     this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);

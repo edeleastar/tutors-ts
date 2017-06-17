@@ -4,12 +4,13 @@
 {% from "headelements/portfoliolink.njk" import portfoliolink %}
 {% from "headelements/creditsmsg.njk" import creditsmsg %}
 {% from "headelements/subtopics.njk" import subtopics %}
+{% from "headelements/sidebarlink.njk" import sidebarlink %}
 
 {% macro header(lo, iswall) %}
   <header class="ui center aligned middle aligned stackable grid segment">
 
     {% if lo.lotype != 'portfolio' %}
-      {% include "headelements/sidebarlink.njk" %}
+      {{ sidebarlink() }}
     {% endif %}
 
     <div class="ui five wide column">
@@ -26,13 +27,13 @@
         {% elif (lo.lotype == 'topic') %}
         {{ topics ("../index.html") }}
         {% elif (lo.lotype == 'portfolio') %}
-      {% else %}
       {% endif %}
     </div>
 
     <div class="ui five wide column">
       {{ creditsmsg(lo.credits) }}
     </div>
+
     <div class="four wide column">
       {% if lo.lotype == 'course' %}
         {{ walllinks (lo) }}
