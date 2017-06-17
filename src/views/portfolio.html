@@ -1,6 +1,6 @@
 {% import "headelements/header.html" as header %}
 {% import "partials/card.html" as card %}
-{% import "partials/gittersidecar.html" as gittersidecar %}
+{% import "headelements/gittersidecar.html" as gittersidecar %}
 {% import "partials/topiccards.html" as topiccards %}
 
 {% extends "main.html" %}
@@ -37,7 +37,5 @@
   </div>
 </div>
 {% endfor %}
-
-{{ gittersidecar.gittersidecar(gitterid) }}
 
 {% endblock %}
