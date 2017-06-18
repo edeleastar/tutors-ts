@@ -74,15 +74,5 @@ export class Portfolio extends CompositeLearningObject {
         sh.cd('..');
       }
     }
-
-    for (let courseGroup of this.courseGroups) {
-      for (let course of courseGroup.courses) {
-        const coursePath = absPath + '/' + course.folder;
-        verifyFolder(coursePath);
-        sh.cd(course.folder);
-        course.publish(coursePath);
-        sh.cd('..');
-      }
-    }
   }
 }

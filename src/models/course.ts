@@ -2,7 +2,7 @@ import {CompositeLearningObject, LearningObject} from './learningobjects';
 import {Book} from './book';
 import {Talk} from './talk';
 import {Topic} from './topic';
-import {publishLos, publishTemplate, publishTemplate2, reapLos} from './loutils';
+import {findLos, publishLos, publishTemplate, reapLos} from './loutils';
 import {copyFileToFolder, getCurrentDirectory} from '../utils/futils';
 import * as fs from 'fs';
 import {CommandOptions} from '../controllers/commands';
@@ -16,50 +16,6 @@ export class Course extends CompositeLearningObject {
   videos: Video[] = [];
   options: CommandOptions;
   resources: LearningObject[];
-
-  findLabs(los: Array<LearningObject>): void {
-    los.forEach(lo => {
-      if (lo instanceof Book) {
-        this.labs.push(lo);
-      }
-      if (lo instanceof Topic) {
-        this.findLabs(lo.los);
-      }
-    });
-  }
-
-  findTalks(los: Array<LearningObject>): void {
-    los.forEach(lo => {
-      if (lo instanceof Talk) {
-        this.talks.push(lo);
-      }
-      if (lo instanceof Topic) {
-        this.findTalks(lo.los);
-      }
-    });
-  }
-
-  findRepos(los: Array<LearningObject>): void {
-    los.forEach(lo => {
-      if (lo instanceof Git) {
-        this.repos.push(lo);
-      }
-      if (lo instanceof Topic) {
-        this.findRepos(lo.los);
-      }
-    });
-  }
-
-  findVideos(los: Array<LearningObject>): void {
-    los.forEach(lo => {
-      if (lo instanceof Video) {
-        this.videos.push(lo);
-      }
-      if (lo instanceof Topic) {
-        this.findVideos(lo.los);
-      }
-    });
-  }
 
   insertCourseRef(los: Array<LearningObject>): void {
     los.forEach(lo => {
@@ -92,10 +48,12 @@ export class Course extends CompositeLearningObject {
     this.reap('course');
     const ignoreList = this.getIgnoreList();
     this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
-    this.findLabs(this.los);
-    this.findTalks(this.los);
-    this.findRepos(this.los);
-    this.findVideos(this.los);
+
+    this.labs = findLos(this.los, 'lab') as Book[];
+    this.talks = findLos(this.los, 'talk') as Talk[];
+    this.repos = findLos(this.los, 'git') as Git[];
+    this.videos = findLos(this.los, 'video') as Video[];
+
     this.insertCourseRef(this.los);
   }
 
@@ -104,7 +62,7 @@ export class Course extends CompositeLearningObject {
     if ((path.charAt(0) !== '/') && (path.charAt(1) !== ':')) {
       path = getCurrentDirectory() + '/' + path;
     }
-    publishTemplate2(path, 'index.html', 'course.njk', this);
+    publishTemplate(path, 'index.html', 'course.njk', this);
     copyFileToFolder(this.img, path);
     publishLos(path, this.los);
     this.talks.forEach(talk => {

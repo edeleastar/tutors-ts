@@ -52,12 +52,20 @@ function reapLoType(pattern: string, parent: LearningObject, locreator: (parent:
   return los;
 }
 
-export function publishTemplate(path: string, file: string, template: string, lo: LearningObject): void {
-  // writeFile(path, file, nunjucks.render(template, lo));
-  writeFile(path, file, nunjucks.render(template, {lo: lo}));
+export function findLos(los: Array<LearningObject>, lotype: string): LearningObject[] {
+  let result: LearningObject[] = [];
+  los.forEach(lo => {
+    if (lo.lotype === lotype) {
+      result.push(lo);
+    }
+    if (lo instanceof Topic) {
+      result =  result.concat(findLos(lo.los, lotype));
+    }
+  });
+  return result;
 }
 
-export function publishTemplate2(path: string, file: string, template: string, lo: LearningObject): void {
+export function publishTemplate(path: string, file: string, template: string, lo: LearningObject): void {
   writeFile(path, file, nunjucks.render(template, {lo: lo}));
 }
 

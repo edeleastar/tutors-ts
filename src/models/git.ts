@@ -12,7 +12,6 @@ export class Git extends LearningObject {
     this.link = readFile('githubid');
     this.absoluteLink = true;
     this.lotype = 'git';
-
   }
 
   publish(path: string): void {
