@@ -1,6 +1,5 @@
 import { CompositeLearningObject, LearningObject } from './learningobjects';
-import { Book } from './book';
-import { Talk } from './talk';
+import { Book } from './book'
 import { Topic } from './topic';
 import { findLos, publishLos, publishTemplate, reapLos } from './loutils';
 import { copyFileToFolder, getCurrentDirectory } from '../utils/futils';
@@ -8,6 +7,7 @@ import * as fs from 'fs';
 import { CommandOptions } from '../controllers/commands';
 import { Git } from './git';
 import { Video } from './video';
+import {Talk} from './discrete-learningobject';
 
 export class Course extends CompositeLearningObject {
   labs: Book[] = [];

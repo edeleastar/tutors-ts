@@ -1,16 +1,14 @@
 import * as fs from 'fs';
 const glob = require('glob');
 import * as sh from 'shelljs';
-import { CompositeLearningObject, LearningObject } from './learningobjects';
+import {  LearningObject } from './learningobjects';
 import { Course } from './course';
 import { Topic } from './topic';
-import { Talk } from './talk';
 import { Book } from './book';
 import { writeFile } from '../utils/futils';
 import { Video } from './video';
-import { Portfolio } from './portfolio';
-import { Archive } from './archive';
 import { Git } from './git';
+import {Archive, Talk} from './discrete-learningobject';
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
