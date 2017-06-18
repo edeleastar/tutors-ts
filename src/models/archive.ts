@@ -1,9 +1,9 @@
-import {LearningObject} from './learningobjects';
-import {readFile} from '../utils/futils';
+import { LearningObject } from './learningobjects';
+import { readFile } from '../utils/futils';
 const glob = require('glob');
 import * as sh from 'shelljs';
 import * as path from 'path';
-import {copyResource} from './loutils';
+import { copyResource } from './loutils';
 
 export class Archive extends LearningObject {
   constructor(parent: LearningObject) {

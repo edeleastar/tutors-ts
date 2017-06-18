@@ -1,10 +1,15 @@
-import {LearningObject} from './learningobjects';
-import {getHeader, parse, parseWithoutHeader} from '../utils/mdutils';
+import { LearningObject } from './learningobjects';
+import { getHeader, parse, parseWithoutHeader } from '../utils/mdutils';
 import * as path from 'path';
-import {copyFolder, getDirectories, getImageFile, initEmptyPath} from '../utils/futils';
+import {
+  copyFolder,
+  getDirectories,
+  getImageFile,
+  initEmptyPath,
+} from '../utils/futils';
 const glob = require('glob');
 import * as sh from 'shelljs';
-import {publishTemplate} from './loutils';
+import { publishTemplate } from './loutils';
 
 export class Chapter {
   file: string;
@@ -31,7 +36,10 @@ export class Book extends LearningObject {
       const chapter = {
         file: chapterName,
         title: getHeader(chapterName),
-        shortTitle: chapterName.substring(chapterName.indexOf('.') + 1, chapterName.lastIndexOf('.')),
+        shortTitle: chapterName.substring(
+          chapterName.indexOf('.') + 1,
+          chapterName.lastIndexOf('.'),
+        ),
         content: parse(chapterName),
         contentWithoutHeader: parseWithoutHeader(chapterName),
       };

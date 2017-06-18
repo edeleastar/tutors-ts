@@ -1,8 +1,8 @@
-import {LearningObject} from './learningobjects';
+import { LearningObject } from './learningobjects';
 import * as path from 'path';
 const glob = require('glob');
 import * as sh from 'shelljs';
-import {copyResource} from './loutils';
+import { copyResource } from './loutils';
 
 export class Talk extends LearningObject {
   constructor(parent: LearningObject) {

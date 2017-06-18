@@ -1,6 +1,6 @@
-import {LearningObject} from './learningobjects';
-import {readFile} from '../utils/futils';
-import {copyResource} from './loutils';
+import { LearningObject } from './learningobjects';
+import { readFile } from '../utils/futils';
+import { copyResource } from './loutils';
 
 export class Git extends LearningObject {
   githubid: string;

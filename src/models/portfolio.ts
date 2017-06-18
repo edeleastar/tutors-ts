@@ -1,12 +1,12 @@
-import {CompositeLearningObject, LearningObject} from './learningobjects';
-import {publishLos, publishTemplate, reapLos} from './loutils';
-import {getCurrentDirectory, verifyFolder} from '../utils/futils';
-import {Course} from './course';
+import { CompositeLearningObject, LearningObject } from './learningobjects';
+import { publishLos, publishTemplate, reapLos } from './loutils';
+import { getCurrentDirectory, verifyFolder } from '../utils/futils';
+import { Course } from './course';
 import * as fs from 'fs';
 import * as sh from 'shelljs';
 import * as yaml from 'yamljs';
-import {CommandOptions} from '../controllers/commands';
-import {parse} from '../utils/mdutils';
+import { CommandOptions } from '../controllers/commands';
+import { parse } from '../utils/mdutils';
 
 interface CourseGroup {
   title: string;

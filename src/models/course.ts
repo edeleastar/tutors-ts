@@ -1,13 +1,13 @@
-import {CompositeLearningObject, LearningObject} from './learningobjects';
-import {Book} from './book';
-import {Talk} from './talk';
-import {Topic} from './topic';
-import {findLos, publishLos, publishTemplate, reapLos} from './loutils';
-import {copyFileToFolder, getCurrentDirectory} from '../utils/futils';
+import { CompositeLearningObject, LearningObject } from './learningobjects';
+import { Book } from './book';
+import { Talk } from './talk';
+import { Topic } from './topic';
+import { findLos, publishLos, publishTemplate, reapLos } from './loutils';
+import { copyFileToFolder, getCurrentDirectory } from '../utils/futils';
 import * as fs from 'fs';
-import {CommandOptions} from '../controllers/commands';
-import {Git} from './git';
-import {Video} from './video';
+import { CommandOptions } from '../controllers/commands';
+import { Git } from './git';
+import { Video } from './video';
 
 export class Course extends CompositeLearningObject {
   labs: Book[] = [];
@@ -59,7 +59,7 @@ export class Course extends CompositeLearningObject {
 
   publish(path: string): void {
     console.log(':: ', this.title);
-    if ((path.charAt(0) !== '/') && (path.charAt(1) !== ':')) {
+    if (path.charAt(0) !== '/' && path.charAt(1) !== ':') {
       path = getCurrentDirectory() + '/' + path;
     }
     publishTemplate(path, 'index.html', 'course.njk', this);

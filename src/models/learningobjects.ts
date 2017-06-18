@@ -1,8 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
 const glob = require('glob');
-import {getImageFile, getParentFolder, readFileFromTree} from '../utils/futils';
-import {getHeader, parse, parseWithoutHeader} from '../utils/mdutils';
+import {
+  getImageFile,
+  getParentFolder,
+  readFileFromTree,
+} from '../utils/futils';
+import { getHeader, parse, parseWithoutHeader } from '../utils/mdutils';
 
 export abstract class LearningObject {
   parent?: LearningObject;

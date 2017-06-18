@@ -1,15 +1,14 @@
-import {CompositeLearningObject, LearningObject} from './learningobjects';
-import {publishTemplate, publishLos, reapLos} from './loutils';
-import {copyFileToFolder} from '../utils/futils';
+import { CompositeLearningObject, LearningObject } from './learningobjects';
+import { publishTemplate, publishLos, reapLos } from './loutils';
+import { copyFileToFolder } from '../utils/futils';
 import * as sh from 'shelljs';
-import {Talk} from './talk';
-import {Book} from './book';
-import {Video} from './video';
-import {Archive} from './archive';
-import {Git} from './git';
+import { Talk } from './talk';
+import { Book } from './book';
+import { Video } from './video';
+import { Archive } from './archive';
+import { Git } from './git';
 
 export class Topic extends CompositeLearningObject {
-
   talks: Array<LearningObject>;
   labs: Array<LearningObject>;
   repos: Array<LearningObject>;

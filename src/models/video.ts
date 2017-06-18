@@ -1,5 +1,5 @@
-import {LearningObject} from './learningobjects';
-import {readFile} from '../utils/futils';
+import { LearningObject } from './learningobjects';
+import { readFile } from '../utils/futils';
 
 export class Video extends LearningObject {
   videoid: string;
@@ -12,6 +12,5 @@ export class Video extends LearningObject {
     this.lotype = 'video';
   }
 
-  publish(path: string): void {
-  }
+  publish(path: string): void {}
 }
