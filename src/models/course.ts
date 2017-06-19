@@ -1,22 +1,19 @@
 import { CompositeLearningObject, LearningObject } from './learningobjects';
-import { Book } from './book';
 import { Topic } from './topic';
 import { findLos, publishLos, publishTemplate, reapLos } from './loutils';
 import { copyFileToFolder, getCurrentDirectory } from '../utils/futils';
 import * as fs from 'fs';
 import { CommandOptions } from '../controllers/commands';
-import { Git } from './git';
-import { Video } from './video';
-import { Archive, Talk } from './discrete-learningobject';
+
+interface LoWall {
+  course: Course;
+  los: Array<LearningObject>;
+}
 
 export class Course extends CompositeLearningObject {
-  labs: Book[] = [];
-  talks: Talk[] = [];
-  repos: Git[] = [];
-  videos: Video[] = [];
-  archives: Archive[];
   options: CommandOptions;
   resources: LearningObject[];
+  walls: LoWall[] = [];
 
   insertCourseRef(los: Array<LearningObject>): void {
     los.forEach(lo => {
@@ -50,13 +47,33 @@ export class Course extends CompositeLearningObject {
     const ignoreList = this.getIgnoreList();
     this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
 
-    this.labs = findLos(this.los, 'lab') as Book[];
-    this.talks = findLos(this.los, 'talk') as Talk[];
-    this.repos = findLos(this.los, 'git') as Git[];
-    this.videos = findLos(this.los, 'video') as Video[];
-    this.archives = findLos(this.los, 'archive') as Archive[];
-
     this.insertCourseRef(this.los);
+
+    const talks = findLos(this.los, 'talk');
+    talks.forEach(talk => {
+      if (talk.parent === this) {
+        talk.parentFolder = './';
+      }
+    });
+
+    this.walls.push({ course: this, los: findLos(this.los, 'talk') });
+    this.walls.push({ course: this, los: findLos(this.los, 'lab') });
+    this.walls.push({ course: this, los: findLos(this.los, 'video') });
+    this.walls.push({ course: this, los: findLos(this.los, 'git') });
+    this.walls.push({ course: this, los: findLos(this.los, 'archive') });
+  }
+
+  publishWalls(path: string, wall: LoWall[]): void {
+    wall.forEach(loWall => {
+      if (loWall.los.length > 0) {
+        publishTemplate(
+          path,
+          '/' + loWall.los[0].lotype + 'wall.html',
+          'wall.njk',
+          loWall,
+        );
+      }
+    });
   }
 
   publish(path: string): void {
@@ -67,20 +84,7 @@ export class Course extends CompositeLearningObject {
     publishTemplate(path, 'index.html', 'course.njk', this);
     copyFileToFolder(this.img, path);
     publishLos(path, this.los);
-    this.talks.forEach(talk => {
-      if (talk.parent === this) {
-        talk.parentFolder = './';
-      }
-    });
-    this.resources = this.labs;
-    publishTemplate(path, '/labwall.html', 'wall.njk', this);
-    this.resources = this.talks;
-    publishTemplate(path, '/talkwall.html', 'wall.njk', this);
-    this.resources = this.videos;
-    publishTemplate(path, '/videowall.html', 'wall.njk', this);
-    this.resources = this.repos;
-    publishTemplate(path, '/repowall.html', 'wall.njk', this);
-    this.resources = this.archives;
-    publishTemplate(path, '/archivewall.html', 'wall.njk', this);
+
+    this.publishWalls(path, this.walls);
   }
 }

@@ -1,11 +1,9 @@
 {% from "headelements/walllink.njk" import walllink %}
 
-{% macro walllinks(lo) %}
+{% macro walllinks(walls) %}
   <div class="ui equal width grid">
-    {{ walllink("talkwall.html", lo.talks) }}
-    {{ walllink("labwall.html", lo.labs) }}
-    {{ walllink("videowall.html", lo.videos) }}
-    {{ walllink("repowall.html", lo.repos) }}
-    {{ walllink("archivewall.html", lo.archives) }}
+    {% for wall in walls %}
+      {{ walllink(wall) }}
+    {% endfor %}
   </div>
 {% endmacro %}

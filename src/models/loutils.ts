@@ -86,7 +86,7 @@ export function publishTemplate(
   path: string,
   file: string,
   template: string,
-  lo: LearningObject,
+  lo: any,
 ): void {
   writeFile(path, file, nunjucks.render(template, { lo: lo }));
 }

@@ -1,8 +1,8 @@
-{% macro walllink(path, los) %}
-  {% if los.length > 0 %}
+{% macro walllink(wall) %}
+  {% if wall.los.length > 0 %}
     <div class="column">
-      <div class="popup" data-content="All {{ los[0].lotype }}'s in Course">
-        <a href="{{ path }}"> <i class="large {{ los[0].icon }} icon"></i> </a>
+      <div class="popup" data-content="All {{ wall.los[0].lotype }}'s in Course">
+        <a href="{{ wall.los[0].lotype }}wall.html"> <i class="large {{ wall.los[0].icon }} icon"></i> </a>
       </div>
     </div>
   {% endif %}

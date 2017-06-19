@@ -7,7 +7,7 @@
 {% extends "main.html" %}
 {% block content %}
 
-{{ header(lo, true) }}
+{{ header(lo.course, true) }}
 
   <div class="ui bottom attached segment pushable">
     <div class="ui inverted labeled icon left inline vertical sidebar menu">
@@ -21,7 +21,7 @@
       <div class="ui container">
         <div class="ui basic segment">
           <div class="ui centered four doubling stackable cards">
-            {% for resource in lo.resources %}
+            {% for resource in lo.los %}
               {% if (resource.lotype == 'video') %}
                 {{ videocard (resource) }}
               {% elif (resource.parent.lotype == 'topic') and (resource.parent.parent.lotype == 'topic') %}
