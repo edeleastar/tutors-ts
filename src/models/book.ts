@@ -25,7 +25,7 @@ export class Book extends LearningObject {
 
   constructor(parent: LearningObject) {
     super(parent);
-    this.icon = 'huge lab';
+    this.icon = 'lab';
     this.reap();
     this.lotype = 'lab';
   }

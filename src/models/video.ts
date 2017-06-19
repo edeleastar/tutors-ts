@@ -6,7 +6,7 @@ export class Video extends LearningObject {
 
   constructor(parent: LearningObject) {
     super(parent);
-    this.icon = 'huge film';
+    this.icon = 'film';
     super.reap('video');
     this.videoid = readFile('videoid');
     this.lotype = 'video';

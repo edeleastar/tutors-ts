@@ -26,7 +26,7 @@ export abstract class DiscreteLearningObject extends LearningObject {
 export class Talk extends DiscreteLearningObject {
   constructor(parent: LearningObject) {
     super(parent);
-    this.icon = 'huge object group';
+    this.icon = 'object group';
     this.lotype = 'talk';
     this.reap('*.pdf');
   }
@@ -35,7 +35,7 @@ export class Talk extends DiscreteLearningObject {
 export class Archive extends DiscreteLearningObject {
   constructor(parent: LearningObject) {
     super(parent);
-    this.icon = 'huge archive';
+    this.icon = 'archive';
     this.lotype = 'archive';
     this.reap('*.zip');
   }

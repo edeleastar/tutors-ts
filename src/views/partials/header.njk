@@ -19,14 +19,16 @@
 
     <div class="ui two wide column">
       {% if iswall %}
-        {{ topics ("index.html") }}
+          {{ topics ("index.html") }}
         {% elif (lo.lotype == 'course') and lo.parent %}
-        {{ portfoliolink ("../index.html", "Programme") }}
+          {{ portfoliolink ("../index.html", "Programme") }}
         {% elif (lo.lotype == 'topic') and (lo.parent.lotype == 'topic') %}
-        {{ subtopics ("../index.html") }}
+          {{ subtopics ("../index.html") }}
         {% elif (lo.lotype == 'topic') %}
-        {{ topics ("../index.html") }}
+          {{ topics ("../index.html") }}
         {% elif (lo.lotype == 'portfolio') %}
+        {%  else %}
+          {{ topics ("index.html") }}
       {% endif %}
     </div>
 

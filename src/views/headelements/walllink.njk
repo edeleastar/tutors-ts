@@ -1,0 +1,9 @@
+{% macro walllink(path, los) %}
+  {% if los.length > 0 %}
+    <div class="column">
+      <div class="popup" data-content="All {{ los[0].lotype }}'s in Course">
+        <a href="{{ path }}"> <i class="large {{ los[0].icon }} icon"></i> </a>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}

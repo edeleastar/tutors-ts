@@ -1,7 +1,7 @@
 {% macro videocard (lo) %}
   <div class="ui raised link card">
     <div class="ui center aligned content">
-      <div class="right floated meta"><i class="{{lo.icon}} icon"></i></div>
+      <div class="right floated meta"><i class="huge {{lo.icon}} icon"></i></div>
       <div class="header"> {{lo.title}}</div>
     </div>
     <div class="ui segment">
@@ -9,7 +9,7 @@
     </div>
     <div class="center aligned content">
       <div class="description">
-        {{lo.objectivesWithoutHeadder}}
+        {{ lo.objectivesWithoutHeader }}
       </div>
     </div>
     <div class="extra content center aligned">

@@ -1,5 +1,5 @@
 import { CompositeLearningObject, LearningObject } from './learningobjects';
-import { Book } from './book'
+import { Book } from './book';
 import { Topic } from './topic';
 import { findLos, publishLos, publishTemplate, reapLos } from './loutils';
 import { copyFileToFolder, getCurrentDirectory } from '../utils/futils';
@@ -7,13 +7,14 @@ import * as fs from 'fs';
 import { CommandOptions } from '../controllers/commands';
 import { Git } from './git';
 import { Video } from './video';
-import {Talk} from './discrete-learningobject';
+import { Archive, Talk } from './discrete-learningobject';
 
 export class Course extends CompositeLearningObject {
   labs: Book[] = [];
   talks: Talk[] = [];
   repos: Git[] = [];
   videos: Video[] = [];
+  archives: Archive[];
   options: CommandOptions;
   resources: LearningObject[];
 
@@ -44,7 +45,7 @@ export class Course extends CompositeLearningObject {
     }
     this.los = reapLos(this);
     this.lotype = 'course';
-    this.icon = 'huge book';
+    this.icon = 'book';
     this.reap('course');
     const ignoreList = this.getIgnoreList();
     this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
@@ -53,6 +54,7 @@ export class Course extends CompositeLearningObject {
     this.talks = findLos(this.los, 'talk') as Talk[];
     this.repos = findLos(this.los, 'git') as Git[];
     this.videos = findLos(this.los, 'video') as Video[];
+    this.archives = findLos(this.los, 'archive') as Archive[];
 
     this.insertCourseRef(this.los);
   }
@@ -78,5 +80,7 @@ export class Course extends CompositeLearningObject {
     publishTemplate(path, '/videowall.html', 'wall.njk', this);
     this.resources = this.repos;
     publishTemplate(path, '/repowall.html', 'wall.njk', this);
+    this.resources = this.archives;
+    publishTemplate(path, '/archivewall.html', 'wall.njk', this);
   }
 }
