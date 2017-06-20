@@ -4,7 +4,11 @@ import * as sh from 'shelljs';
 
 sh.config.silent = true;
 
-export function writeFile(folder: string, filename: string, contents: string): void {
+export function writeFile(
+  folder: string,
+  filename: string,
+  contents: string,
+): void {
   if (!fs.existsSync(folder)) {
     sh.mkdir(folder);
   }
@@ -16,7 +20,7 @@ export function readFile(path: string): string {
     const array = fs.readFileSync(path).toString().split('\n');
     return array[0];
   } else {
-    console.log ('unable to locate ' + path);
+    console.log('unable to locate ' + path);
   }
   return '';
 }
@@ -48,7 +52,7 @@ export function getParentFolder(): string {
 }
 
 export function getDirectories(srcpath: string): string[] {
-  return fs.readdirSync(srcpath).filter(function (file) {
+  return fs.readdirSync(srcpath).filter(function(file) {
     return fs.statSync(path.join(srcpath, file)).isDirectory();
   });
 }
@@ -80,4 +84,15 @@ export function initEmptyPath(path: string): void {
 export function copyFolder(src: string, dest: string): void {
   sh.mkdir('-p', dest);
   sh.cp('-rf', src, dest);
+}
+
+export function getIgnoreList(): string[] {
+  const ignoreList: string[] = [];
+  if (fs.existsSync('mbignore')) {
+    const array = fs.readFileSync('mbignore').toString().split('\n');
+    for (let i = 0; i < array.length; i++) {
+      ignoreList[i] = array[i].trim();
+    }
+  }
+  return ignoreList;
 }

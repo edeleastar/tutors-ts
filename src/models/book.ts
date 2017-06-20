@@ -1,3 +1,4 @@
+const glob = require('glob');
 import { LearningObject } from './learningobjects';
 import { getHeader, parse, parseWithoutHeader } from '../utils/mdutils';
 import * as path from 'path';
@@ -7,7 +8,6 @@ import {
   getImageFile,
   initEmptyPath,
 } from '../utils/futils';
-const glob = require('glob');
 import * as sh from 'shelljs';
 import { publishTemplate } from './loutils';
 
@@ -27,6 +27,7 @@ export class Book extends LearningObject {
     super(parent);
     this.icon = 'lab';
     this.reap();
+    this.link = 'index.html';
     this.lotype = 'lab';
   }
 

@@ -37,7 +37,7 @@ export abstract class LearningObject {
     this.img = getImageFile(pattern);
     this.credits = readFileFromTree('credits');
     this.gitterid = readFileFromTree('gitter');
-    this.link = 'index.html';
+    //this.link = 'index.html';
     if (fs.existsSync(pattern + '.md')) {
       this.title = getHeader(pattern + '.md');
       this.objectives = parse(pattern + '.md');

@@ -25,11 +25,9 @@
     </div>
     <div class="pusher">
       <div class="ui basic container segment">
-        {{ topiccards (lo.videos) }}
-        {{ topiccards (lo.talks) }}
-        {{ topiccards (lo.labs) }}
-        {{ topiccards (lo.archives) }}
-        {{ topiccards (lo.topics) }}
+       {% for los in lo.losByType %}
+         {{ topiccards (los) }}
+         {% endfor %}
       </div>
     </div>
   </div>

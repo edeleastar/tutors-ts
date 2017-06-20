@@ -1,33 +1,32 @@
+import * as sh from 'shelljs';
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { publishTemplate, publishLos, reapLos } from './loutils';
 import { copyFileToFolder } from '../utils/futils';
-import * as sh from 'shelljs';
 import { Book } from './book';
-import { Video } from './video';
-import { Git } from './git';
-import {Archive, Talk} from './discrete-learningobject';
+import { Archive, Talk } from './discrete-learningobject';
+import {Git, Video} from './web-learning-object';
 
 export class Topic extends CompositeLearningObject {
   talks: Array<LearningObject>;
   labs: Array<LearningObject>;
-  repos: Array<LearningObject>;
-  archives: Array<LearningObject>;
-  videos: Array<LearningObject>;
-  topics: Array<LearningObject>;
+  losByType: Array<LearningObject>[] = [];
 
   constructor(parent: LearningObject) {
     super(parent);
     super.los = reapLos(this);
     this.icon = 'sitemap';
     this.reap('topic');
+    this.link = 'index.html';
     this.lotype = 'topic';
     this.talks = this.los.filter(lo => lo instanceof Talk);
     this.labs = this.los.filter(lo => lo instanceof Book);
     this.labs = this.labs.concat(this.los.filter(lo => lo instanceof Git));
-    this.archives = this.los.filter(lo => lo instanceof Archive);
-    this.videos = this.los.filter(lo => lo instanceof Video);
-    this.topics = this.los.filter(lo => lo instanceof Topic);
-    this.repos = this.los.filter(lo => lo instanceof Git);
+
+    this.losByType.push(this.los.filter(lo => lo instanceof Video));
+    this.losByType.push(this.talks);
+    this.losByType.push(this.labs);
+    this.losByType.push(this.los.filter(lo => lo instanceof Archive));
+    this.losByType.push(this.los.filter(lo => lo instanceof Topic));
 
     if (!this.img) {
       if (this.talks.length > 0) {

@@ -1,5 +1,5 @@
-import { LearningObject } from './learningobjects';
 const glob = require('glob');
+import { LearningObject } from './learningobjects';
 import * as path from 'path';
 import { copyResource } from './loutils';
 

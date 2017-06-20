@@ -1,8 +1,11 @@
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { Topic } from './topic';
 import { findLos, publishLos, publishTemplate, reapLos } from './loutils';
-import { copyFileToFolder, getCurrentDirectory } from '../utils/futils';
-import * as fs from 'fs';
+import {
+  copyFileToFolder,
+  getCurrentDirectory,
+  getIgnoreList,
+} from '../utils/futils';
 import { CommandOptions } from '../controllers/commands';
 
 interface LoWall {
@@ -12,7 +15,6 @@ interface LoWall {
 
 export class Course extends CompositeLearningObject {
   options: CommandOptions;
-  resources: LearningObject[];
   walls: LoWall[] = [];
 
   insertCourseRef(los: Array<LearningObject>): void {
@@ -24,17 +26,6 @@ export class Course extends CompositeLearningObject {
     });
   }
 
-  getIgnoreList(): string[] {
-    const ignoreList: string[] = [];
-    if (fs.existsSync('mbignore')) {
-      const array = fs.readFileSync('mbignore').toString().split('\n');
-      for (let i = 0; i < array.length; i++) {
-        ignoreList[i] = array[i].trim();
-      }
-    }
-    return ignoreList;
-  }
-
   constructor(options?: CommandOptions, parent?: LearningObject) {
     super(parent);
     if (options) {
@@ -44,7 +35,8 @@ export class Course extends CompositeLearningObject {
     this.lotype = 'course';
     this.icon = 'book';
     this.reap('course');
-    const ignoreList = this.getIgnoreList();
+    this.link = 'index.html';
+    const ignoreList = getIgnoreList();
     this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
 
     this.insertCourseRef(this.los);
@@ -63,19 +55,6 @@ export class Course extends CompositeLearningObject {
     this.walls.push({ course: this, los: findLos(this.los, 'archive') });
   }
 
-  publishWalls(path: string, wall: LoWall[]): void {
-    wall.forEach(loWall => {
-      if (loWall.los.length > 0) {
-        publishTemplate(
-          path,
-          '/' + loWall.los[0].lotype + 'wall.html',
-          'wall.njk',
-          loWall,
-        );
-      }
-    });
-  }
-
   publish(path: string): void {
     console.log(':: ', this.title);
     if (path.charAt(0) !== '/' && path.charAt(1) !== ':') {
@@ -85,6 +64,15 @@ export class Course extends CompositeLearningObject {
     copyFileToFolder(this.img, path);
     publishLos(path, this.los);
 
-    this.publishWalls(path, this.walls);
+    this.walls.forEach(loWall => {
+      if (loWall.los.length > 0) {
+        publishTemplate(
+          path,
+          '/' + loWall.los[0].lotype + 'wall.html',
+          'wall.njk',
+          loWall,
+        );
+      }
+    });
   }
 }

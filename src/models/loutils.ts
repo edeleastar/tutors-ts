@@ -6,9 +6,8 @@ import { Course } from './course';
 import { Topic } from './topic';
 import { Book } from './book';
 import { writeFile } from '../utils/futils';
-import { Video } from './video';
-import { Git } from './git';
 import {Archive, Talk} from './discrete-learningobject';
+import {Git, Video} from './web-learning-object';
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
