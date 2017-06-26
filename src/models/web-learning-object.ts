@@ -20,6 +20,7 @@ export class Video extends WebLearningObject {
     this.icon = 'film';
     super.reap('video');
     this.lotype = 'video';
+    this.videoid = readFile('videoid');
   }
 }
 
