@@ -1,4 +1,4 @@
-$(document).on('keydown', function (e) {
+$(document).on('keydown', function(e) {
   e = e || window.event;
   var nextTab;
   switch (e.which || e.keyCode) {

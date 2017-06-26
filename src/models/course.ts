@@ -24,6 +24,7 @@ export class Course extends CompositeLearningObject {
         this.insertCourseRef(lo.los);
       }
     });
+    this.course = this;
   }
 
   constructor(options?: CommandOptions, parent?: LearningObject) {

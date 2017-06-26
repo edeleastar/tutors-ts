@@ -1,10 +1,9 @@
-import program = require('commander');
-import {newCommand} from './newcommand';
-import {CompositeLearningObject} from '../models/learningobjects';
 import * as fs from 'fs';
-import {Portfolio} from '../models/portfolio';
-import {Course} from '../models/course';
-import {copyFolder} from '../utils/futils';
+import program = require('commander');
+import { newCommand } from './newcommand';
+import { CompositeLearningObject } from '../models/learningobjects';
+import { Portfolio } from '../models/portfolio';
+import { Course } from '../models/course';
 
 export interface CommandOptions {
   version: string;
@@ -29,11 +28,13 @@ export class Commands {
 
   constructor(rootPath: string) {
     this.rootPath = rootPath;
-    program.arguments('<file>').version(require('../../package.json').version)
-        .option('-n, --new', 'Create a template course')
-        .option('-p, --private', 'Generate full private site')
-        .option('-t, --templates', 'Emit templates & stylesheets')
-        .parse(process.argv);
+    program
+      .arguments('<file>')
+      .version(require('../../package.json').version)
+      .option('-n, --new', 'Create a template course')
+      .option('-p, --private', 'Generate full private site')
+      .option('-t, --templates', 'Emit templates & stylesheets')
+      .parse(process.argv);
   }
 
   exec(): void {
@@ -47,7 +48,9 @@ export class Commands {
       if (rootLearningObject) {
         rootLearningObject.publish('public-site');
       } else {
-        console.log ('Cannot locate course.md or portfolio.yaml. Change to course folder and try again. ');
+        console.log(
+          'Cannot locate course.md or portfolio.yaml. Change to course folder and try again. ',
+        );
       }
     }
   }

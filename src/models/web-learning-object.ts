@@ -1,3 +1,4 @@
+import { copyResource } from './loutils';
 const glob = require('glob');
 import { LearningObject } from './learningobjects';
 import { readFile } from '../utils/futils';
@@ -31,5 +32,9 @@ export class Git extends WebLearningObject {
     super.reap('github');
     this.absoluteLink = true;
     this.lotype = 'git';
+  }
+
+  publish(path: string): void {
+    copyResource(this.folder, path);
   }
 }

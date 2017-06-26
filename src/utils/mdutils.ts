@@ -1,7 +1,5 @@
-'use strict';
-
 import * as fs from 'fs';
-import {readFile} from './futils';
+import { readFile } from './futils';
 const marked = require('../utilsjs/marked');
 
 export function parse(fileName: string): string {

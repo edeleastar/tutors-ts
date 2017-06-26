@@ -36,11 +36,12 @@
       {{ creditsmsg(lo.credits) }}
     </div>
 
-    <div class="four wide column">
+    <div class="three wide column">
       {% if lo.lotype == 'course' %}
-        {{ walllinks (lo.walls) }}
+        {{ walllinks (lo.course.walls) }}
       {% endif %}
     </div>
+
 
   </header>
   {{ gittersidecar(lo.gitterid) }}
