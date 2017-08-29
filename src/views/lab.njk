@@ -29,10 +29,9 @@
   </div>
 </div>
 
-<div class="ui segment pushable" >
-
+<div class="ui segment pushable">
   <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    {% for resource in lo.course.labs %}
+    {% for resource in lo.course.walls[1].los %}
       {% if resource.title == title %}
         <a class="active item" href="../../{{resource.parentFolder}}/{{resource.folder}}/{{resource.link}}">
           {{resource.title}}
@@ -53,9 +52,7 @@
       </div>
      {% endfor %}
     </div>
-
   </div>
-
 </div>
 <!--{% include "partials/labcredits.njk" %}-->
 
