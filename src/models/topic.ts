@@ -49,7 +49,7 @@ export class Topic extends CompositeLearningObject {
 
     publishTemplate(topicPath, 'index.html', 'topic.njk', this);
     publishTemplate(topicPath, 'ajaxlabel.html', 'ajaxlabel.njk', this);
-    publishTemplate(topicPath, 'indexmoodle.njk', 'indexmoodle.njk', this);
+    publishTemplate(topicPath, 'indexmoodle.njk', 'indexmoodle.html', this);
     publishLos(topicPath, this.los);
     sh.cd('..');
   }
