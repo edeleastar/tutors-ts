@@ -1,0 +1,12 @@
+{% from "partials/topiccards.njk" import topiccards %}
+
+{% extends "mainmoodle.html" %}
+{% block content %}
+
+<div class="ui four doubling stackable cards">
+  {% for los in lo.losByType %}
+    {{ topiccards (los) }}
+  {% endfor %}
+</div>
+
+{% endblock %}}

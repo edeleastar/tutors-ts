@@ -10,6 +10,7 @@ export class Topic extends CompositeLearningObject {
   talks: Array<LearningObject>;
   labs: Array<LearningObject>;
   losByType: Array<LearningObject>[] = [];
+  topicUrl: string;
 
   constructor(parent: LearningObject) {
     super(parent);
@@ -44,8 +45,11 @@ export class Topic extends CompositeLearningObject {
     sh.cd(this.folder);
     const topicPath = path + '/' + this.folder;
     copyFileToFolder(this.img, topicPath);
-    publishTemplate(topicPath, 'index.html', 'topic.njk', this);
+    this.topicUrl = this.url.substring(5) + '/' + this.folder
 
+    publishTemplate(topicPath, 'index.html', 'topic.njk', this);
+    publishTemplate(topicPath, 'ajaxlabel.html', 'ajaxlabel.njk', this);
+    publishTemplate(topicPath, 'indexmoodle.njk', 'indexmoodle.njk', this);
     publishLos(topicPath, this.los);
     sh.cd('..');
   }

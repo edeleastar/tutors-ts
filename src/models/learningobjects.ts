@@ -21,6 +21,7 @@ export abstract class LearningObject {
   objectivesWithoutHeader: string;
   credits: string;
   gitterid: string;
+  url: string;
   absoluteLink: boolean;
   lotype: string;
 
@@ -37,6 +38,10 @@ export abstract class LearningObject {
     this.img = getImageFile(pattern);
     this.credits = readFileFromTree('credits');
     this.gitterid = readFileFromTree('gitter');
+    this.url = readFileFromTree('courseurl');
+    if (this.url && this.url[this.url.length - 1] != '/') {
+      this.url += '/';
+    }
     //this.link = 'index.html';
     if (fs.existsSync(pattern + '.md')) {
       this.title = getHeader(pattern + '.md');
