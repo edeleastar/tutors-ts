@@ -32,7 +32,16 @@
       {% endif %}
     </div>
 
-    <div class="ui five wide column">
+    {%  if lo.connectid %}
+      <div class="two wide column">
+        <div class="popup" data-content="To Adobe connect session ...">
+          <a href="{{ lo.connectid }}" target="_blank"> <i class="huge student icon"></i> <br> Adobe
+            Connect </a>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="ui three wide column">
       {{ creditsmsg(lo.credits) }}
     </div>
 

@@ -21,6 +21,7 @@ export abstract class LearningObject {
   objectivesWithoutHeader: string;
   credits: string;
   gitterid: string;
+  connectid: string;
   url: string;
   absoluteLink: boolean;
   lotype: string;
@@ -38,6 +39,7 @@ export abstract class LearningObject {
     this.img = getImageFile(pattern);
     this.credits = readFileFromTree('credits');
     this.gitterid = readFileFromTree('gitter');
+    this.connectid = readFileFromTree('connectid');
     this.url = readFileFromTree('courseurl');
     if (this.url && this.url[this.url.length - 1] != '/') {
       this.url += '/';
