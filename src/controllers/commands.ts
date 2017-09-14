@@ -46,7 +46,11 @@ export class Commands {
     } else {
       const rootLearningObject = createRoot(options);
       if (rootLearningObject) {
-        rootLearningObject.publish('public-site');
+        let site = 'public-site';
+        if (options.private) {
+          site = 'private-site';
+        }
+        rootLearningObject.publish(site);
       } else {
         console.log(
           'Cannot locate course.md or portfolio.yaml. Change to course folder and try again. ',

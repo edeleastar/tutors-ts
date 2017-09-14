@@ -38,8 +38,11 @@ export class Course extends CompositeLearningObject {
     this.reap('course');
     this.link = 'index.html';
     const ignoreList = getIgnoreList();
-    this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
-
+    if (!options) {
+      this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
+    } else if (!options.private) {
+      this.los = this.los.filter(lo => ignoreList.indexOf(lo.folder) < 0);
+    }
     this.insertCourseRef(this.los);
 
     const talks = findLos(this.los, 'talk');
