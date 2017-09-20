@@ -40,3 +40,12 @@ export class Archive extends DiscreteLearningObject {
     this.reap('*.zip');
   }
 }
+
+export class Reference extends DiscreteLearningObject {
+  constructor(parent: LearningObject) {
+    super(parent);
+    this.icon = 'list layout';
+    this.lotype = 'reference';
+    this.reap('*.pdf');
+  }
+}

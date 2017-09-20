@@ -3,7 +3,7 @@ import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { publishTemplate, publishLos, reapLos } from './loutils';
 import { copyFileToFolder } from '../utils/futils';
 import { Book } from './book';
-import { Archive, Talk } from './discrete-learningobject';
+import {Archive, Reference, Talk} from './discrete-learningobject';
 import {Git, Video} from './web-learning-object';
 
 export class Topic extends CompositeLearningObject {
@@ -26,6 +26,7 @@ export class Topic extends CompositeLearningObject {
     this.losByType.push(this.los.filter(lo => lo instanceof Video));
     this.losByType.push(this.talks);
     this.losByType.push(this.labs);
+    this.losByType.push(this.los.filter(lo => lo instanceof Reference));
     this.losByType.push(this.los.filter(lo => lo instanceof Archive));
     this.losByType.push(this.los.filter(lo => lo instanceof Topic));
 

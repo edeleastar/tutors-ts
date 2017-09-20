@@ -6,7 +6,7 @@ import { Course } from './course';
 import { Topic } from './topic';
 import { Book } from './book';
 import { writeFile } from '../utils/futils';
-import {Archive, Talk} from './discrete-learningobject';
+import {Archive, Reference, Talk} from './discrete-learningobject';
 import {Git, Video} from './web-learning-object';
 const nunjucks = require('nunjucks');
 
@@ -43,6 +43,11 @@ export function reapLos(parent: LearningObject): Array<LearningObject> {
     reapLoType('github*', parent, parent => {
       return new Git(parent);
     }),
+  );
+  los = los.concat(
+      reapLoType('reference*', parent, parent => {
+        return new Reference(parent);
+      }),
   );
   return los;
 }
