@@ -1,7 +1,10 @@
+import * as fs from 'fs';
+
 const glob = require('glob');
 import { LearningObject } from './learningobjects';
 import * as path from 'path';
 import { copyResource } from './loutils';
+import { readFile } from '../utils/futils';
 
 export abstract class DiscreteLearningObject extends LearningObject {
   constructor(parent: LearningObject) {
@@ -24,11 +27,16 @@ export abstract class DiscreteLearningObject extends LearningObject {
 }
 
 export class Talk extends DiscreteLearningObject {
+  videoid = 'none'
+
   constructor(parent: LearningObject) {
     super(parent);
     this.icon = 'object group';
     this.lotype = 'talk';
     this.reap('*.pdf');
+    if (fs.existsSync('videoid')) {
+      this.videoid = readFile('videoid');
+    }
   }
 }
 
