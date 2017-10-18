@@ -31,8 +31,9 @@
 
 <div class="ui segment pushable">
   <div class="ui inverted labeled icon left inline vertical sidebar menu">
+    <br><br>
     {% for resource in lo.course.walls[1].los %}
-      {% if resource.title == title %}
+      {% if resource.title == lo.title %}
         <a class="active item" href="../../{{resource.parentFolder}}/{{resource.folder}}/{{resource.link}}">
           {{resource.title}}
         </a>
