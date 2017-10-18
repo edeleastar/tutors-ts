@@ -1,13 +1,13 @@
 import * as fs from 'fs';
 const glob = require('glob');
 import * as sh from 'shelljs';
-import {  LearningObject } from './learningobjects';
+import { LearningObject } from './learningobjects';
 import { Course } from './course';
 import { Topic } from './topic';
 import { Book } from './book';
 import { writeFile } from '../utils/futils';
-import {Archive, Reference, Talk} from './discrete-learningobject';
-import {Git, Video} from './web-learning-object';
+import { Archive, Reference, Talk } from './discrete-learningobject';
+import { Git, Video } from './web-learning-object';
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
@@ -45,9 +45,9 @@ export function reapLos(parent: LearningObject): Array<LearningObject> {
     }),
   );
   los = los.concat(
-      reapLoType('reference*', parent, parent => {
-        return new Reference(parent);
-      }),
+    reapLoType('reference*', parent, parent => {
+      return new Reference(parent);
+    }),
   );
   return los;
 }
@@ -81,6 +81,24 @@ export function findLos(
     }
     if (lo instanceof Topic) {
       result = result.concat(findLos(lo.los, lotype));
+    }
+  });
+  return result;
+}
+
+export function findTalksWithVideos(
+  los: Array<LearningObject>,
+): LearningObject[] {
+  let result: LearningObject[] = [];
+  los.forEach(lo => {
+    if (lo.lotype === 'talk') {
+      var talk = lo as Talk;
+      if (talk.videoid !== "none") {
+        result.push(lo);
+      }
+    }
+    if (lo instanceof Topic) {
+      result = result.concat(findTalksWithVideos(lo.los));
     }
   });
   return result;

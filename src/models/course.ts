@@ -1,6 +1,6 @@
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { Topic } from './topic';
-import { findLos, publishLos, publishTemplate, reapLos } from './loutils';
+import {findLos, findTalksWithVideos, publishLos, publishTemplate, reapLos} from './loutils';
 import {
   copyFileToFolder,
   getCurrentDirectory,
@@ -55,8 +55,17 @@ export class Course extends CompositeLearningObject {
     this.walls.push({ course: this, los: findLos(this.los, 'talk') });
     this.walls.push({ course: this, los: findLos(this.los, 'lab') });
     this.walls.push({ course: this, los: findLos(this.los, 'video') });
+
+    // var videos = findLos(this.los, 'video');
+    // var videoTalks = findTalksWithVideos(this.los);
+    // var allVideos = videos.concat(videoTalks)
+    // this.walls.push({ course: this, los: allVideos });
+
     this.walls.push({ course: this, los: findLos(this.los, 'git') });
     this.walls.push({ course: this, los: findLos(this.los, 'archive') });
+
+    var videoTalks = findTalksWithVideos(this.los);
+
   }
 
   publish(path: string): void {
