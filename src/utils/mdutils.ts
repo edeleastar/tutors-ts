@@ -3,7 +3,10 @@ import { readFile } from './futils';
 const marked = require('../utilsjs/marked');
 
 export function parse(fileName: string): string {
-  const mdContent = fs.readFileSync(fileName).toString();
+  let mdContent = "";
+  if (fs.existsSync(fileName)) {
+    mdContent = fs.readFileSync(fileName).toString();
+  }
   return marked(mdContent);
 }
 
