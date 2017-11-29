@@ -13,7 +13,7 @@
       {{ sidebarlink() }}
     {% endif %}
 
-    <div class="ui five wide column">
+    <div class="ui three wide column">
       <h2> {{ lo.title }} </h2>
     </div>
 
@@ -34,9 +34,25 @@
 
     {%  if lo.connectid %}
       <div class="two wide column">
-        <div class="popup" data-content="To Adobe connect session ...">
-          <a href="{{ lo.connectid }}" target="_blank"> <i class="huge student icon"></i> <br> Adobe
+        <div class="popup" data-content="To Adobe connect ...">
+          <a href="{{ lo.connectid }}" target="_blank"> <i class="huge address card outline icon"></i> <br> Adobe
             Connect </a>
+        </div>
+      </div>
+    {% endif %}
+
+    {%  if lo.moodleid%}
+      <div class="two wide column">
+        <div class="popup" data-content="To Moodle ...">
+          <a href="{{ lo.moodleid }}" target="_blank"> <i class="huge student icon"></i> <br> Moodle </a>
+        </div>
+      </div>
+    {% endif %}
+
+    {%  if lo.slackid %}
+      <div class="two wide column">
+        <div class="popup" data-content="To Slack Channel ...">
+          <a href="{{ lo.slackid }}" target="_blank"> <i class="huge slack icon"></i> <br> Slack </a>
         </div>
       </div>
     {% endif %}

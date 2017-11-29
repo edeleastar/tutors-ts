@@ -36,6 +36,8 @@ export class Portfolio extends CompositeLearningObject {
     this.subtitle = yamlData.subtitle;
     this.gitterid = yamlData.gitterid;
     this.credits = yamlData.credits;
+    this.slackid = yamlData.slack;
+    this.moodleid = yamlData.moodle;
     yamlData.courseGroups.forEach((courseGroup: CourseGroup) => {
       courseGroup.courses = new Array<Course>();
       if (courseGroup.outline) {
