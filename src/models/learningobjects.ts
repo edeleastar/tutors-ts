@@ -23,6 +23,7 @@ export abstract class LearningObject {
   gitterid: string;
   connectid: string;
   slackid: string;
+  parentid: string
   moodleid: string;
   url: string;
   absoluteLink: boolean;
@@ -44,6 +45,7 @@ export abstract class LearningObject {
     this.connectid = readFileFromTree('connectid');
     this.slackid = readFileFromTree('slackid');
     this.moodleid = readFileFromTree('moodleid');
+    this.parentid = readFileFromTree('parentid');
     this.url = readFileFromTree('courseurl');
     if (this.url && this.url[this.url.length - 1] != '/') {
       this.url += '/';
