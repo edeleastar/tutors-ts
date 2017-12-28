@@ -26,6 +26,7 @@ export abstract class LearningObject {
   parentid: string
   moodleid: string;
   url: string;
+  highlightstyle:string;
   absoluteLink: boolean;
   lotype: string;
 
@@ -47,6 +48,10 @@ export abstract class LearningObject {
     this.moodleid = readFileFromTree('moodleid');
     this.parentid = readFileFromTree('parentid');
     this.url = readFileFromTree('courseurl');
+    this.highlightstyle = readFileFromTree('highlightstyle')
+    if (!this.highlightstyle) {
+      this.highlightstyle = 'solarized-light'
+    }
     if (this.url && this.url[this.url.length - 1] != '/') {
       this.url += '/';
     }
