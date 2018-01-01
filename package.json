@@ -17,11 +17,13 @@
   },
   "dependencies": {
     "@types/commander": "^2.9.0",
+    "@types/lodash": "^4.14.91",
     "@types/node": "^7.0.22",
     "@types/shelljs": "^0.7.1",
     "@types/yamljs": "^0.2.30",
     "commander": "^2.9.0",
     "glob": "^7.0.3",
+    "lodash": "^4.17.4",
     "marked": "^0.3.5",
     "nunjucks": "^2.5.2",
     "path": "^0.12.7",

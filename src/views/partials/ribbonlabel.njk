@@ -1,0 +1,11 @@
+{% macro ribbonlabel (label) %}
+  {% if (label == 'talk') %}
+    Slides
+  {% endif %}
+  {% if (label == 'lab') %}
+    Labs
+  {% endif %}
+  {% if (label == 'video') %}
+    Videos
+  {% endif %}
+{% endmacro %}

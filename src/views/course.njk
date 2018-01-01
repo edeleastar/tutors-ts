@@ -6,29 +6,29 @@
 {% extends "main.html" %}
 {% block content %}
 
-{{ header(lo) }}
+  {{ header(lo) }}
 
-<div class="ui segment pushable">
-  <div class="ui inverted inline vertical sidebar menu">
-    {% for topic in lo.los %}
-    <div class="header">
-      <a class="item" href="{{topic.folder}}/index.html">
-        {{topic.title}}
-      </a>
-    </div>
-    <div class="menu">
-      {% for resource in topic.los %}
-      <div class="menu">
-        <a class="item" href="{{topic.folder}}/{{resource.folder}}/{{resource.link}}">
-          {{resource.title}}</a>
-      </div>
+  <div class="ui pushable">
+    <div class="ui inverted inline vertical sidebar menu">
+      {% for topic in lo.los %}
+        <div class="header">
+          <a class="item" href="{{ topic.folder }}/index.html">
+            {{ topic.title }}
+          </a>
+        </div>
+        <div class="menu">
+          {% for resource in topic.los %}
+            <div class="menu">
+              <a class="item" href="{{ topic.folder }}/{{ resource.folder }}/{{ resource.link }}">
+                {{ resource.title }}</a>
+            </div>
+          {% endfor %}
+        </div>
       {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-  <div class="pusher">
-    <div class="ui container">
-      <div class="ui basic segment">
+    <div class="pusher">
+      <div class="ui raised stackable segment container">
+        <div class="ui blue left ribbon large label"> Topics </div>
         <div class="ui centered four doubling stackable cards">
           {% for topic in lo.los %}
             {{ card (topic) }}
@@ -37,6 +37,5 @@
       </div>
     </div>
   </div>
-</div>
 
 {% endblock %}

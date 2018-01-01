@@ -7,9 +7,9 @@
 <div class="ui centered four doubling stackable cards">
   {% for resource in lo.los %}
     {% if resource.lotype == 'video' %}
-      {{ videocard (resource, lo.url) }}
+      {{ videocard (resource, lo.properties.courseurl) }}
     {% else %}
-      {{ card (resource, lo.url + lo.folder + '/') }}
+      {{ card (resource, lo.properties.courseurl + lo.folder + '/') }}
     {% endif %}
   {% endfor %}
 {% endblock %}}

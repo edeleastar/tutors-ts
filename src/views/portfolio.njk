@@ -8,7 +8,7 @@
 
   {% for courseGroup in lo.courseGroups %}
     <div class="ui raised stackable segment container">
-      <a class="ui blue left ribbon large label">{{ courseGroup.title }}</a>
+      <div class="ui blue left ribbon large label">{{ courseGroup.title }}</div>
       {% if courseGroup.description %}
         <div class="ui middle aligned center aligned two column centered stackable grid">
           <div class="ui column basic segment">

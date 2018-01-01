@@ -6,73 +6,47 @@
 {% from "headelements/creditsmsg.njk" import creditsmsg %}
 {% from "headelements/subtopics.njk" import subtopics %}
 {% from "headelements/sidebarlink.njk" import sidebarlink %}
+{% from "headelements/companionlinks.njk" import companionlinks %}
 
 {% macro header(lo, iswall) %}
-  <header class="ui center aligned middle aligned stackable grid segment">
+<header class="ui center aligned middle aligned stackable grid segment">
 
-    {% if lo.lotype != 'portfolio' %}
-      {{ sidebarlink() }}
-    {% endif %}
+  {% if lo.lotype != 'portfolio' %}
+    {{ sidebarlink() }}
+  {% endif %}
 
-    <div class="ui three wide column">
-      <h2> {{ lo.title }} </h2>
+  <div class="ui six wide column">
+    <h2> {{ lo.title }} </h2>
+    <div class="ui tiny blue label">
+      {{ lo.properties.credits }}
     </div>
+  </div>
 
-    <div class="ui two wide column">
-      {% if iswall %}
-          {{ topics ("index.html") }}
-        {% elif (lo.lotype == 'course') and lo.parent %}
-          {{ portfoliolink ("../index.html", "Programme") }}
-        {% elif (lo.lotype == 'topic') and (lo.parent.lotype == 'topic') %}
-          {{ subtopics ("../index.html") }}
-        {% elif (lo.lotype == 'topic') %}
-          {{ topics ("../index.html") }}
-        {% elif (lo.lotype == 'portfolio') %}
-        {% elif (lo.parentid) %}
-          {{ programmelink (lo.parentid, "Programme") }}
-        {%  else %}
-          {#{{ topics ("index.html") }}#}
-      {% endif %}
-    </div>
-
-    {%  if lo.connectid %}
-      <div class="two wide column">
-        <div class="popup" data-content="To Adobe connect ...">
-          <a href="{{ lo.connectid }}" target="_blank"> <i class="huge address card outline icon"></i> <br> Adobe
-            Connect </a>
-        </div>
-      </div>
+  <div class="ui two wide column">
+    {% if iswall %}
+      {{ topics ("index.html") }}
+    {% elif (lo.lotype == 'topic') %}
+      {{ topics ("../index.html") }}
+    {% elif (lo.properties.parent) %}
+      {{ programmelink (lo.properties.parent, "Programme") }}
+    {% elif (lo.lotype == 'topic') and (lo.parent.lotype == 'topic') %}
+      {{ subtopics ("../index.html") }}
     {% endif %}
+  </div>
 
-    {%  if lo.moodleid%}
-      <div class="two wide column">
-        <div class="popup" data-content="To Moodle ...">
-          <a href="{{ lo.moodleid }}" target="_blank"> <i class="huge student icon"></i> <br> Moodle </a>
-        </div>
-      </div>
+  <div class="three wide column">
+    {{ companionlinks(lo.properties) }}
+  </div>
+
+  <div class="three wide column">
+    {% if (lo.lotype == 'course') %}
+      {{ walllinks (lo.course.walls) }}
     {% endif %}
-
-    {%  if lo.slackid %}
-      <div class="two wide column">
-        <div class="popup" data-content="To Slack Channel ...">
-          <a href="{{ lo.slackid }}" target="_blank"> <i class="huge slack icon"></i> <br> Slack </a>
-        </div>
-      </div>
+    {% if (lo.lotype == 'topic') %}
+      {{ walllinks (lo.course.walls, "../") }}
     {% endif %}
+  </div>
 
-    {%  if lo.credits %}
-      <div class="ui three wide column">
-        {{ creditsmsg(lo.credits) }}
-      </div>
-    {% endif %}
-
-    <div class="three wide column">
-      {% if lo.lotype == 'course' %}
-        {{ walllinks (lo.course.walls) }}
-      {% endif %}
-    </div>
-
-
-  </header>
-  {{ gittersidecar(lo.gitterid) }}
+</header>
+{{ gittersidecar(lo.properties.gitter) }}
 {% endmacro %}

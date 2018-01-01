@@ -1,10 +1,11 @@
 {% from "partials/card.njk" import card %}
 {% from "partials/videocard.njk" import videocard %}
+{% from "partials/ribbonlabel.njk" import ribbonlabel %}
 
 {% macro topiccards(los) %}
   {% if los.length > 0 %}
-    <section class="ui attached segment">
-      <a class="ui right ribbon label">{{ los[0].lotype }}s</a>
+    <section class="ui raised stackable segment container">
+      <div class="ui blue left ribbon large label"> {{ ribbonlabel(los[0].lotype)}} </div>
       <div class="ui centered four doubling stackable cards">
         {% for resource in los %}
           {% if resource.lotype == 'video' %}

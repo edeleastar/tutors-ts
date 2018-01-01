@@ -1,10 +1,10 @@
-{% macro walllinks(walls) %}
+{% macro walllinks(walls, prefix) %}
   <div class="ui equal width center aligned grid segment">
     {% for wall in walls %}
       {% if wall.los.length > 0 %}
         <div class="column">
           <div class="popup" data-content="All {{ wall.los[0].lotype }}'s in Course">
-            <a href="{{ wall.los[0].lotype }}wall.html"> <i class="big {{ wall.los[0].icon }} icon"></i> </a>
+            <a href="{{ prefix }}{{ wall.los[0].lotype }}wall.html"> <i class="big {{ wall.los[0].icon }} icon"></i> </a>
             <div class="ui blue mini circular label">
               {{ wall.los.length }}
             </div>

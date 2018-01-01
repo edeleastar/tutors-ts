@@ -9,7 +9,9 @@
       <div class="header"> {{ lo.title }}</div>
     </div>
 
-    {% if (lo.absoluteLink) %}
+    {% if (lo.lotype == "course") %}
+    <a class="ui raised link card" href="{{ lo.link }}">
+    {% elif (lo.absoluteLink) %}
     <a class="ui raised link card" href="{{ lo.link }}" target="_blank">
     {% elif (lo.lotype == "talk") %}
     <a class="ui raised link card" href="{{ path }}{{ lo.folder }}/{{ lo.link }}" target="_blank">

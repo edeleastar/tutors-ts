@@ -4,9 +4,10 @@ const glob = require('glob');
 import {
   getImageFile,
   getParentFolder,
-  readFileFromTree,
+  readPropsFromTree,
 } from '../utils/futils';
 import { getHeader, parse, parseWithoutHeader } from '../utils/mdutils';
+import { Properties } from './properties';
 
 export abstract class LearningObject {
   parent?: LearningObject;
@@ -20,15 +21,10 @@ export abstract class LearningObject {
   objectives: string;
   objectivesWithoutHeader: string;
   credits: string;
-  gitterid: string;
-  connectid: string;
-  slackid: string;
-  parentid: string
-  moodleid: string;
   url: string;
-  highlightstyle:string;
   absoluteLink: boolean;
   lotype: string;
+  properties: Properties;
 
   constructor(parent?: LearningObject) {
     if (parent) {
@@ -41,21 +37,7 @@ export abstract class LearningObject {
     this.folder = path.basename(process.cwd());
     this.parentFolder = getParentFolder();
     this.img = getImageFile(pattern);
-    this.credits = readFileFromTree('credits');
-    this.gitterid = readFileFromTree('gitter');
-    this.connectid = readFileFromTree('connectid');
-    this.slackid = readFileFromTree('slackid');
-    this.moodleid = readFileFromTree('moodleid');
-    this.parentid = readFileFromTree('parentid');
-    this.url = readFileFromTree('courseurl');
-    this.highlightstyle = readFileFromTree('highlightstyle')
-    if (!this.highlightstyle) {
-      this.highlightstyle = 'solarized-light'
-    }
-    if (this.url && this.url[this.url.length - 1] != '/') {
-      this.url += '/';
-    }
-    //this.link = 'index.html';
+    this.properties = readPropsFromTree();
     if (fs.existsSync(pattern + '.md')) {
       this.title = getHeader(pattern + '.md');
       this.objectives = parse(pattern + '.md');

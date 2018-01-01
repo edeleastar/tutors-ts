@@ -8,7 +8,7 @@
 
   {{ header(lo) }}
 
-  <div class="ui segment pushable">
+  <div class="ui pushable">
     <div class="ui inverted labeled icon left inline vertical sidebar menu">
       <div class="header">
         <a class="item" href="#">
@@ -24,11 +24,9 @@
       </div>
     </div>
     <div class="pusher">
-      <div class="ui basic container segment">
-       {% for los in lo.losByType %}
-         {{ topiccards (los) }}
-         {% endfor %}
-      </div>
+      {% for los in lo.losByType %}
+        {{ topiccards (los) }}
+      {% endfor %}
     </div>
   </div>
 

@@ -3,7 +3,7 @@ import * as sh from 'shelljs';
 import * as yaml from 'yamljs';
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { publishLos, publishTemplate, reapLos } from './loutils';
-import { getCurrentDirectory, verifyFolder } from '../utils/futils';
+import {getCurrentDirectory, readPropsFromTree, verifyFolder} from '../utils/futils';
 import { Course } from './course';
 import { CommandOptions } from '../controllers/commands';
 import { parse } from '../utils/mdutils';
@@ -34,10 +34,7 @@ export class Portfolio extends CompositeLearningObject {
     super.los = reapLos(this);
     this.title = yamlData.title;
     this.subtitle = yamlData.subtitle;
-    this.gitterid = yamlData.gitterid;
-    this.credits = yamlData.credits;
-    this.slackid = yamlData.slack;
-    this.moodleid = yamlData.moodle;
+    this.properties = readPropsFromTree();
     yamlData.courseGroups.forEach((courseGroup: CourseGroup) => {
       courseGroup.courses = new Array<Course>();
       if (courseGroup.outline) {
@@ -69,9 +66,9 @@ export class Portfolio extends CompositeLearningObject {
         const coursePath = absPath + '/' + course.folder;
         verifyFolder(coursePath);
         sh.cd(course.folder);
-        if (course.url) {
+        if (course.properties.courseurl) {
           course.absoluteLink = true;
-          course.link = course.url;
+          course.link = course.properties.courseurl;
         }
         course.publish(coursePath);
         sh.cd('..');
