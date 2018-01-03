@@ -2,25 +2,29 @@
 
 {% macro card (lo, path) %}
 
-  <div class="ui raised link card">
+<div class="ui {% if (lo.properties.disable != true) %} raised link {% endif %} card">
 
-    <div class="center aligned content">
-      <div class="right floated meta"><i class="huge {{ lo.icon }} icon"></i></div>
-      <div class="header"> {{ lo.title }}</div>
-    </div>
+  <div class="center aligned content">
+    <div class="right floated meta"><i class="huge {{ lo.icon }} icon"></i></div>
+    <div class="header"> {{ lo.title }}</div>
+  </div>
 
-    {% if (lo.lotype == "course") %}
-    <a class="ui raised link card" href="{{ lo.link }}">
+  <a href=
+  {% if (lo.lotype == "course") and (lo.properties.disable) %}
+    "#">
+    {% elif (lo.lotype == "course") and (lo.link) %}
+    "{{ lo.link }}">
     {% elif (lo.absoluteLink) %}
-    <a class="ui raised link card" href="{{ lo.link }}" target="_blank">
+    "{{ lo.link }}" target="_blank">
     {% elif (lo.lotype == "talk") %}
-    <a class="ui raised link card" href="{{ path }}{{ lo.folder }}/{{ lo.link }}" target="_blank">
-    {% else %}
-    <a class="ui raised link card" href="{{ path }}{{ lo.folder }}/{{ lo.link }}">
-    {% endif %}
-      <div class="image">
-        <img class="ui bordered rounded image" src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
-      </div>
+    "{{ path }}{{ lo.folder }}/{{ lo.link }}" target="_blank">
+  {% else %}
+    "{{ path }}{{ lo.folder }}/{{ lo.link }}">
+  {% endif %}
+
+    <div class="image">
+      <img class="ui bordered rounded image" src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
+    </div>
     </a>
 
 
@@ -29,14 +33,14 @@
         {{ lo.objectivesWithoutHeader }}
       </div>
     </div>
-      {% if (lo.videoid) and (lo.videoid != 'none') %}
-        <div class="extra content center aligned">
-          <div class="ui segment">
-            <div class="ui embed" data-source="youtube" data-id="{{ lo.videoid }}"></div>
-          </div>
-          <a href="https://youtu.be/{{ lo.videoid }}" target="_blank"> video link</a>
+    {% if (lo.videoid) and (lo.videoid != 'none') %}
+      <div class="extra content center aligned">
+        <div class="ui segment">
+          <div class="ui embed" data-source="youtube" data-id="{{ lo.videoid }}"></div>
         </div>
-      {% endif %}
+        <a href="https://youtu.be/{{ lo.videoid }}" target="_blank"> video link</a>
+      </div>
+    {% endif %}
 
     {% if (lo.credits and (lo.lotype == 'course')) %}
       <div class="extra content center aligned">
@@ -44,7 +48,7 @@
       </div>
     {% endif %}
 
-  </div>
+    </div>
 
 
-{% endmacro %}
+    {% endmacro %}
