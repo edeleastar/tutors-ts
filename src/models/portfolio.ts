@@ -3,7 +3,7 @@ import * as sh from 'shelljs';
 import * as yaml from 'yamljs';
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { publishLos, publishTemplate, reapLos } from './loutils';
-import {getCurrentDirectory, readPropsFromTree, verifyFolder} from '../utils/futils';
+import {copyFileToFolder, getCurrentDirectory, readPropsFromTree, verifyFolder} from '../utils/futils';
 import { Course } from './course';
 import { CommandOptions } from '../controllers/commands';
 import { parse } from '../utils/mdutils';
@@ -78,5 +78,7 @@ export class Portfolio extends CompositeLearningObject {
     }
     publishTemplate(absPath, 'index.html', 'portfolio.njk', this);
     publishLos(path, this.los);
+
+    copyFileToFolder('favicon.ico', absPath)
   }
 }
