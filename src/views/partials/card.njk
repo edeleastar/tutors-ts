@@ -25,10 +25,27 @@
     "{{ path }}{{ lo.folder }}/{{ lo.link }}">
   {% endif %}
 
-    <div class="image">
-      <img class="ui bordered rounded image" src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
-    </div>
+    {% if (lo.img)  %}
+      <div class="image">
+        <img class="ui bordered rounded image" src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
+      </div>
+    {% else %}
+      <div class="center aligned middle aligned"><i class="massive {{ lo.properties.panelicon }} icon"></i></div>
+      <br>
+    {% endif %}
     </a>
+
+
+    {#{% if (lo.properties.panelicon)  %}#}
+      {#<div class="center aligned middle aligned"><i class="massive {{ lo.properties.panelicon }} icon"></i></div>#}
+      {#<br>#}
+    {#{% else %}#}
+      {#<div class="image">#}
+        {#<img class="ui bordered rounded image" src="{{ path }}{{ lo.folder }}/{{ lo.img }}">#}
+      {#</div>#}
+
+    {#{% endif %}#}
+    {#</a>#}
 
     <div class="center aligned content">
       <div class="description">
