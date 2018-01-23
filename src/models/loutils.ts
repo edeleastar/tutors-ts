@@ -7,7 +7,7 @@ import { Topic } from './topic';
 import { Book } from './book';
 import { writeFile } from '../utils/futils';
 import { Archive, Reference, Talk } from './discrete-learningobject';
-import { Git, Video } from './web-learning-object';
+import {Git, PanelVideo, Video} from './web-learning-object';
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
@@ -33,6 +33,11 @@ export function reapLos(parent: LearningObject): Array<LearningObject> {
     reapLoType('video*', parent, parent => {
       return new Video(parent);
     }),
+  );
+  los = los.concat(
+      reapLoType('panelvideo*', parent, parent => {
+        return new PanelVideo(parent);
+      }),
   );
   los = los.concat(
     reapLoType('archive*', parent, parent => {

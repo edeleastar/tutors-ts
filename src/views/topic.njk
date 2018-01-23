@@ -1,5 +1,6 @@
 {% from "partials/header.njk" import header %}
 {% from "partials/topiccards.njk" import topiccards %}
+{% from "partials/panelvideo.njk" import panelvideo %}
 
 {% set assetprefix = "../assets" %}
 
@@ -24,10 +25,17 @@
       </div>
     </div>
     <div class="pusher">
+      <br>
+      {% for lo in lo.los %}
+        {% if lo.lotype == "panelvideo" %}
+          {{ panelvideo (lo) }}
+        {%  endif %}
+      {% endfor %}
       {% for los in lo.losByType %}
         {{ topiccards (los) }}
       {% endfor %}
     </div>
+    <br>
   </div>
 
 {% endblock %}

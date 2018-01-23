@@ -24,6 +24,18 @@ export class Video extends WebLearningObject {
   }
 }
 
+export class PanelVideo extends WebLearningObject {
+  videoid: string;
+
+  constructor(parent: LearningObject) {
+    super(parent, 'videoid');
+    this.icon = 'film';
+    super.reap('panelvideo');
+    this.lotype = 'panelvideo';
+    this.videoid = readFile('videoid');
+  }
+}
+
 export class Git extends WebLearningObject {
   githubid: string;
 
