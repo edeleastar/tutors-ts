@@ -4,7 +4,7 @@
 
 {% macro topiccards(los) %}
   {% if los.length > 0 %}
-    <section class="ui raised stackable segment container">
+    <section class="ui raised stackable segment">
       <div class="ui blue left ribbon large label"> {{ ribbonlabel(los[0].lotype)}} </div>
       <div class="ui centered four doubling stackable cards">
         {% for resource in los %}

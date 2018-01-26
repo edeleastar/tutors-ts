@@ -3,7 +3,14 @@
     {% for wall in walls %}
       {% if wall.los.length > 0 %}
         <div class="column">
-          <div class="popup" data-content="All {{ wall.los[0].lotype }}'s in Course">
+          {% set wallName =  wall.los[0].lotype %}
+          {% if (wallName == 'panelvideo') %}
+            {% set wallName = 'video' %}
+          {% endif %}
+          {% if (wallName == 'talk') %}
+            {% set wallName = 'slide' %}
+          {% endif %}
+          <div class="popup" data-content="All {{ wallName}}'s in module">
             <a href="{{ prefix }}{{ wall.los[0].lotype }}wall.html"> <i class="big {{ wall.los[0].icon }} icon"></i> </a>
             <div class="ui blue mini circular label">
               {{ wall.los.length }}

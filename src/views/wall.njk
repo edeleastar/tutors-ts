@@ -1,20 +1,27 @@
 {% from "partials/header.njk" import header %}
 {% from "partials/card.njk" import card %}
 {% from "partials/videocard.njk" import videocard %}
+{% from "partials/panelvideo.njk" import panelvideo %}
 
 {% set assetprefix = "./assets" %}
 
 {% extends "main.html" %}
 {% block content %}
 
-{{ header(lo.course, true) }}
+  {{ header(lo.course, true) }}
 
-  <div class="ui bottom attached segment pushable">
+  <div class="ui pushable">
     <div class="ui inverted labeled icon left inline vertical sidebar menu">
-      {% for resource in lo.resources %}
-        <a class="item" href="{{ resource.parentFolder }}/{{ resource.folder }}/{{ resource.link }}">
-          {{ resource.title }}
-        </a>
+      {% for resource in lo.los %}
+        {% if resource.lotype == 'panelvideo' %}
+          <a class="item" href="https://youtu.be/{{ resource.videoid }}">
+            {{ resource.title }}
+          </a>
+        {% else %}
+          <a class="item" href="{{ resource.parentFolder }}/{{ resource.folder }}/{{ resource.link }}">
+            {{ resource.title }}
+          </a>
+        {% endif %}
       {% endfor %}
     </div>
     <div class="pusher">
@@ -24,6 +31,8 @@
             {% for resource in lo.los %}
               {% if (resource.lotype == 'video') %}
                 {{ videocard (resource) }}
+              {% elif (resource.lotype == 'panelvideo') %}
+                {{ panelvideo (resource) }}
               {% elif (resource.parent.lotype == 'topic') and (resource.parent.parent.lotype == 'topic') %}
                 {{ card (resource, resource.parent.parentFolder + '/' + resource.parentFolder + '/') }}
               {% else %}
@@ -36,4 +45,4 @@
     </div>
   </div>
 
-{% endblock %}}
+{% endblock %}

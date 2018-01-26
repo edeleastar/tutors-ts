@@ -25,17 +25,17 @@
       </div>
     </div>
     <div class="pusher">
-      <br>
-      {% for lo in lo.los %}
-        {% if lo.lotype == "panelvideo" %}
-          {{ panelvideo (lo) }}
-        {%  endif %}
-      {% endfor %}
-      {% for los in lo.losByType %}
-        {{ topiccards (los) }}
-      {% endfor %}
+      <section class="ui container">
+        {% for lo in lo.los %}
+          {% if lo.lotype == "panelvideo" %}
+            {{ panelvideo (lo) }}
+          {% endif %}
+        {% endfor %}
+        {% for los in lo.losByType %}
+          {{ topiccards (los) }}
+        {% endfor %}
+      </section>
     </div>
-    <br>
   </div>
 
 {% endblock %}

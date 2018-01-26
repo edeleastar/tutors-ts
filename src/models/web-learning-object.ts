@@ -34,6 +34,9 @@ export class PanelVideo extends WebLearningObject {
     this.lotype = 'panelvideo';
     this.videoid = readFile('videoid');
   }
+  publish(path: string): void {
+    copyResource(this.folder, path);
+  }
 }
 
 export class Git extends WebLearningObject {
