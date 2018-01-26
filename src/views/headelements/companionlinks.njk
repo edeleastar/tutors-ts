@@ -24,6 +24,13 @@
             </div>
           </div>
         {% endif %}
+        {% if properties.youtube %}
+          <div class="column">
+            <div class="popup" data-content="To Youtube Channel ...">
+              <a href="{{ properties.youtube }}" target="_blank"> <i class="big youtube icon"></i></a>
+            </div>
+          </div>
+        {% endif %}
       </div>
     </div>
   {% endif %}
