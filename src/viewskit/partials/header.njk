@@ -1,0 +1,37 @@
+{% from "headelements/walllinks.njk" import walllinks %}
+{% from "headelements/topics.njk" import topics %}
+{% from "headelements/portfoliolink.njk" import portfoliolink %}
+{% from "headelements/programmelink.njk" import programmelink %}
+{% from "headelements/creditsmsg.njk" import creditsmsg %}
+{% from "headelements/companionlinks.njk" import companionlinks %}
+
+{% macro header(lo, iswall) %}
+  <div uk-sticky class="uk-sticky-fixed">
+    <div class="uk-navbar-container uk-text-center uk-flex-middle" uk-height-match uk-grid>
+      <div class="panel uk-width-2-5@m" >
+          <h2> {{ lo.title }} </h2>
+          <div class="uk-text-small">
+            {{ lo.properties.credits }}
+          </div>
+      </div>
+      <div class="panel uk-width-1-5@m" >
+          {% if iswall %}
+            {{ topics ("index.html") }}
+            {% elif (lo.lotype == 'topic') %}
+            {{ topics ("../index.html") }}
+            {% elif (lo.properties.parent) %}
+            {{ programmelink (lo.properties.parent, "Programme") }}
+          {% endif %}
+      </div>
+      <div class="panel uk-width-expand@m">
+          {% if (lo.lotype == 'course') and (lo.properties.walllinks != 'off') %}
+            {{ walllinks (lo.course.walls) }}
+          {% endif %}
+          {% if (lo.lotype == 'topic') %}
+            {{ walllinks (lo.course.walls, "../") }}
+          {% endif %}
+      </div>
+    </div>
+  </div>
+<br>
+{% endmacro %}

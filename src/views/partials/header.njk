@@ -44,7 +44,7 @@
 
 
   <div class="three wide column">
-    {% if (lo.lotype == 'course') %}
+    {% if (lo.lotype == 'course') and (lo.properties.walllinks != 'off') %}
       {{ walllinks (lo.course.walls) }}
     {% endif %}
     {% if (lo.lotype == 'topic') %}

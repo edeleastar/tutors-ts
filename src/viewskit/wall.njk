@@ -1,0 +1,32 @@
+{% from "partials/header.njk" import header %}
+{% from "partials/card.njk" import card %}
+{% from "partials/videocard.njk" import videocard %}
+{% from "partials/panelvideo.njk" import panelvideo %}
+
+{% set assetprefix = "./assets" %}
+
+{% extends "main.html" %}
+{% block content %}
+
+  {{ header(lo.course, true) }}
+
+  <div class="uk-container">
+
+    {% if (lo.los[0].lotype == 'panelvideo') %}
+      {% for topic in lo.los %}
+        <div>
+          {{ panelvideo (topic) }}
+        </div>
+      {% endfor %}
+    {% else %}
+
+      <div class="uk-child-width-1-4@s uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
+        {% for topic in lo.los %}
+          <div>
+            {{ card (topic, topic.parentFolder + '/') }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

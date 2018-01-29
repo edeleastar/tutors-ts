@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+const nunjucks = require('nunjucks');
 import program = require('commander');
 import { newCommand } from './newcommand';
 import { CompositeLearningObject } from '../models/learningobjects';
@@ -31,9 +32,8 @@ export class Commands {
     program
       .arguments('<file>')
       .version(require('../../package.json').version)
-      .option('-n, --new', 'Create a template course')
       .option('-p, --private', 'Generate full private site')
-      .option('-t, --templates', 'Emit templates & stylesheets')
+      .option('-u, --uikit', 'Generate UIKit based site (experimental)')
       .parse(process.argv);
   }
 
@@ -49,6 +49,10 @@ export class Commands {
         let site = 'public-site';
         if (options.private) {
           site = 'private-site';
+        }
+        if (options.uikit) {
+          nunjucks.configure(this.rootPath + '/src/viewskit', {autoescape: false});
+          site = 'public-site-uk'
         }
         rootLearningObject.publish(site);
       } else {

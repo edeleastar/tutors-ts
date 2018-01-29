@@ -1,0 +1,26 @@
+{% macro walllinks(walls, prefix) %}
+  <ul class="uk-iconnav">
+  {% for wall in walls %}
+    {% if wall.los.length > 0 %}
+      {% set icons = {
+        'talk': "fas fa-object-group",
+        'lab': "fas fa-flask",
+        'panelvideo': "fab fa-youtube"
+      } %}
+      {% set titles = {
+        'talk': "slides",
+        'lab': "labs",
+        'panelvideo': "videos"
+      } %}
+      {% set wallName = titles[wall.los[0].lotype] %}
+      <li>
+        <a href="{{ prefix }}{{ wall.los[0].lotype }}wall.html"
+           class="uk-button uk-button-default"
+           title="All {{ wallName }}'s in module" uk-tooltip>
+          <i class="{{ icons[wall.los[0].lotype] }} fa-2x"></i>
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+{% endmacro %}
