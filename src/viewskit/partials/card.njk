@@ -1,18 +1,19 @@
 {% macro card (lo, path) %}
 
+  {% if (lo.lotype == "course") and (lo.properties.disable) %}
+    {% set url = "#" %}
+  {% elif (lo.lotype == "course") and (lo.link) %}
+    {% set url = lo.link %}
+  {% elif (lo.absoluteLink) %}
+    {% set url = lo.link + ' target="_blank"' %}
+  {% elif (lo.lotype == "talk") %}
+    {% set url = path+'/'+lo.folder+'/'+lo.link+ ' target="_blank"' %}
+  {% else %}
+    {% set url = path+'/'+lo.folder+'/'+lo.link %}
+  {% endif %}
+
   <div class="uk-card uk-card-default  uk-card-hover uk-card-small uk-text-center">
-    <a href=
-       {% if (lo.lotype == "course") and (lo.properties.disable) %}
-       "#">
-      {% elif (lo.lotype == "course") and (lo.link) %}
-      "{{ lo.link }}">
-      {% elif (lo.absoluteLink) %}
-      "{{ lo.link }}" target="_blank">
-      {% elif (lo.lotype == "talk") %}
-      "{{ path }}{{ lo.folder }}/{{ lo.link }}" target="_blank">
-      {% else %}
-        "{{ path }}{{ lo.folder }}/{{ lo.link }}">
-      {% endif %}
+    <a href={{url}}>
       <div class="uk-card-header">
         <h4 class="uk-card-title"> {{ lo.title }}</h4>
       </div>

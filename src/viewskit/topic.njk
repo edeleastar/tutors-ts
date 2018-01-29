@@ -12,7 +12,7 @@
     <div class="uk-child-width-1-4@s uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
       {% for topic in lo.los %}
         <div>
-          {{ card (topic) }}
+          {{ card (topic, "./") }}
         </div>
       {% endfor %}
     </div>
