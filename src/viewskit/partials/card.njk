@@ -12,18 +12,18 @@
     {% set url = path+'/'+lo.folder+'/'+lo.link %}
   {% endif %}
 
-  <div class="uk-card uk-card-default  uk-card-hover uk-card-small uk-text-center">
+  <div class="uk-card uk-card-default uk-card-hover uk-card-small uk-text-center">
     <a href={{url}}>
       <div class="uk-card-header">
-        <h4 class="uk-card-title"> {{ lo.title }}</h4>
+        <h5 class="uk-card-title"> {{ lo.title }}</h5>
       </div>
-      <div class="uk-card-media-top">
+      <div class="uk-card-body">
         <img src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
       </div>
     </a>
-    <div class="uk-card-body">
+    <div class="uk-card-footer uk-flex-">
       <p> {{ lo.objectivesWithoutHeader }}</p>
     </div>
   </div>
 
-{% endmacro %}
+{% endmacro %}S

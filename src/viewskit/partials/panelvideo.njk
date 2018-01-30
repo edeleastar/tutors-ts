@@ -1,10 +1,11 @@
 {% macro panelvideo (lo) %}
 
-  <div class="uk-grid">
-    <div>
-      <iframe src="https://www.youtube.com/embed/{{lo.videoid}}?autoplay=0&amp;showinfo=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=0"  height="512"
-              frameborder="0"
-              allowfullscreen uk-responsive uk-video="automute: true"></iframe>
+  <div class="uk-card uk-card-default uk-box-shadow-xlarge">
+    <div class="uk-card-header">
+      <h5 class="uk-card-title"> {{ lo.title }} </h5>
+    </div>
+    <div class="uk-card-media-top">
+      <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ lo.videoid }}"  allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
     </div>
   </div>
 {% endmacro %}

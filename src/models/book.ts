@@ -6,7 +6,7 @@ import {
   copyFolder,
   getDirectories,
   getImageFile,
-  initEmptyPath,
+  initEmptyPath, resizeImage,
 } from '../utils/futils';
 import * as sh from 'shelljs';
 import { publishTemplate } from './loutils';
@@ -70,6 +70,7 @@ export class Book extends LearningObject {
       copyFolder(directory, labPath);
     });
     publishTemplate(labPath, 'index.html', 'lab.njk', this);
+    resizeImage(labPath + '/' + this.img)
     sh.cd('..');
   }
 }

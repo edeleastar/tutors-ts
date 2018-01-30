@@ -1,7 +1,7 @@
 import * as sh from 'shelljs';
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { publishTemplate, publishLos, reapLos } from './loutils';
-import { copyFileToFolder } from '../utils/futils';
+import {copyFileToFolder, resizeImage} from '../utils/futils';
 import { Book } from './book';
 import {Archive, Reference, Talk} from './discrete-learningobject';
 import {Git, Video} from './web-learning-object';
@@ -46,6 +46,8 @@ export class Topic extends CompositeLearningObject {
     sh.cd(this.folder);
     const topicPath = path + '/' + this.folder;
     copyFileToFolder(this.img, topicPath);
+    resizeImage(topicPath + '/' + this.img)
+
     this.topicUrl = this.properties.courseurl.substring(5) + '/' + this.folder
 
     publishTemplate(topicPath, 'index.html', 'topic.njk', this);

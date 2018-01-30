@@ -1,17 +1,17 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as sh from 'shelljs';
-import { Properties } from '../models/properties';
+import {Properties} from '../models/properties';
 import * as yaml from "yamljs";
+
 var _ = require('lodash');
+const Jimp = require("jimp");
 
 sh.config.silent = true;
 
-export function writeFile(
-  folder: string,
-  filename: string,
-  contents: string,
-): void {
+export function writeFile(folder: string,
+                          filename: string,
+                          contents: string,): void {
   if (!fs.existsSync(folder)) {
     sh.mkdir(folder);
   }
@@ -55,7 +55,7 @@ export function getParentFolder(): string {
 }
 
 export function getDirectories(srcpath: string): string[] {
-  return fs.readdirSync(srcpath).filter(function(file) {
+  return fs.readdirSync(srcpath).filter(function (file) {
     return fs.statSync(path.join(srcpath, file)).isDirectory();
   });
 }
@@ -100,10 +100,10 @@ export function getIgnoreList(): string[] {
   return ignoreList;
 }
 
-function readYaml(path:string) : Properties {
+function readYaml(path: string): Properties {
   const properties = new Properties()
   const yamlData = yaml.load(path);
-  _.defaults (yamlData, properties)
+  _.defaults(yamlData, properties)
 
   if (!yamlData.courseurl) {
     yamlData.courseurl = readFileFromTree('courseurl');
@@ -141,4 +141,14 @@ export function readPropsFromTree(): Properties {
     properties.courseurl += '/';
   }
   return properties;
+}
+
+export function resizeImage(path: string) {
+  Jimp.read(path, (err: any, lenna: any) => {
+    if (err) {
+      console.log(err)
+    }
+    lenna.resize(Jimp.AUTO, 200).write(path);
+    process.stdout.write(".");
+  });
 }
