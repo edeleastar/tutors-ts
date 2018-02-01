@@ -34,4 +34,23 @@
       </div>
     </div>
   {% endif %}
+
+
+  {% if properties.adobeconnect or properties.moodle or properties.slack %}
+    <ul class="uk-iconnav">
+      {% if properties.adobeconnect %}
+        <li>
+          <a href="{{ properties.adobeconnect }}"
+             title="To Adobe connect ..." pos="bottom" uk-tooltip>
+            <i class="far fa-address-card fa-2x"></i>
+          </a>
+        </li>
+      {% endif %}
+
+
+    </ul>
+
+  {% endif %}
+
+
 {% endmacro %}

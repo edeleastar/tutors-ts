@@ -26,6 +26,7 @@ export class Book extends LearningObject {
   constructor(parent: LearningObject) {
     super(parent);
     this.icon = 'lab';
+    this.faIcon = 'fa-flask'
     this.reap();
     this.link = 'index.html';
     this.lotype = 'lab';

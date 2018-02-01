@@ -16,6 +16,7 @@ export class Topic extends CompositeLearningObject {
     super(parent);
     super.los = reapLos(this);
     this.icon = 'sitemap';
+    this.faIcon = 'fa-sitemap'
     this.reap('topic');
     this.link = 'index.html';
     this.lotype = 'topic';

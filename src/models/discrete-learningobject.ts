@@ -33,6 +33,7 @@ export class Talk extends DiscreteLearningObject {
   constructor(parent: LearningObject) {
     super(parent);
     this.icon = 'object group';
+    this.faIcon = 'fa-object-group'
     this.lotype = 'talk';
     this.reap('*.pdf');
     if (fs.existsSync('videoid')) {

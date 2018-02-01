@@ -2,26 +2,39 @@
 
   {% if (lo.lotype == "course") and (lo.properties.disable) %}
     {% set url = "#" %}
-  {% elif (lo.lotype == "course") and (lo.link) %}
+    {% elif (lo.lotype == "course") and (lo.link) %}
     {% set url = lo.link %}
-  {% elif (lo.absoluteLink) %}
+    {% elif (lo.absoluteLink) %}
     {% set url = lo.link + ' target="_blank"' %}
-  {% elif (lo.lotype == "talk") %}
+    {% elif (lo.lotype == "talk") %}
     {% set url = path+'/'+lo.folder+'/'+lo.link+ ' target="_blank"' %}
   {% else %}
     {% set url = path+'/'+lo.folder+'/'+lo.link %}
   {% endif %}
 
   <div class="uk-card uk-card-default uk-card-hover uk-card-small uk-text-center">
-    <a href={{url}}>
+    <a href={{ url }}>
       <div class="uk-card-header">
-        <h5 class="uk-card-title"> {{ lo.title }}</h5>
+        <div uk-grid>
+          <div class="uk-width-expand@m">
+            {#<div class="uk-width-3-5@m">#}
+            <h3> {{ lo.title }}</h3>
+          </div>
+          <div class="uk-width-1-4@m">
+            <i class="fas {{ lo.faIcon }} fa-2x" style="color:grey"></i>
+          </div>
+        </div>
       </div>
+      {% if (lo.videoid) and (lo.videoid != 'none') %}
+        <div class="uk-card-media">
+          <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ lo.videoid }}" allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
+        </div>
+      {% endif %}
       <div class="uk-card-body">
         <img src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
       </div>
     </a>
-    <div class="uk-card-footer uk-flex-">
+    <div class="uk-card-footer">
       <p> {{ lo.objectivesWithoutHeader }}</p>
     </div>
   </div>

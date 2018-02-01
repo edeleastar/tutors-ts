@@ -15,6 +15,7 @@ export abstract class LearningObject {
   title: string;
   img: string;
   icon: string;
+  faIcon : string;
   link: string;
   folder: string;
   parentFolder: string;
