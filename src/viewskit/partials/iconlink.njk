@@ -1,0 +1,8 @@
+{% macro iconlink (url, tooltip, icon, colour) %}
+  <li>
+    <a href="{{ url }}"
+       title="{{ tooltip }}" pos="bottom" uk-tooltip>
+      <i class="{{ icon }}" style="color:{{colour}}"></i>
+    </a>
+  </li>
+{% endmacro %}

@@ -35,6 +35,7 @@ export class Course extends CompositeLearningObject {
     this.los = reapLos(this);
     this.lotype = 'course';
     this.icon = 'book';
+    this.faIcon = 'fas fa-book'
     this.reap('course');
     this.link = 'index.html';
     const ignoreList = getIgnoreList();

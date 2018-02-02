@@ -1,3 +1,5 @@
+{% from "partials/iconlink.njk" import iconlink %}
+
 {% macro programmelink(link, programmeTitle) %}
-  <a href="{{ link }}"  title="To the Programme home..." uk-tooltip> <i class="fas fa-th fa-5x "></i> </a>
+  {{ iconlink(link, "To the Programme home...", "fas fa-th fa-4x ") }}
 {% endmacro %}

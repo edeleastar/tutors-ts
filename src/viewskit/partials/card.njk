@@ -1,8 +1,6 @@
 {% macro card (lo, path) %}
 
-  {% if (lo.lotype == "course") and (lo.properties.disable) %}
-    {% set url = "#" %}
-    {% elif (lo.lotype == "course") and (lo.link) %}
+  {% if (lo.lotype == "course") and (lo.link) %}
     {% set url = lo.link %}
     {% elif (lo.absoluteLink) %}
     {% set url = lo.link + ' target="_blank"' %}
@@ -11,17 +9,21 @@
   {% else %}
     {% set url = path+'/'+lo.folder+'/'+lo.link %}
   {% endif %}
+  {%  if (not lo.properties.disable) %}
+    {% set hover =  "uk-card-hover"%}
+  {% endif %}
 
-  <div class="uk-card uk-card-default uk-card-hover uk-card-small uk-text-center">
-    <a href={{ url }}>
+  <div class="uk-card uk-card-default {{ hover }} uk-card-small uk-text-center">
+    {% if (not lo.properties.disable) %}
+      <a href={{ url }}>
+    {% endif %}
       <div class="uk-card-header">
         <div uk-grid>
           <div class="uk-width-expand@m">
-            {#<div class="uk-width-3-5@m">#}
             <h3> {{ lo.title }}</h3>
           </div>
           <div class="uk-width-1-4@m">
-            <i class="fas {{ lo.faIcon }} fa-2x" style="color:grey"></i>
+            <i class="{% if ((lo.lotype == "course") and (lo.properties.faIcon)) %} {{ lo.properties.faIcon }} {% else %} {{ lo.faIcon }} {% endif %} fa-2x" style="color:grey"></i>
           </div>
         </div>
       </div>
@@ -31,12 +33,25 @@
         </div>
       {% endif %}
       <div class="uk-card-body">
-        <img src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
+        {% if (lo.img) %}
+          <img src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
+        {% else %}
+          <i class="{{ lo.properties.faPanelicon }}"></i>
+        {% endif %}
       </div>
-    </a>
+    {% if (not lo.properties.disable) %}
+      </a>
+    {% endif %}
+
     <div class="uk-card-footer">
       <p> {{ lo.objectivesWithoutHeader }}</p>
     </div>
+
+    {% if (lo.properties.ects) %}
+      <div class="uk-card-footer">
+        <div class="uk-badge uk-badge-danger">{{ lo.properties.ects }} Credits</div>
+      </div>
+    {% endif %}
   </div>
 
-{% endmacro %}S
+{% endmacro %}

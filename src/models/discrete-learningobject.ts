@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 
 const glob = require('glob');
-import { LearningObject } from './learningobjects';
+import {LearningObject} from './learningobjects';
 import * as path from 'path';
-import { copyResource } from './loutils';
+import {copyResource} from './loutils';
 import {readFile, resizeImage} from '../utils/futils';
 
 export abstract class DiscreteLearningObject extends LearningObject {
@@ -23,7 +23,9 @@ export abstract class DiscreteLearningObject extends LearningObject {
 
   publish(path: string): void {
     copyResource(this.folder, path);
-    resizeImage(path + '/' + this.folder + '/' + this.img)
+    if (this.img) {
+      resizeImage(path + '/' + this.folder + '/' + this.img)
+    }
   }
 }
 
@@ -33,7 +35,7 @@ export class Talk extends DiscreteLearningObject {
   constructor(parent: LearningObject) {
     super(parent);
     this.icon = 'object group';
-    this.faIcon = 'fa-object-group'
+    this.faIcon = 'fas fa-object-group'
     this.lotype = 'talk';
     this.reap('*.pdf');
     if (fs.existsSync('videoid')) {

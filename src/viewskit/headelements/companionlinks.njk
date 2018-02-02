@@ -1,56 +1,25 @@
+{% from "partials/iconlink.njk" import iconlink %}
+
 {% macro companionlinks(properties) %}
-  {% if properties.adobeconnect or properties.moodle or properties.slack %}
-    <div class="three wide column">
-      <div class="ui equal width center aligned grid segment">
-        {% if properties.adobeconnect %}
-          <div class="column">
-            <div class="popup" data-content="To Adobe connect ...">
-              <a href="{{ properties.adobeconnect }}" target="_blank"> <i class="big address card outline icon"></i>
-              </a>
-            </div>
-          </div>
-        {% endif %}
-        {% if properties.moodle %}
-          <div class="column">
-            <div class="popup" data-content="To Moodle ...">
-              <a href="{{ properties.moodle }}" target="_blank"> <i class="big student icon"></i></a>
-            </div>
-          </div>
-        {% endif %}
-        {% if properties.slack %}
-          <div class="column">
-            <div class="popup" data-content="To Slack Channel ...">
-              <a href="{{ properties.slack }}" target="_blank"> <i class="big slack icon"></i></a>
-            </div>
-          </div>
-        {% endif %}
-        {% if properties.youtube %}
-          <div class="column">
-            <div class="popup" data-content="To Youtube Channel ...">
-              <a href="{{ properties.youtube }}" target="_blank"> <i class="big youtube icon"></i></a>
-            </div>
-          </div>
-        {% endif %}
-      </div>
-    </div>
-  {% endif %}
-
-
+  {% set icons = {
+    'adobeconnect' : "far fa-address-card   fa-2x",
+    'slack'        : "fab fa-slack          fa-2x",
+    'moodle'       : "fas fa-graduation-cap fa-2x",
+    'youtube'      : "fab fa-youtube        fa-2x"
+  } %}
   {% if properties.adobeconnect or properties.moodle or properties.slack %}
     <ul class="uk-iconnav">
       {% if properties.adobeconnect %}
-        <li>
-          <a href="{{ properties.adobeconnect }}"
-             title="To Adobe connect ..." pos="bottom" uk-tooltip>
-            <i class="far fa-address-card fa-2x"></i>
-          </a>
-        </li>
+        {{ iconlink (properties.adobeconnect, "To Adobe connect ...", icons["adobeconnect"], "grey") }}
       {% endif %}
-
-
-    </ul>
-
+      {% if properties.moodle %}
+        {{ iconlink (properties.moodle, "To Moodle ...", icons["moodle"], "#f87f2a")}}
+      {% endif %}
+      {% if properties.slack %}
+        {{ iconlink (properties.slack, "To Slack Channel ...", icons["slack"], "#573852") }}
+      {% endif %}
+      {% if properties.youtube %}
+        {{ iconlink (properties.youtube, "To Youtube Channel ...", icons["youtube"], "red") }}
+      {% endif %}    </ul>
   {% endif %}
-
-
 {% endmacro %}
