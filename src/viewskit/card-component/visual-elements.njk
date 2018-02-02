@@ -8,11 +8,14 @@
   </div>
 {% endmacro %}
 
-
 {% macro video (lo, path) %}
   {% if (lo.videoid) and (lo.videoid != 'none') %}
     <div class="uk-card-media">
       <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ lo.videoid }}" allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
     </div>
+    <div class="uk-card-footer">
+      <a href="https://youtu.be/{{ lo.videoid }}" target="_blank"><i class="fas fa-link fa-2x"></i></a>
+    </div>
   {% endif %}
 {% endmacro %}
+

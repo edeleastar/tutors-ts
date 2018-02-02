@@ -1,11 +1,9 @@
 {% from "partials/header.njk" import header %}
 {% from "partials/card.njk" import card %}
-
 {% extends "main.html" %}
+
 {% block content %}
-
   {{ header(lo) }}
-
   <div class="uk-container">
     <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
       {% for topic in lo.los %}
@@ -15,5 +13,4 @@
       {% endfor %}
     </div>
   </div>
-
 {% endblock %}

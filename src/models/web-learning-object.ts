@@ -32,6 +32,7 @@ export class PanelVideo extends WebLearningObject {
     this.icon = 'film';
     super.reap('panelvideo');
     this.lotype = 'panelvideo';
+    this.faIcon = 'fab fa-youtube      fa-2x" style="color:#F44336"'
     this.videoid = readFile('videoid');
   }
   publish(path: string): void {

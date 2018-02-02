@@ -7,7 +7,9 @@
 {% endmacro %}
 
 {% macro summary (lo) %}
-  <div class="uk-card-footer">
-    <p> {{ lo.objectivesWithoutHeader }}</p>
-  </div>
+  {% if (lo.objectivesWithoutHeader) %}
+    <div class="uk-card-footer">
+      <p> {{ lo.objectivesWithoutHeader }}</p>
+    </div>
+  {% endif %}
 {% endmacro %}

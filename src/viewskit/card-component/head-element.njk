@@ -5,7 +5,8 @@
         <h3> {{ lo.title }}</h3>
       </div>
       <div class="uk-width-1-4@m">
-        <i class="{% if ((lo.lotype == "course") and (lo.properties.faIcon)) %} {{ lo.properties.faIcon }} {% else %} {{ lo.faIcon }} {% endif %} fa-2x" style="color:grey"></i>
+        {#<i class="{% if ((lo.lotype == "course") and (lo.properties.faIcon)) %} {{ lo.properties.faIcon }} {% else %} {{ lo.faIcon }} {% endif %} fa-2x" style="color:grey"></i>#}
+        <i class="{% if ((lo.lotype == "course") and (lo.properties.faIcon)) %} {{ lo.properties.faIcon }} {% else %} {{ lo.faIcon }} {% endif %}> </i>
       </div>
     </div>
   </div>

@@ -1,10 +1,10 @@
-{% from "partials/iconlink.njk" import iconlink %}
+{% from "head-component/iconlink.njk" import iconlink %}
 
 {% macro walllinks(walls, prefix) %}
   {% set icons = {
-    'talk'      : "fas fa-object-group fa-2x",
-    'lab'       : "fas fa-flask        fa-2x",
-    'panelvideo': "fab fa-youtube      fa-2x"
+    'talk'      : 'fas fa-object-group fa-2x" style="color:#009688"',
+    'lab'       : 'fas fa-flask        fa-2x" style="color:#00BCD4"',
+    'panelvideo': 'fab fa-youtube      fa-2x" style="color:#F44336"'
   } %}
   {% set titles = {
     'talk'      : "slides",
