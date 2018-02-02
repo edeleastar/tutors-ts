@@ -1,0 +1,13 @@
+{% macro ects (lo) %}
+  {% if (lo.properties.ects) %}
+    <div class="uk-card-footer">
+      <div class="uk-badge uk-badge-danger">{{ lo.properties.ects }} Credits</div>
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro summary (lo) %}
+  <div class="uk-card-footer">
+    <p> {{ lo.objectivesWithoutHeader }}</p>
+  </div>
+{% endmacro %}

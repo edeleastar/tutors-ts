@@ -1,0 +1,18 @@
+{% macro image (lo, path) %}
+  <div class="uk-card-body">
+    {% if (lo.img) %}
+      <img src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
+    {% else %}
+      <i class="{{ lo.properties.faPanelicon }}"></i>
+    {% endif %}
+  </div>
+{% endmacro %}
+
+
+{% macro video (lo, path) %}
+  {% if (lo.videoid) and (lo.videoid != 'none') %}
+    <div class="uk-card-media">
+      <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ lo.videoid }}" allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
+    </div>
+  {% endif %}
+{% endmacro %}

@@ -1,0 +1,18 @@
+{% macro header (lo) %}
+  <div class="uk-card-header">
+    <div uk-grid>
+      <div class="uk-width-expand@m">
+        <h3> {{ lo.title }}</h3>
+      </div>
+      <div class="uk-width-1-4@m">
+        <i class="{% if ((lo.lotype == "course") and (lo.properties.faIcon)) %} {{ lo.properties.faIcon }} {% else %} {{ lo.faIcon }} {% endif %} fa-2x" style="color:grey"></i>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro hover (lo) %}
+  {% if (not lo.properties.disable) %}
+    uk-card-hover
+  {% endif %}
+{% endmacro %}
