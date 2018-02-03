@@ -1,0 +1,10 @@
+{% from "head-component/walllinks.njk" import walllinks %}
+
+{% macro walls(lo) %}
+  {% if (lo.lotype == 'course') and (lo.properties.walllinks != 'off') %}
+    {{ walllinks (lo.course.walls, "./") }}
+  {% endif %}
+  {% if (lo.lotype == 'topic') %}
+    {{ walllinks (lo.course.walls, "../") }}
+  {% endif %}
+{% endmacro %}

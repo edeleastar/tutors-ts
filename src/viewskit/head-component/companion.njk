@@ -1,0 +1,20 @@
+{% from "head-component/iconlink.njk" import iconlink %}
+{% from "styles.njk" import icons, titles %}
+
+{% macro companion(properties) %}
+  {% if properties.adobeconnect or properties.moodle or properties.slack %}
+    <ul class="uk-iconnav">
+      {% if properties.adobeconnect %}
+        {{ iconlink (properties.adobeconnect, "To Adobe connect ...", icons["adobeconnect"]) }}
+      {% endif %}
+      {% if properties.moodle %}
+        {{ iconlink (properties.moodle, "To Moodle ...", icons["moodle"]) }}
+      {% endif %}
+      {% if properties.slack %}
+        {{ iconlink (properties.slack, "To Slack Channel ...", icons["slack"]) }}
+      {% endif %}
+      {% if properties.youtube %}
+        {{ iconlink (properties.youtube, "To Youtube Channel ...", icons["youtube"]) }}
+      {% endif %}    </ul>
+  {% endif %}
+{% endmacro %}

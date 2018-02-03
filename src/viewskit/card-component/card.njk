@@ -4,7 +4,7 @@
 {% from "card-component/url.njk" import urlStart, urlEnd %}
 
 {% macro card (lo, path) %}
-  <div class="uk-card uk-card-default {{ hover(lo) }} uk-card-small uk-text-center">
+  <div class="uk-card uk-card-default {{ hover(lo) }} uk-card-small uk-text-center uk-animation-scale-up">
     {{ urlStart(lo, path) }}
       {{ header(lo) }}
       {{ video(lo) }}

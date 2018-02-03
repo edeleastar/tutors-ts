@@ -1,0 +1,21 @@
+{% from "head-component/walls.njk" import walls %}
+{% from "head-component/companion.njk" import companion %}
+{% from "head-component/home.njk" import home %}
+{% from "head-component/title.njk" import title %}
+
+{% macro header(lo, iswall) %}
+  <div class="uk-section uk-section-muted uk-padding-remove-vertical uk-flex-middle uk-text-center" uk-grid>
+    <div class="uk-width-2-5@m">
+      {{ title(lo) }}
+    </div>
+    <div class="panel uk-width-expand@m">
+      {{ home(lo, iswall) }}
+    </div>
+    <div class="panel uk-width-expand@m">
+      {{ companion(lo.properties) }}
+    </div>
+    <div class="panel uk-width-expand@m">
+      {{ walls(lo) }}
+    </div>
+  </div>
+{% endmacro %}

@@ -1,16 +1,7 @@
 {% from "head-component/iconlink.njk" import iconlink %}
+{% from "styles.njk" import icons, titles %}
 
 {% macro walllinks(walls, prefix) %}
-  {% set icons = {
-    'talk'      : 'fas fa-object-group fa-2x" style="color:#009688"',
-    'lab'       : 'fas fa-flask        fa-2x" style="color:#00BCD4"',
-    'panelvideo': 'fab fa-youtube      fa-2x" style="color:#F44336"'
-  } %}
-  {% set titles = {
-    'talk'      : "slides",
-    'lab'       : "labs",
-    'panelvideo': "videos"
-  } %}
   <ul class="uk-iconnav">
     {% for wall in walls %}
       {% if wall.los.length > 0 %}
