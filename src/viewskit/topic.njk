@@ -7,7 +7,7 @@
 
   {{ header(lo) }}
 
-  <div class="uk-container">
+  <div class="uk-container uk-background-muted uk-padding"">
     {% for lo in lo.los %}
       {% if lo.lotype == "panelvideo" %}
         {{ panelvideo (lo) }}
@@ -15,7 +15,7 @@
       {% endif %}
     {% endfor %}
 
-    <div class="uk-child-width-1-4@s uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
+    <div class="uk-child-width-1-4@s uk-flex-center  uk-background-muted" uk-grid uk-height-match="target: > div > .uk-card">
       {% for lo in lo.los %}
         {% if lo.lotype != "panelvideo" %}
           <div>

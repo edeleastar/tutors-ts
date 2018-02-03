@@ -2,19 +2,22 @@
 {% from "styles.njk" import icons, titles %}
 
 {% macro companion(properties) %}
-  {% if properties.adobeconnect or properties.moodle or properties.slack %}
-    <ul class="uk-iconnav">
-      {% if properties.adobeconnect %}
-        {{ iconlink (properties.adobeconnect, "To Adobe connect ...", icons["adobeconnect"]) }}
-      {% endif %}
-      {% if properties.moodle %}
-        {{ iconlink (properties.moodle, "To Moodle ...", icons["moodle"]) }}
-      {% endif %}
-      {% if properties.slack %}
-        {{ iconlink (properties.slack, "To Slack Channel ...", icons["slack"]) }}
-      {% endif %}
-      {% if properties.youtube %}
-        {{ iconlink (properties.youtube, "To Youtube Channel ...", icons["youtube"]) }}
-      {% endif %}    </ul>
+  {% if properties.adobeconnect or properties.moodle or properties.slack or properties.youtube %}
+    <div class="uk-card uk-card-default uk-padding-small">
+      <ul class="uk-iconnav">
+        {% if properties.adobeconnect %}
+          {{ iconlink (properties.adobeconnect, "To Adobe connect ...", icons["adobeconnect"]) }}
+        {% endif %}
+        {% if properties.moodle %}
+          {{ iconlink (properties.moodle, "To Moodle ...", icons["moodle"]) }}
+        {% endif %}
+        {% if properties.slack %}
+          {{ iconlink (properties.slack, "To Slack Channel ...", icons["slack"]) }}
+        {% endif %}
+        {% if properties.youtube %}
+          {{ iconlink (properties.youtube, "To Youtube Channel ...", icons["youtube"]) }}
+        {% endif %}
+      </ul>
+    </div>
   {% endif %}
 {% endmacro %}

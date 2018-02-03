@@ -1,10 +1,14 @@
 {% from "head-component/walllinks.njk" import walllinks %}
 
 {% macro walls(lo) %}
-  {% if (lo.lotype == 'course') and (lo.properties.walllinks != 'off') %}
-    {{ walllinks (lo.course.walls, "./") }}
-  {% endif %}
-  {% if (lo.lotype == 'topic') %}
-    {{ walllinks (lo.course.walls, "../") }}
-  {% endif %}
+  <div class="uk-card uk-card-default uk-padding-small">
+    <ul class="uk-iconnav">
+      {% if (lo.lotype == 'course') and (lo.properties.walllinks != 'off') %}
+        {{ walllinks (lo.course.walls, "./") }}
+      {% endif %}
+      {% if (lo.lotype == 'topic') %}
+      {{ walllinks (lo.course.walls, "../") }}
+    </ul>
+    {% endif %}
+  </div>
 {% endmacro %}

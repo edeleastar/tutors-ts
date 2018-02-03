@@ -1,7 +1,8 @@
-
 {% macro title(lo) %}
-  <h2> {{ lo.title }} </h2>
-  <div class="uk-text-muted uk-text-small">
-    {{ lo.properties.credits }}
+  <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small">
+    <h2> {{ lo.title }} </h2>
+    <div class="uk-text-muted uk-text-small">
+      {{ lo.properties.credits }}
+    </div>
   </div>
 {% endmacro %}

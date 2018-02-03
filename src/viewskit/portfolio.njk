@@ -3,22 +3,18 @@
 
 {% extends "main.html" %}
 {% block content %}
-
   {{ header(lo) }}
-
-  {% for courseGroup in lo.courseGroups %}
-    <div class="uk-section uk-section-small">
-      <div class="uk-container">
-        <h4 class="uk-heading-divider uk-text-center"> {{ courseGroup.title }}</h4>
-        <div class="uk-child-width-1-4@s uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
-          {% for course in courseGroup.courses %}
-            <div>
-              {{ card (course, './') }}
-            </div>
-          {% endfor %}
-        </div>
+  <div class="uk-container uk-background-muted">
+    {% for courseGroup in lo.courseGroups %}
+      <h4 class="uk-heading-divider uk-text-center"> {{ courseGroup.title }}</h4>
+      <div class="uk-child-width-1-4@s uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
+        {% for course in courseGroup.courses %}
+          <div>
+            {{ card (course, './') }}
+          </div>
+        {% endfor %}
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 
 {% endblock %}
