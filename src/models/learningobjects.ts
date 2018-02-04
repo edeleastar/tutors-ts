@@ -6,26 +6,26 @@ import {
   getParentFolder,
   readPropsFromTree,
 } from '../utils/futils';
-import { getHeader, parse, parseWithoutHeader } from '../utils/mdutils';
+import {getHeader, padRight, parse, parseWithoutHeader} from '../utils/mdutils';
 import { Properties } from './properties';
 
 export abstract class LearningObject {
   parent?: LearningObject;
-  course: LearningObject;
-  title: string;
-  img: string;
-  icon: string;
-  faIcon : string;
-  link: string;
-  folder: string;
-  parentFolder: string;
-  objectives: string;
-  objectivesWithoutHeader: string;
-  credits: string;
-  url: string;
-  absoluteLink: boolean;
+  course?: LearningObject;
+  title?: string;
+  img?: string;
+  icon?: string;
+  faIcon? : string;
+  link?: string;
+  folder?: string;
+  parentFolder?: string;
+  objectives?: string;
+  objectivesWithoutHeader?: string;
+  credits?: string;
+  url?: string;
+  absoluteLink?: boolean;
   lotype: string;
-  properties: Properties;
+  properties?: Properties;
 
   constructor(parent?: LearningObject) {
     if (parent) {
@@ -41,7 +41,9 @@ export abstract class LearningObject {
     this.properties = readPropsFromTree();
     if (fs.existsSync(pattern + '.md')) {
       this.title = getHeader(pattern + '.md');
-      this.objectives = parse(pattern + '.md');
+      this.title = this.title + ' ';
+      // this.title = padRight(this.title, 40 - this.title.length, '_' );
+      // this.objectives = parse(pattern + '.md');
       this.objectivesWithoutHeader = parseWithoutHeader(pattern + '.md');
     } else {
       this.title = pattern;
@@ -52,7 +54,7 @@ export abstract class LearningObject {
 }
 
 export abstract class CompositeLearningObject extends LearningObject {
-  los: Array<LearningObject>;
+  los: Array<LearningObject> = [];
 
   constructor(parent?: LearningObject) {
     super(parent);

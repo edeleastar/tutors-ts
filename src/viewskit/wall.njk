@@ -1,10 +1,13 @@
 {% from "head-component/header.njk" import header %}
 {% from "card-component/card.njk" import card %}
+{% from "styles.njk" import titles %}
+
 {% extends "main.html" %}
 
 {% block content %}
-  {{ header(lo.course, true) }}
-  <div class="uk-container uk-background-muted uk-padding"">
+  {% set wallName = titles[lo.los[0].lotype] %}
+  {{ header(lo.course, true, "All " + wallName + "'s in Module") }}
+  <div class="uk-container uk-background-muted uk-padding">
     <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
       {% for topic in lo.los %}
         <div>

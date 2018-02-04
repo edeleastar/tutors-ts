@@ -1,4 +1,4 @@
 export class Properties {
-  highlightstyle = "solarized-light";
-  [key:string]: string
+  highlightstyle = 'solarized-light';
+  [key: string]: string;
 }

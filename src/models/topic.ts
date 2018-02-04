@@ -1,16 +1,16 @@
 import * as sh from 'shelljs';
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { publishTemplate, publishLos, reapLos } from './loutils';
-import {copyFileToFolder, resizeImage} from '../utils/futils';
+import { copyFileToFolder, resizeImage } from '../utils/futils';
 import { Book } from './book';
-import {Archive, Reference, Talk} from './discrete-learningobject';
-import {Git, Video} from './web-learning-object';
+import { Archive, Reference, Talk } from './discrete-learningobject';
+import { Git, Video } from './web-learning-object';
 
 export class Topic extends CompositeLearningObject {
   talks: Array<LearningObject>;
   labs: Array<LearningObject>;
   losByType: Array<LearningObject>[] = [];
-  topicUrl: string;
+  topicUrl?: string;
 
   constructor(parent: LearningObject) {
     super(parent);
@@ -43,12 +43,12 @@ export class Topic extends CompositeLearningObject {
 
   publish(path: string): void {
     console.log('::', this.title);
-    sh.cd(this.folder);
+    sh.cd(this.folder!);
     const topicPath = path + '/' + this.folder;
-    copyFileToFolder(this.img, topicPath);
-    resizeImage(topicPath + '/' + this.img)
+    copyFileToFolder(this.img!, topicPath);
+    resizeImage(topicPath + '/' + this.img);
 
-    this.topicUrl = this.properties.courseurl.substring(5) + '/' + this.folder
+    this.topicUrl = this.properties!.courseurl.substring(5) + '/' + this.folder;
 
     publishTemplate(topicPath, 'index.html', 'topic.njk', this);
     publishTemplate(topicPath, 'ajaxlabel.html', 'ajaxlabel.njk', this);

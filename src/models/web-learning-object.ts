@@ -36,12 +36,12 @@ export class PanelVideo extends WebLearningObject {
     this.videoid = readFile('videoid');
   }
   publish(path: string): void {
-    copyResource(this.folder, path);
+    copyResource(this.folder!, path);
   }
 }
 
 export class Git extends WebLearningObject {
-  githubid: string;
+  githubid?: string;
 
   constructor(parent: LearningObject) {
     super(parent, 'githubid');
@@ -52,6 +52,6 @@ export class Git extends WebLearningObject {
   }
 
   publish(path: string): void {
-    copyResource(this.folder, path);
+    copyResource(this.folder!, path);
   }
 }

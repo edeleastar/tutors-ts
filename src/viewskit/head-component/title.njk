@@ -1,8 +1,12 @@
-{% macro title(lo) %}
+{% macro title(lo, isWall, wallTitle) %}
   <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small">
     <h2> {{ lo.title }} </h2>
     <div class="uk-text-muted uk-text-small">
-      {{ lo.properties.credits }}
+      {% if isWall %}
+        {{ wallTitle }}
+      {% else %}
+        {{ lo.properties.credits }}
+      {% endif %}
     </div>
   </div>
 {% endmacro %}

@@ -6,22 +6,23 @@ import {
   copyFolder,
   getDirectories,
   getImageFile,
-  initEmptyPath, resizeImage,
+  initEmptyPath,
+  resizeImage,
 } from '../utils/futils';
 import * as sh from 'shelljs';
 import { publishTemplate } from './loutils';
 
 export class Chapter {
-  file: string;
-  title: string;
-  shortTitle: string;
-  content: string;
-  contentWithoutHeader: string;
+  file = '';
+  title = '';
+  shortTitle = '';
+  content = '';
+  contentWithoutHeader = '';
 }
 
 export class Book extends LearningObject {
-  directories: Array<string>;
-  chapters: Array<Chapter>;
+  directories: Array<string> = [];
+  chapters: Array<Chapter> = [];
 
   constructor(parent: LearningObject) {
     super(parent);
@@ -70,7 +71,7 @@ export class Book extends LearningObject {
       copyFolder(directory, labPath);
     });
     publishTemplate(labPath, 'index.html', 'lab.njk', this);
-    resizeImage(labPath + '/' + this.img)
+    resizeImage(labPath + '/' + this.img);
     sh.cd('..');
   }
 }

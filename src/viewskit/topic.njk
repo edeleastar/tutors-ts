@@ -4,10 +4,8 @@
 
 {% extends "main.html" %}
 {% block content %}
-
   {{ header(lo) }}
-
-  <div class="uk-container uk-background-muted uk-padding"">
+  <div class="uk-container uk-background-muted uk-padding">
     {% for lo in lo.los %}
       {% if lo.lotype == "panelvideo" %}
         {{ panelvideo (lo) }}
