@@ -1,27 +1,9 @@
 {% from "head-component/header.njk" import header %}
-{% from "card-component/panelvideo.njk" import panelvideo %}
-{% from "card-component/card.njk" import card %}
+{% from "layouts/cards.njk" import cards %}
 
 {% extends "main.html" %}
+
 {% block content %}
   {{ header(lo) }}
-  <div class="uk-container uk-background-muted uk-padding">
-    {% for lo in lo.los %}
-      {% if lo.lotype == "panelvideo" %}
-        {{ panelvideo (lo) }}
-        <br>
-      {% endif %}
-    {% endfor %}
-
-    <div class="uk-child-width-1-4@s uk-flex-center  uk-background-muted" uk-grid uk-height-match="target: > div > .uk-card">
-      {% for lo in lo.los %}
-        {% if lo.lotype != "panelvideo" %}
-          <div>
-            {{ card (lo, './') }}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-
+  {{ cards(lo.los, false) }}
 {% endblock %}

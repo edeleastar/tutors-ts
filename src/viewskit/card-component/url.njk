@@ -2,12 +2,13 @@
   {% if (not lo.properties.disable) %}
     {% if (lo.lotype == "course") and (lo.link) %}
       {% set url = lo.link %}
-    {% elif (lo.absoluteLink) %}
+      {% elif (lo.absoluteLink) %}
       {% set url = lo.link + ' target="_blank"' %}
-    {% elif (lo.lotype == "talk") %}
+      {% elif (lo.lotype == "talk") %}
       {% set url = path + '/' + lo.folder + '/' + lo.link + ' target="_blank"' %}
     {% else %}
-      {% set url = path+'/'+lo.folder+'/'+lo.link %}
+      {#{% set url = path + '/ '+ lo.folder + '/' + lo.link %}#}
+      {% set url = path +  lo.folder + '/' + lo.link %}
     {% endif %}
     <a href={{ url }}>
   {% endif %}

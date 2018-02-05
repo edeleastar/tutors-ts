@@ -1,16 +1,9 @@
 {% from "head-component/header.njk" import header %}
-{% from "card-component/card.njk" import card %}
+{% from "layouts/cards.njk" import cards %}
+
 {% extends "main.html" %}
 
 {% block content %}
   {{ header(lo) }}
-  <div class="uk-container uk-background-muted uk-padding">
-    <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
-      {% for topic in lo.los %}
-        <div>
-          {{ card (topic, "./") }}
-        </div>
-      {% endfor %}
-    </div>
-  </div>
+  {{ cards(lo.los, false) }}
 {% endblock %}

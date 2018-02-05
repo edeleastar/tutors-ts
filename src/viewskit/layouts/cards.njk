@@ -1,0 +1,26 @@
+{% from "card-component/card.njk" import card %}
+{% from "card-component/panelvideo.njk" import panelvideo %}
+
+{% macro cards(los, isWall) %}
+  <div class="uk-container uk-background-muted uk-padding-small">
+    {% for lo in los %}
+      {% if lo.lotype == "panelvideo" %}
+        {{ panelvideo (lo) }}
+        <br>
+      {% endif %}
+    {% endfor %}
+    <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
+      {% for lo in los %}
+        {% if lo.lotype != "panelvideo" %}
+          <div>
+            {% if (isWall == true) %}
+              {{ card (lo, lo.parentFolder + '/') }}
+            {% else %}
+              {{ card (lo, "./") }}
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}
