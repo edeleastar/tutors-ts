@@ -2,7 +2,7 @@
 {% from "card-component/panelvideo.njk" import panelvideo %}
 
 {% macro cards(los, isWall) %}
-  <div class="uk-container uk-background-muted uk-padding-small">
+  <div class="uk-container uk-padding-small">
     {% for lo in los %}
       {% if lo.lotype == "panelvideo" %}
         {{ panelvideo (lo) }}
