@@ -1,32 +1,78 @@
-{% extends "main.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/{{lo.properties.highlightstyle}}.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      {% include "css/lab.css" %}
+    </style>
+  </head>
 
-  <style>
-    {#{% include "css/main.css" %}#}
-    {% include "css/lab.css" %}
-  </style>
+  <body>
+    {% block content %}
+    {% endblock %}
 
-  <div uk-sticky>
-    <nav class="uk-navbar-container" uk-navbar>
-      <div class="uk-subnav-left">
-        <ul class="uk-background-secondary uk-subnav-pill uk-subnav-divider">
-          <li class="uk-active"><a href="../index.html">{{ lo.parent.title }}</a></li>
-        </ul>
+    <div class="ui fixed top pointing inverted stackable menu labmenu">
+      <header class="header item">
+        <i id="toc" class="sitemap icon"></i>
+        <a href="../index.html">
+          {{lo.parent.title}}
+        </a>
+      </header>
+      <div class="right tab-menu menu">
+        {% for chapter in lo.chapters %}
+          <a class="item" data-tab="{{chapter.shortTitle}}">
+            {{chapter.shortTitle}}
+          </a>
+        {% endfor %}
+        <div class="item">
+          {% if gitterid %}
+            {{ gitterbadge(lo.gitterid) }}
+          {% endif %}
+        </div>
       </div>
-      <div class="uk-navbar-right">
-        <ul class="uk-subnav uk-background-secondary uk-subnav-pill uk-subnav-divider" uk-switcher="connect: .switcher-container">
+    </div>
+
+    <div class="ui segment pushable">
+      <div class="ui inverted labeled icon left inline vertical sidebar menu">
+        <br><br>
+        {% for resource in lo.course.walls[1].los %}
+          {% if resource.title == lo.title %}
+            <a class="active item" href="../../{{resource.parentFolder}}/{{resource.folder}}/{{resource.link}}">
+              {{resource.title}}
+            </a>
+          {% else %}
+            <a class="item" href="../../{{resource.parentFolder}}/{{resource.folder}}/{{resource.link}}">
+              {{resource.title}}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="pusher" tabindex="-1">
+        <div class="ui basic segment" id="labchat">
+          <br>
           {% for chapter in lo.chapters %}
-            <li><a href="#">{{ chapter.shortTitle }}</a></li>
+            <div  class="ui tab segment lab" data-tab="{{chapter.shortTitle}}">
+              {{ chapter.content }}
+            </div>
           {% endfor %}
-        </ul>
+        </div>
       </div>
-    </nav>
-  </div>
-  <div class="uk-container uk-container-expand">
-    <ul class="uk-switcher switcher-container">
-      {% for chapter in lo.chapters %}
-        <li> {{ chapter.content }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endblock %}
+    </div>
+
+    <script>
+      {% include "js/lab.js" %}
+      {% include "js/main.js" %}
+    </script>
+  </body>
+</html>
