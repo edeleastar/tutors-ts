@@ -4,5 +4,6 @@ node_modules/
 *.map
 !src/utilsjs/*.js
 !src/views/js/*.js
+!src/viewskit/js/*.js
 npm-debug.log
 .vscode
