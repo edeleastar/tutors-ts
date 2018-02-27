@@ -64,7 +64,7 @@ export class Book extends LearningObject {
   }
 
   publish(path: string): void {
-    sh.cd(this.folder);
+    sh.cd(this.folder!);
     const labPath = path + '/' + this.folder;
     initEmptyPath(labPath);
     this.directories.forEach(directory => {

@@ -70,10 +70,10 @@ export class Portfolio extends CompositeLearningObject {
       for (let course of courseGroup.courses) {
         const coursePath = absPath + '/' + course.folder;
         verifyFolder(coursePath);
-        sh.cd(course.folder);
-        if (course.properties.courseurl) {
+        sh.cd(course.folder!);
+        if (course.properties!.courseurl!) {
           course.absoluteLink = true;
-          course.link = course.properties.courseurl;
+          course.link = course.properties!.courseurl!;
         } else {
           course.link = course.folder + '/index.html';
         }

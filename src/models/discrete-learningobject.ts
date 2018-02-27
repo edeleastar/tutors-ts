@@ -22,7 +22,7 @@ export abstract class DiscreteLearningObject extends LearningObject {
   }
 
   publish(path: string): void {
-    copyResource(this.folder, path);
+    copyResource(this.folder!, path);
     if (this.img) {
       resizeImage(path + '/' + this.folder + '/' + this.img)
     }
