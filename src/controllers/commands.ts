@@ -9,8 +9,8 @@ import { Course } from '../models/course';
 export interface CommandOptions {
   version: string;
   templates: boolean;
-  'new': boolean;
-  'private': boolean;
+  new: boolean;
+  private: boolean;
   rootPath: string;
   [propName: string]: any;
 }
@@ -51,14 +51,17 @@ export class Commands {
           site = 'private-site';
         }
         if (options.uikit) {
-          nunjucks.configure(this.rootPath + '/src/viewskit', {autoescape: false});
-          site = 'public-site-uk'
+          nunjucks.configure(this.rootPath + '/src/viewskit', {
+            autoescape: false
+          });
+          site = 'public-site-uk';
+          if (options.private) {
+            site = 'private-site-uk';
+          }
         }
         rootLearningObject.publish(site);
       } else {
-        console.log(
-          'Cannot locate course.md or portfolio.yaml. Change to course folder and try again. ',
-        );
+        console.log('Cannot locate course.md or portfolio.yaml. Change to course folder and try again. ');
       }
     }
   }
