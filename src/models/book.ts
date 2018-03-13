@@ -1,3 +1,5 @@
+import * as fs from "fs";
+
 const glob = require('glob');
 import { LearningObject } from './learningobjects';
 import { getHeader, parse, parseWithoutHeader } from '../utils/mdutils';
@@ -6,7 +8,7 @@ import {
   copyFolder,
   getDirectories,
   getImageFile,
-  initEmptyPath,
+  initEmptyPath, readFile,
   resizeImage,
 } from '../utils/futils';
 import * as sh from 'shelljs';
@@ -23,6 +25,7 @@ export class Chapter {
 export class Book extends LearningObject {
   directories: Array<string> = [];
   chapters: Array<Chapter> = [];
+  videoid = 'none'
 
   constructor(parent: LearningObject) {
     super(parent);
@@ -30,6 +33,9 @@ export class Book extends LearningObject {
     this.reap();
     this.link = 'index.html';
     this.lotype = 'lab';
+    if (fs.existsSync('videoid')) {
+      this.videoid = readFile('videoid');
+    }
   }
 
   reapChapters(mdFiles: Array<string>): Array<Chapter> {
