@@ -20,7 +20,11 @@ export class Video extends WebLearningObject {
     this.icon = 'film';
     super.reap('video');
     this.lotype = 'video';
+    this.faIcon = 'fab fa-youtube      fa-2x" style="color:#F44336"'
     this.videoid = readFile('videoid');
+  }
+  publish(path: string): void {
+    copyResource(this.folder!, path);
   }
 }
 

@@ -12,7 +12,7 @@
   {% if (lo.videoid) and (lo.videoid != 'none') %}
     <div class="uk-card-footer">
       <div uk-lightbox>
-        <a class="uk-button uk-button-default" href="//www.youtube.com/watch?v={{ lo.videoid }}" caption="{{ lo.title }}">Play Video</a>
+        <a class="uk-button uk-button-default" href="//www.youtube.com/watch?v={{ lo.videoid }}" data-caption="{{ lo.title }}">Play Video</a>
       </div>
     </div>
   {% endif %}
