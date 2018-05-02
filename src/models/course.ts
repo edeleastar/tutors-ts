@@ -57,7 +57,7 @@ export class Course extends CompositeLearningObject {
     this.walls.push({course: this, isWall:true, los: findLos(this.los, 'lab')});
     this.walls.push({course: this, isWall:true, los: findLos(this.los, 'video')});
     this.walls.push({course: this, isWall:true, los: findLos(this.los, 'panelvideo')});
-    this.walls.push({course: this, isWall:true, los: findLos(this.los, 'git')});
+    this.walls.push({course: this, isWall:true, los: findLos(this.los, 'github')});
     this.walls.push({course: this, isWall:true, los: findLos(this.los, 'archive')});
 
     var videoTalks = findTalksWithVideos(this.los);

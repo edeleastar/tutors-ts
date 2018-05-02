@@ -52,7 +52,8 @@ export class Git extends WebLearningObject {
     this.icon = 'git square';
     super.reap('github');
     this.absoluteLink = true;
-    this.lotype = 'git';
+    this.faIcon = 'fab fa-youtube      fa-2x" style="color:#F44336"'
+    this.lotype = 'github';
   }
 
   publish(path: string): void {
