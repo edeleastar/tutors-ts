@@ -3,7 +3,7 @@
     {% if (lo.img) %}
       <img src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
     {% else %}
-      <i class="{{ lo.properties.faPanelicon }}"></i>
+      <i class="{{ lo.properties.faPanelicon }}" style="color:{{ lo.properties.faColour }}"></i>
     {% endif %}
   </div>
 {% endmacro %}
