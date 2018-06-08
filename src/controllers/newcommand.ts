@@ -42,7 +42,7 @@ export function newCommand(): void {
   const folder = courseFolderNames[courseFolderNames.length - 1];
   updateYaml(courseFolderNames);
   const retVal = sh.exec(
-    `git clone https://github.com/edeleastar/tutors-starter.git ${folder}`,
+    `git clone https://github.com/wit-tutors/tutors-starter.git ${folder}`,
     { silent: false },
   ) as ExecOutputReturnValue;
   if (retVal.code !== 0) {
