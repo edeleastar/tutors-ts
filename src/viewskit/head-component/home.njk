@@ -3,11 +3,11 @@
 {% macro home(lo, iswall) %}
   <div class="uk-padding">
     {% if iswall %}
-      {{ iconlink("index.html", "To the top level Topics for this Module", "fal fa-home fa-4x") }}
+      {{ iconlink("index.html", "To the top level Topics for this Module", "fas fa-home fa-4x") }}
       {% elif (lo.lotype == 'topic') %}
-      {{ iconlink("../index.html", "To the top level Topics for this Module", "fal fa-home fa-4x") }}
+      {{ iconlink("../index.html", "To the top level Topics for this Module", "fas fa-home fa-4x") }}
       {% elif (lo.properties.parent) %}
-      {{ iconlink(lo.properties.parent, "To the Programme home...", "fal fa-th fa-4x ") }}
+      {{ iconlink(lo.properties.parent, "To the Programme home...", "fas fa-th fa-4x ") }}
     {% endif %}
   </div>
 {% endmacro %}
