@@ -1,0 +1,25 @@
+{% macro portfoliotoc(lo) %}
+  <div class="uk-offcanvas-content">
+    <div id="offcanvas-usage" uk-offcanvas>
+      <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+        {% for courseGroup in lo.courseGroups %}
+          <ul class="uk-nav">
+            <li class="uk-parent">
+              {{ courseGroup.title }}
+              <ul class="uk-nav-sub">
+                {% for course in courseGroup.courses %}
+                  {% if (not course.properties.disable) %}
+                    <li>
+                      <a class="item" href="{{ course.link }}">{{ course.title }}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endmacro %}
