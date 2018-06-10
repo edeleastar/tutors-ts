@@ -1,11 +1,13 @@
 {% from "head-component/header.njk" import header %}
 {% from "styles.njk" import titles %}
 {% from "layouts/cards.njk" import cards %}
+{% from "layouts/toc.njk" import toc %}
 
 {% extends "main.html" %}
 
 {% block content %}
   {% set wallName = titles[lo.los[0].lotype] %}
+  {{ toc(lo.course) }}
   {{ header(lo.course, true, "All " + wallName + "'s in Module") }}
   {{ cards(lo.los, true) }}
 {% endblock %}
