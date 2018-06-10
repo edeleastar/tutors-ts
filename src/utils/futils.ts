@@ -15,7 +15,7 @@ export function writeFile(folder: string,
   if (!fs.existsSync(folder)) {
     sh.mkdir(folder);
   }
-  return fs.writeFileSync(folder + '/' + filename, contents, 'utf8');
+  return fs.writeFileSync(folder + '/' + filename, contents);
 }
 
 export function readFile(path: string): string {
