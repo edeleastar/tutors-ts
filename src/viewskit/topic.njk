@@ -1,9 +1,11 @@
 {% from "head-component/header.njk" import header %}
 {% from "layouts/cards.njk" import cards %}
+{% from "layouts/toc.njk" import toc %}
 
 {% extends "main.html" %}
 
 {% block content %}
+  {{ toc(lo.parent) }}
   {{ header(lo) }}
   {{ cards(lo.los, false) }}
 {% endblock %}
