@@ -8,6 +8,9 @@
       </div>
       <div class="uk-width-1-4@m">
         {{ icon(lo.lotype, "fa-2x") }}
+        {% if lo.lotype == 'talk' and lo.videoid != "none" %}
+          {{ icon("film", "fa-2x") }}
+        {% endif %}
       </div>
     </div>
   </div>

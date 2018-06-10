@@ -19,7 +19,11 @@
                         <a class="item" href="http://www.youtube.com/watch?v={{ resource.videoid }}">{{icon('panelvideo')}}{{resource.title}}</a>
                       {% else %}
                       <a class="item"
-                         href="{{ lo.properties.courseurl }}/{{ topic.folder }}/{{ resource.folder }}/{{ resource.link }}">{{icon(resource.lotype)}}{{resource.title}}</a>
+                         href="{{ lo.properties.courseurl }}/{{ topic.folder }}/{{ resource.folder }}/{{ resource.link }}">{{icon(resource.lotype)}}{{resource.title}}
+                         {% if resource.lotype == 'talk' and resource.videoid != 'none' %}
+                           {{ icon("film") }}
+                         {% endif %}
+                      </a>
                       {% endif %}
                     </li>
                   {% endfor %}

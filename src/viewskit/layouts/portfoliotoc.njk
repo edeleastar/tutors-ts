@@ -1,3 +1,5 @@
+{% from "card-component/visual-elements.njk" import icon %}
+
 {% macro portfoliotoc(lo) %}
   <div class="uk-offcanvas-content">
     <div id="offcanvas-usage" uk-offcanvas>
@@ -11,7 +13,7 @@
                 {% for course in courseGroup.courses %}
                   {% if (not course.properties.disable) %}
                     <li>
-                      <a class="item" href="{{ course.link }}">{{ course.title }}</a>
+                      <a class="item" href="{{ course.link }}"> {{ icon(course.lotype) }} {{ course.title }}</a>
                     </li>
                   {% endif %}
                 {% endfor %}

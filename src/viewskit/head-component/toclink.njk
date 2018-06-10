@@ -3,11 +3,7 @@
 {% macro tocLink(lo) %}
   <div class="uk-padding">
     <a href="#offcanvas-usage" uk-toggle title="Table of Contents" pos="bottom" uk-tooltip>
-      {% if (lo.properties.faPanelicon) %}
-        <i class="{{ lo.properties.faPanelicon }} fa-4x" style="color:{{ lo.properties.faColour }}"></i>
-      {% else %}
-        {{ icon("toc", "fa-4x") }}
-      {% endif %}
+      {{ icon("toc", "fa-3x") }}
     </a>
   </div>
 {% endmacro %}
