@@ -6,16 +6,16 @@
     <div class="uk-card uk-card-default uk-padding-small">
       <ul class="uk-iconnav">
         {% if properties.adobeconnect %}
-          {{ iconlink (properties.adobeconnect, "To Adobe connect ...", icons["adobeconnect"]) }}
+          {{ iconlink (properties.adobeconnect, "To Adobe connect ...", "adobeconnect", "fa-2x") }}
         {% endif %}
         {% if properties.moodle %}
-          {{ iconlink (properties.moodle, "To Moodle ...", icons["moodle"]) }}
+          {{ iconlink (properties.moodle, "To Moodle ...", "moodle", "fa-2x") }}
         {% endif %}
         {% if properties.slack %}
-          {{ iconlink (properties.slack, "To Slack Channel ...", icons["slack"]) }}
+          {{ iconlink (properties.slack, "To Slack Channel ...", "slack", "fa-2x") }}
         {% endif %}
         {% if properties.youtube %}
-          {{ iconlink (properties.youtube, "To Youtube Channel ...", icons["youtube"]) }}
+          {{ iconlink (properties.youtube, "To Youtube Channel ...", "youtube", "fa-2x") }}
         {% endif %}
       </ul>
     </div>

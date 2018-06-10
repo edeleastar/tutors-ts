@@ -1,8 +1,7 @@
-{% macro iconlink (url, tooltip, icon) %}
+{% from "card-component/visual-elements.njk" import icon %}
+
+{% macro iconlink (url, tooltip, type, size) %}
   <li>
-    <a href="{{ url }}"
-       title="{{ tooltip }}" pos="bottom" uk-tooltip>
-      <i class="{{ icon }}"></i>
-    </a>
+    <a href="{{ url }}" title="{{ tooltip }}" pos="bottom" uk-tooltip> {{ icon(type, size) }} </a>
   </li>
 {% endmacro %}

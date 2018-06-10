@@ -5,7 +5,7 @@
   {% for wall in walls %}
     {% if wall.los.length > 0 %}
       {% set wallName = titles[wall.los[0].lotype] %}
-      {{ iconlink(prefix + wall.los[0].lotype + "wall.html", "All " + wallName + "'s in module", icons[wall.los[0].lotype]) }}
+      {{ iconlink(prefix + wall.los[0].lotype + "wall.html", "All " + wallName + "'s in module", wall.los[0].lotype, "fa-2x") }}
     {% endif %}
   {% endfor %}
 {% endmacro %}

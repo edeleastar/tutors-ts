@@ -1,4 +1,4 @@
-{% from "styles.njk" import icons, titles %}
+{% from "card-component/visual-elements.njk" import icon %}
 
 {% macro header (lo) %}
   <div class="uk-card-header">
@@ -7,7 +7,7 @@
         <h3> {{ lo.title }}</h3>
       </div>
       <div class="uk-width-1-4@m">
-        <i class="{% if ((lo.lotype == "course") and (lo.properties.faIcon)) %} {{ lo.properties.faIcon }} {% else %} {{ icons[lo.lotype] }} {% endif %}> </i>
+        {{ icon(lo.lotype, "fa-2x") }}
       </div>
     </div>
   </div>
