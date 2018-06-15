@@ -57,3 +57,18 @@ export class Git extends WebLearningObject {
     copyResource(this.folder!, path);
   }
 }
+
+export class Web extends WebLearningObject {
+  weburl?: string;
+
+  constructor(parent: LearningObject) {
+    super(parent, 'weburl');
+    super.reap('web');
+    this.absoluteLink = true;
+    this.lotype = 'web';
+  }
+
+  publish(path: string): void {
+    copyResource(this.folder!, path);
+  }
+}
