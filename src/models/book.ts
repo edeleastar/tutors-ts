@@ -60,6 +60,7 @@ export class Book extends LearningObject {
     let mdFiles = glob.sync('*.md').sort();
     if (mdFiles.length === 0) {
       mdFiles = ['error: missing lab'];
+      return
     }
     const resourceName = path.parse(mdFiles[0]).name;
     super.reap(resourceName);
