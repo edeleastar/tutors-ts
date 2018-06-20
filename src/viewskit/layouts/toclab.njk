@@ -1,0 +1,21 @@
+{% from "card-component/visual-elements.njk" import icon %}
+
+{% macro toclab(labs) %}
+  <div class="uk-offcanvas-content">
+    <div id="offcanvas-usage" uk-offcanvas>
+      <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+        <ul class="uk-nav">
+          {% for lab in labs %}
+            {% if (not lab.properties.disable) %}
+              <li>
+                <a class="item" href="{{ lab.properties.courseurl }}/{{ lab.parentFolder }}/{{ lab.folder }}/{{ lab.link }}">{{ icon(lab.lotype) }}{{ lab.title }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
