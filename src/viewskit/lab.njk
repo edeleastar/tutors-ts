@@ -8,10 +8,11 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/css/uikit.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/js/uikit.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/js/uikit-icons.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/{{lo.properties.highlightstyle}}.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/{{ lo.properties.highlightstyle }}.min.css"/>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
@@ -21,40 +22,41 @@
     {% include "css/lab.css" %}
   </style>
 
-<body class="lab">
+  <body class="lab">
 
-  {{ toclab(lo.course.walls[1].los) }}
+    {{ toclab(lo.course.walls[1].los) }}
 
-  <div uk-sticky>
-    <nav uk-navbar>
-      <div class="uk-navbar-left">
-        <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
-          <li><a href="#offcanvas-usage" uk-icon="icon: menu", uk-toggle title="Switch Lab" pos="bottom" uk-tooltip></a></li>
-          <li class="uk-active"><a href="../index.html">{{ lo.parent.title }}</a></li>
-        </ul>
-      </div>
+    <div uk-sticky>
+      <nav class="uk-navbar">
+        <div class="uk-navbar-left">
+          <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
+            <li><a href="#offcanvas-usage" uk-icon="icon: menu" , uk-toggle title="Switch Lab" pos="bottom"
+                   uk-tooltip></a></li>
+            <li class="uk-active"><a href="../index.html" uk-icon="icon: chevron-up" uk-toggle title="Parent Topic"
+                                     pos="bottom" uk-tooltip>{{ lo.parent.title }}</a></li>
+          </ul>
+        </div>
+        <div class="uk-navbar-right">
+          <ul class="uk-subnav uk-background-secondary uk-subnav-pill"
+              uk-switcher="connect: .switcher-container">
+            {% for chapter in lo.chapters %}
+              <li><a href="#">{{ chapter.shortTitle }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </nav>
+    </div>
 
+    <div class="uk-container uk-container-expand">
+      <ul class="uk-switcher switcher-container">
+        {% for chapter in lo.chapters %}
+          <li> {{ chapter.content }}</li>
+        {% endfor %}
+      </ul>
+    </div>
 
-      <div class="uk-navbar-right">
-        <ul class="uk-subnav uk-background-secondary uk-subnav-pill uk-subnav-divider" uk-switcher="connect: .switcher-container">
-          {% for chapter in lo.chapters %}
-            <li><a href="#">{{ chapter.shortTitle }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <div class="uk-container uk-container-expand">
-    <ul class="uk-switcher switcher-container">
-      {% for chapter in lo.chapters %}
-        <li> {{ chapter.content }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <script>
-    {% include "js/lab.js" %}
-  </script>
-
-</body>
+    <script>
+      {% include "js/lab.js" %}
+    </script>
+  </body>
 </html>
