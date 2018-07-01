@@ -25,13 +25,16 @@ export class Portfolio extends CompositeLearningObject {
   courseGroups: Array<CourseGroup> = [];
   options: CommandOptions;
   subtitle = '';
+  homeDir = '';
 
   constructor(options: CommandOptions, parent?: LearningObject) {
     super(parent);
     this.options = options;
+    this.homeDir = getCurrentDirectory();
     this.icon = 'film';
     this.reap();
     this.lotype = 'portfolio';
+
   }
 
   reap(): void {
@@ -51,9 +54,10 @@ export class Portfolio extends CompositeLearningObject {
             sh.cd(module);
             const course = new Course(this.options, this);
             if (course) {
+              course.folder = module
               courseGroup.courses.push(course);
             }
-            sh.cd('..');
+            sh.cd(this.homeDir);
           } else {
             console.log('- could not find ' + module);
           }
@@ -64,12 +68,11 @@ export class Portfolio extends CompositeLearningObject {
   }
 
   publish(path: string): void {
-    const absPath = getCurrentDirectory() + '/' + path;
+    const absPath = this.homeDir + '/' + path;
 
     for (let courseGroup of this.courseGroups) {
       for (let course of courseGroup.courses) {
         const coursePath = absPath + '/' + course.folder;
-        verifyFolder(coursePath);
         sh.cd(course.folder!);
         if (course.properties!.courseurl!) {
           course.absoluteLink = true;
@@ -77,8 +80,13 @@ export class Portfolio extends CompositeLearningObject {
         } else {
           course.link = course.folder + '/index.html';
         }
-        course.publish(coursePath);
-        sh.cd('..');
+        verifyFolder(coursePath);
+        if (!course.absoluteLink) {
+          course.publish(coursePath);
+        } else {
+          copyFileToFolder(course.img!, coursePath);
+        }
+        sh.cd(this.homeDir);
       }
     }
     publishTemplate(absPath, 'index.html', 'portfolio.njk', this);
