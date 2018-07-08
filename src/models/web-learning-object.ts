@@ -44,6 +44,7 @@ export class PanelVideo extends WebLearningObject {
 
 export class Git extends WebLearningObject {
   githubid?: string;
+  videoid? : string;
 
   constructor(parent: LearningObject) {
     super(parent, 'githubid');
@@ -51,6 +52,7 @@ export class Git extends WebLearningObject {
     super.reap('github');
     this.absoluteLink = true;
     this.lotype = 'github';
+    this.videoid = readFile('videoid');
   }
 
   publish(path: string): void {
