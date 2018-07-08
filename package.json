@@ -1,6 +1,6 @@
 {
   "name": "tutors-ts",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Static course web site generator",
   "main": "tutor-ts.js",
   "scripts": {
