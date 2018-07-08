@@ -1,5 +1,5 @@
 {% macro ects (lo) %}
-  {% if (lo.properties.ects) %}
+  {% if (lo.properties.ects) and (lo.lotype == 'course') %}
     <div class="uk-card-footer">
       <div class="uk-badge uk-badge-danger">{{ lo.properties.ects }} Credits</div>
     </div>
