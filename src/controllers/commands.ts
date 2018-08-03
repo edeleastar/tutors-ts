@@ -2,10 +2,10 @@ import * as fs from 'fs';
 
 const nunjucks = require('nunjucks');
 import program = require('commander');
-import {newCommand} from './newcommand';
-import {CompositeLearningObject} from '../models/learningobjects';
-import {Portfolio} from '../models/portfolio';
-import {Course} from '../models/course';
+import { newCommand } from './newcommand';
+import { CompositeLearningObject } from '../models/learningobjects';
+import { Portfolio } from '../models/portfolio';
+import { Course } from '../models/course';
 
 export interface CommandOptions {
   version: string;
@@ -32,12 +32,12 @@ export class Commands {
   constructor(rootPath: string) {
     this.rootPath = rootPath;
     program
-        .arguments('<file>')
-        .version(require('../../package.json').version)
-        .option('-p, --private', 'Generate full private site')
-        .option('-u, --uikit', 'Generate UIKit based site (experimental)')
-        .option('-n, --new', 'Create a template course')
-        .parse(process.argv);
+      .arguments('<file>')
+      .version(require('../../package.json').version)
+      .option('-p, --private', 'Generate full private site')
+      .option('-u, --uikit', 'Generate UIKit based site (experimental)')
+      .option('-n, --new', 'Create a template course')
+      .parse(process.argv);
   }
 
   exec(): void {

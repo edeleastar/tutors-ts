@@ -3,12 +3,7 @@ import * as sh from 'shelljs';
 import * as yaml from 'yamljs';
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { publishLos, publishTemplate, reapLos } from './loutils';
-import {
-  copyFileToFolder,
-  getCurrentDirectory,
-  readPropsFromTree,
-  verifyFolder,
-} from '../utils/futils';
+import { copyFileToFolder, getCurrentDirectory, readPropsFromTree, verifyFolder } from '../utils/futils';
 import { Course } from './course';
 import { CommandOptions } from '../controllers/commands';
 import { parse } from '../utils/mdutils';
@@ -34,7 +29,6 @@ export class Portfolio extends CompositeLearningObject {
     this.icon = 'film';
     this.reap();
     this.lotype = 'portfolio';
-
   }
 
   reap(): void {
@@ -54,7 +48,7 @@ export class Portfolio extends CompositeLearningObject {
             sh.cd(module);
             const course = new Course(this.options, this);
             if (course) {
-              course.folder = module
+              course.folder = module;
               courseGroup.courses.push(course);
             }
             sh.cd(this.homeDir);

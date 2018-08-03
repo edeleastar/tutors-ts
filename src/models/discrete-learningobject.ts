@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 
 const glob = require('glob');
-import {LearningObject} from './learningobjects';
+import { LearningObject } from './learningobjects';
 import * as path from 'path';
-import {copyResource} from './loutils';
-import {readFile, resizeImage} from '../utils/futils';
+import { copyResource } from './loutils';
+import { readFile, resizeImage } from '../utils/futils';
 
 export abstract class DiscreteLearningObject extends LearningObject {
   constructor(parent: LearningObject) {
@@ -24,13 +24,13 @@ export abstract class DiscreteLearningObject extends LearningObject {
   publish(path: string): void {
     copyResource(this.folder!, path);
     if (this.img) {
-      resizeImage(path + '/' + this.folder + '/' + this.img)
+      resizeImage(path + '/' + this.folder + '/' + this.img);
     }
   }
 }
 
 export class Talk extends DiscreteLearningObject {
-  videoid = 'none'
+  videoid = 'none';
 
   constructor(parent: LearningObject) {
     super(parent);

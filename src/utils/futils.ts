@@ -1,17 +1,15 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as sh from 'shelljs';
-import {Properties} from '../models/properties';
-import * as yaml from "yamljs";
+import { Properties } from '../models/properties';
+import * as yaml from 'yamljs';
 
 var _ = require('lodash');
-const Jimp = require("jimp");
+const Jimp = require('jimp');
 
 sh.config.silent = true;
 
-export function writeFile(folder: string,
-                          filename: string,
-                          contents: string,): void {
+export function writeFile(folder: string, filename: string, contents: string): void {
   if (!fs.existsSync(folder)) {
     sh.mkdir(folder);
   }
@@ -20,7 +18,10 @@ export function writeFile(folder: string,
 
 export function readFile(path: string): string {
   if (fs.existsSync(path)) {
-    const array = fs.readFileSync(path).toString().split('\n');
+    const array = fs
+      .readFileSync(path)
+      .toString()
+      .split('\n');
     return array[0];
   } else {
     console.log('unable to locate ' + path);
@@ -55,7 +56,7 @@ export function getParentFolder(): string {
 }
 
 export function getDirectories(srcpath: string): string[] {
-  return fs.readdirSync(srcpath).filter(function (file) {
+  return fs.readdirSync(srcpath).filter(function(file) {
     return fs.statSync(path.join(srcpath, file)).isDirectory();
   });
 }
@@ -92,7 +93,10 @@ export function copyFolder(src: string, dest: string): void {
 export function getIgnoreList(): string[] {
   const ignoreList: string[] = [];
   if (fs.existsSync('mbignore')) {
-    const array = fs.readFileSync('mbignore').toString().split('\n');
+    const array = fs
+      .readFileSync('mbignore')
+      .toString()
+      .split('\n');
     for (let i = 0; i < array.length; i++) {
       ignoreList[i] = array[i].trim();
     }
@@ -101,9 +105,9 @@ export function getIgnoreList(): string[] {
 }
 
 function readYaml(path: string): Properties {
-  const properties = new Properties()
+  const properties = new Properties();
   const yamlData = yaml.load(path);
-  _.defaults(yamlData, properties)
+  _.defaults(yamlData, properties);
 
   if (!yamlData.courseurl) {
     yamlData.courseurl = readFileFromTree('courseurl');
@@ -114,12 +118,12 @@ function readYaml(path: string): Properties {
   if (yamlData.courseurl && yamlData.courseurl[yamlData.courseurl.length - 1] != '/') {
     yamlData.courseurl += '/';
   }
-  return yamlData
+  return yamlData;
 }
 
 export function readPropsFromTree(): Properties {
-  const properties = new Properties()
-  let path = 'properties.yaml'
+  const properties = new Properties();
+  let path = 'properties.yaml';
   for (let i = 0; i < 5; i++) {
     if (fs.existsSync(path)) {
       return readYaml(path);
@@ -146,11 +150,11 @@ export function readPropsFromTree(): Properties {
 export function resizeImage(path: string) {
   Jimp.read(path, (err: any, lenna: any) => {
     if (err) {
-      console.log(path)
-      console.log(err.message)
-      return
+      console.log(path);
+      console.log(err.message);
+      return;
     }
     lenna.resize(Jimp.AUTO, 200).write(path);
-    process.stdout.write(".");
+    process.stdout.write('.');
   });
 }

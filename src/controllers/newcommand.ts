@@ -41,17 +41,12 @@ export function newCommand(): void {
   const courseFolderNames = generateCourseFolderNames();
   const folder = courseFolderNames[courseFolderNames.length - 1];
   updateYaml(courseFolderNames);
-  const retVal = sh.exec(
-    `git clone https://github.com/wit-tutors/tutors-starter.git ${folder}`,
-    { silent: false },
-  ) as ExecOutputReturnValue;
+  const retVal = sh.exec(`git clone https://github.com/wit-tutors/tutors-starter.git ${folder}`, { silent: false }) as ExecOutputReturnValue;
   if (retVal.code !== 0) {
     console.log('fix this and try again?');
   }
 
   console.log('Next steps...');
   console.log(`cd into ${folder} and run "tutors" again`);
-  console.log(
-    'This will generate the course web in "tutors-starter/public-site"',
-  );
+  console.log('This will generate the course web in "tutors-starter/public-site"');
 }

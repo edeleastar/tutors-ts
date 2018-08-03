@@ -7,66 +7,62 @@ import { Topic } from './topic';
 import { Book } from './book';
 import { writeFile } from '../utils/futils';
 import { Archive, Reference, Talk } from './discrete-learningobject';
-import {Git, PanelVideo, Video, Web} from './web-learning-object';
+import { Git, PanelVideo, Video, Web } from './web-learning-object';
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
   let los: Array<LearningObject> = reapLoType('course*', parent, folder => {
-    return new Course(undefined, parent);
+    return new Course(null, parent);
   });
   los = los.concat(
     reapLoType('topic*', parent, parent => {
       return new Topic(parent);
-    }),
+    })
   );
   los = los.concat(
     reapLoType('talk*', parent, parent => {
       return new Talk(parent);
-    }),
+    })
   );
   los = los.concat(
     reapLoType('book*', parent, parent => {
       return new Book(parent);
-    }),
+    })
   );
   los = los.concat(
     reapLoType('video*', parent, parent => {
       return new Video(parent);
-    }),
+    })
   );
   los = los.concat(
     reapLoType('panelvideo*', parent, parent => {
       return new PanelVideo(parent);
-    }),
+    })
   );
   los = los.concat(
     reapLoType('archive*', parent, parent => {
       return new Archive(parent);
-    }),
+    })
   );
   los = los.concat(
     reapLoType('github*', parent, parent => {
       return new Git(parent);
-    }),
+    })
   );
   los = los.concat(
     reapLoType('reference*', parent, parent => {
       return new Reference(parent);
-    }),
+    })
   );
   los = los.concat(
-      reapLoType('web*', parent, parent => {
-        return new Web(parent);
-      }),
+    reapLoType('web*', parent, parent => {
+      return new Web(parent);
+    })
   );
   return los;
 }
 
-function reapLoType(
-  pattern: string,
-  parent: LearningObject,
-  locreator: (parent: LearningObject) => LearningObject,
-): Array<LearningObject> {
+function reapLoType(pattern: string, parent: LearningObject, locreator: (parent: LearningObject) => LearningObject): Array<LearningObject> {
   const los: Array<LearningObject> = [];
   const folders = glob.sync(pattern).sort();
   for (let folder of folders) {
@@ -80,10 +76,7 @@ function reapLoType(
   return los;
 }
 
-export function findLos(
-  los: Array<LearningObject>,
-  lotype: string,
-): LearningObject[] {
+export function findLos(los: Array<LearningObject>, lotype: string): LearningObject[] {
   let result: LearningObject[] = [];
   los.forEach(lo => {
     if (lo.lotype === lotype) {
@@ -96,9 +89,7 @@ export function findLos(
   return result;
 }
 
-export function findTalksWithVideos(
-  los: Array<LearningObject>,
-): LearningObject[] {
+export function findTalksWithVideos(los: Array<LearningObject>): LearningObject[] {
   let result: LearningObject[] = [];
   los.forEach(lo => {
     if (lo.lotype === 'talk') {
@@ -114,12 +105,7 @@ export function findTalksWithVideos(
   return result;
 }
 
-export function publishTemplate(
-  path: string,
-  file: string,
-  template: string,
-  lo: any,
-): void {
+export function publishTemplate(path: string, file: string, template: string, lo: any): void {
   writeFile(path, file, nunjucks.render(template, { lo: lo }));
 }
 

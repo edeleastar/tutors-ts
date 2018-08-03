@@ -1,16 +1,12 @@
-import {CompositeLearningObject, LearningObject} from './learningobjects';
-import {Topic} from './topic';
-import {findLos, findTalksWithVideos, publishLos, publishTemplate, reapLos} from './loutils';
-import {
-  copyFileToFolder,
-  getCurrentDirectory,
-  getIgnoreList,
-} from '../utils/futils';
-import {CommandOptions} from '../controllers/commands';
+import { CompositeLearningObject, LearningObject } from './learningobjects';
+import { Topic } from './topic';
+import { findLos, findTalksWithVideos, publishLos, publishTemplate, reapLos } from './loutils';
+import { copyFileToFolder, getCurrentDirectory, getIgnoreList } from '../utils/futils';
+import { CommandOptions } from '../controllers/commands';
 
 interface LoWall {
   course: Course;
-  isWall: boolean
+  isWall: boolean;
   los: Array<LearningObject>;
 }
 
@@ -28,14 +24,14 @@ export class Course extends CompositeLearningObject {
     this.course = this;
   }
 
-  constructor(options: CommandOptions, parent?: LearningObject) {
+  constructor(options?: CommandOptions, parent?: LearningObject) {
     super(parent);
-    this.options = options;
+    this.options = options!!;
 
     this.los = reapLos(this);
     this.lotype = 'course';
     this.icon = 'book';
-    this.faIcon = 'fas fa-book'
+    this.faIcon = 'fas fa-book';
     this.reap('course');
     this.link = 'index.html';
     const ignoreList = getIgnoreList();
@@ -53,15 +49,14 @@ export class Course extends CompositeLearningObject {
       }
     });
 
-    this.walls.push({course: this, isWall:true, los: findLos(this.los, 'talk')});
-    this.walls.push({course: this, isWall:true, los: findLos(this.los, 'lab')});
-    this.walls.push({course: this, isWall:true, los: findLos(this.los, 'video')});
-    this.walls.push({course: this, isWall:true, los: findLos(this.los, 'panelvideo')});
-    this.walls.push({course: this, isWall:true, los: findLos(this.los, 'github')});
-    this.walls.push({course: this, isWall:true, los: findLos(this.los, 'archive')});
+    this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'talk') });
+    this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'lab') });
+    this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'video') });
+    this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'panelvideo') });
+    this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'github') });
+    this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'archive') });
 
     var videoTalks = findTalksWithVideos(this.los);
-
   }
 
   publish(path: string): void {
@@ -75,12 +70,7 @@ export class Course extends CompositeLearningObject {
 
     this.walls.forEach(loWall => {
       if (loWall.los.length > 0) {
-        publishTemplate(
-            path,
-            '/' + loWall.los[0].lotype + 'wall.html',
-            'wall.njk',
-            loWall,
-        );
+        publishTemplate(path, '/' + loWall.los[0].lotype + 'wall.html', 'wall.njk', loWall);
       }
     });
   }

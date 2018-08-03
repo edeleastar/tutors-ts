@@ -44,7 +44,7 @@ export class PanelVideo extends WebLearningObject {
 
 export class Git extends WebLearningObject {
   githubid?: string;
-  videoid? : string;
+  videoid?: string;
 
   constructor(parent: LearningObject) {
     super(parent, 'githubid');
