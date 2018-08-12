@@ -8,15 +8,21 @@ import { Book } from './book';
 import { writeFile } from '../utils/futils';
 import { Archive, Reference, Talk } from './discrete-learningobject';
 import { Git, PanelVideo, Video, Web } from './web-learning-object';
+import { Unit } from './unit';
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
   let los: Array<LearningObject> = reapLoType('course*', parent, folder => {
-    return new Course(null, parent);
+    return new Course(undefined, parent);
   });
   los = los.concat(
     reapLoType('topic*', parent, parent => {
       return new Topic(parent);
+    })
+  );
+  los = los.concat(
+    reapLoType('unit*', parent, parent => {
+      return new Unit(parent);
     })
   );
   los = los.concat(
