@@ -5,7 +5,7 @@
 {% from "head-component/toclink.njk" import tocLink %}
 
 {% macro header(lo, iswall, wallTitle) %}
-  <div class="uk-background-muted uk-flex uk-flex-center uk-flex-middle uk-text-center uk-padding-small" uk-grid>
+  <div class="uk-flex uk-flex-center uk-flex-middle uk-text-center uk-padding-small" uk-grid>
     {{ tocLink(lo) }}
     {{ title(lo, iswall, wallTitle) }}
     {{ home(lo, iswall) }}

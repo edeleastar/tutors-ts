@@ -1,20 +1,52 @@
 {% from "card-component/card.njk" import card %}
 {% from "card-component/panelvideo.njk" import panelvideo %}
 
+{% macro panelVideos (los) %}
+  {% for lo in los %}
+    {% if lo.lotype == "panelvideo" %}
+      {{ panelvideo (lo) }}
+      <br>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
+{% macro units (los) %}
+  {% for lo in los %}
+    {% if lo.lotype == "unit" %}
+      <div class="uk-section uk-section-muted uk-preserve-color uk-padding-small">
+        <div class="uk-container">
+          <div class="uk-panel  uk-margin-medium uk-flex uk-flex-center">
+            <h3> {{ lo.title }} </h3>
+          </div>
+          <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
+            {% for lo in lo.los %}
+              <div>
+                {{ card (lo, './' + lo.parentFolder + '/') }}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <br>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
 {% macro cards(los, isWall) %}
   <div class="uk-container uk-padding-small">
-    {% for lo in los %}
-      {% if lo.lotype == "panelvideo" %}
-        {{ panelvideo (lo) }}
-        <br>
-      {% endif %}
-    {% endfor %}
+    {{ panelVideos (los) }}
+    {{ units(los) }}
+
     <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
       {% for lo in los %}
-        {% if lo.lotype != "panelvideo" %}
+        {% if lo.lotype != "panelvideo" and lo.lotype != 'unit'%}
           <div>
             {% if (isWall == true) %}
-              {{ card (lo, lo.parentFolder + '/') }}
+              {% if lo.parent.lotype == 'unit' %}
+                {{ card (lo, lo.parent.parentFolder + '/' + lo.parentFolder + '/') }}
+              {% else %}
+                {{ card (lo, lo.parentFolder + '/') }}
+              {% endif %}
             {% else %}
               {{ card (lo, "./") }}
             {% endif %}
@@ -23,4 +55,5 @@
       {% endfor %}
     </div>
   </div>
+
 {% endmacro %}
