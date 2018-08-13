@@ -1,6 +1,6 @@
 {% from "head-component/header.njk" import header %}
 {% from "card-component/card.njk" import card %}
-{% from "layouts/cards.njk" import cards %}
+{% from "layouts/cards.njk" import standardCards %}
 {% from "layouts/portfoliotoc.njk" import portfoliotoc %}
 
 {% extends "main.html" %}
@@ -9,6 +9,6 @@
   {{ header(lo) }}
   {% for courseGroup in lo.courseGroups %}
     <h4 class="uk-heading-divider uk-text-center"> {{ courseGroup.title }}</h4>
-    {{ cards(courseGroup.courses, false) }}
+    {{ standardCards(courseGroup.courses, false) }}
   {% endfor %}
 {% endblock %}

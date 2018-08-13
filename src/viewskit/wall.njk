@@ -1,6 +1,6 @@
 {% from "head-component/header.njk" import header %}
 {% from "styles.njk" import titles %}
-{% from "layouts/cards.njk" import cards %}
+{% from "layouts/cards.njk" import standardCards %}
 {% from "layouts/toc.njk" import toc %}
 
 {% extends "main.html" %}
@@ -9,5 +9,5 @@
   {% set wallName = titles[lo.los[0].lotype] %}
   {{ toc(lo.course) }}
   {{ header(lo.course, true, "All " + wallName + "'s in Module") }}
-  {{ cards(lo.los, true) }}
+  {{ standardCards(lo.los, true) }}
 {% endblock %}

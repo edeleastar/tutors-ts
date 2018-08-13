@@ -1,59 +1,57 @@
 {% from "card-component/card.njk" import card %}
 {% from "card-component/panelvideo.njk" import panelvideo %}
 
-{% macro panelVideos (los) %}
+{% macro panelVideoCards (los) %}
   {% for lo in los %}
-    {% if lo.lotype == "panelvideo" %}
-      {{ panelvideo (lo) }}
-      <br>
-    {% endif %}
+    {{ panelvideo (lo) }}
+    <br>
   {% endfor %}
 {% endmacro %}
 
-{% macro units (los) %}
+{% macro unitCards (los) %}
   {% for lo in los %}
-    {% if lo.lotype == "unit" %}
-      <div class="uk-section uk-section-muted uk-preserve-color uk-padding-small">
-        <div class="uk-container">
-          <div class="uk-panel  uk-margin-medium uk-flex uk-flex-center">
-            <h3> {{ lo.title }} </h3>
-          </div>
-          <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
-            {% for lo in lo.los %}
-              <div>
-                {{ card (lo, './' + lo.parentFolder + '/') }}
-              </div>
-            {% endfor %}
-          </div>
+    <div class="uk-section uk-section-secondary uk-preserve-color uk-padding-small">
+      <div class="uk-container">
+        <div class="uk-panel  uk-light uk-margin-medium uk-flex uk-flex-center">
+          <h3> {{ lo.title }} </h3>
+        </div>
+        <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
+          {% for lo in lo.los %}
+            <div>
+              {{ card (lo, './' + lo.parentFolder + '/') }}
+            </div>
+          {% endfor %}
         </div>
       </div>
-      <br>
-    {% endif %}
+    </div>
+    <br>
   {% endfor %}
 {% endmacro %}
 
-{% macro cards(los, isWall) %}
+{% macro standardCards (los, isWall) %}
   <div class="uk-container uk-padding-small">
-    {{ panelVideos (los) }}
-    {{ units(los) }}
-
     <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
       {% for lo in los %}
-        {% if lo.lotype != "panelvideo" and lo.lotype != 'unit'%}
-          <div>
-            {% if (isWall == true) %}
-              {% if lo.parent.lotype == 'unit' %}
-                {{ card (lo, lo.parent.parentFolder + '/' + lo.parentFolder + '/') }}
-              {% else %}
-                {{ card (lo, lo.parentFolder + '/') }}
-              {% endif %}
+        <div>
+          {% if (isWall == true) %}
+            {% if lo.parent.lotype == 'unit' %}
+              {{ card (lo, lo.parent.parentFolder + '/' + lo.parentFolder + '/') }}
             {% else %}
-              {{ card (lo, "./") }}
+              {{ card (lo, lo.parentFolder + '/') }}
             {% endif %}
-          </div>
-        {% endif %}
+          {% else %}
+            {{ card (lo, "./") }}
+          {% endif %}
+        </div>
       {% endfor %}
     </div>
   </div>
+{% endmacro %}
 
+{% macro topicCards(parent, los, isWall) %}
+  <div class="uk-container uk-padding-small">
+    {{ panelVideoCards (parent.panelVideos) }}
+    {{ unitCards(parent.units) }}
+    {{ standardCards (parent.standardLos, false) }}
+  </div>
 {% endmacro %}

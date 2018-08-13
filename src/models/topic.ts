@@ -2,15 +2,12 @@ import * as sh from 'shelljs';
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { publishTemplate, publishLos, reapLos } from './loutils';
 import { copyFileToFolder, resizeImage } from '../utils/futils';
-import { Book } from './book';
-import { Archive, Reference, Talk } from './discrete-learningobject';
-import { Git, Video } from './web-learning-object';
 
 export class Topic extends CompositeLearningObject {
-  talks: Array<LearningObject>;
-  labs: Array<LearningObject>;
-  losByType: Array<LearningObject>[] = [];
   topicUrl?: string;
+  units: Array<LearningObject>;
+  panelVideos: Array<LearningObject>;
+  standardLos: Array<LearningObject>;
 
   constructor(parent: LearningObject) {
     super(parent);
@@ -19,25 +16,16 @@ export class Topic extends CompositeLearningObject {
     this.reap('topic');
     this.link = 'index.html';
     this.lotype = 'topic';
-    this.talks = this.los.filter(lo => lo instanceof Talk);
-    this.labs = this.los.filter(lo => lo instanceof Book);
-    this.labs = this.labs.concat(this.los.filter(lo => lo instanceof Git));
+    this.setDefaultImage();
 
-    this.losByType.push(this.los.filter(lo => lo instanceof Video));
-    this.losByType.push(this.talks);
-    this.losByType.push(this.labs);
-    this.losByType.push(this.los.filter(lo => lo instanceof Reference));
-    this.losByType.push(this.los.filter(lo => lo instanceof Archive));
-    this.losByType.push(this.los.filter(lo => lo instanceof Topic));
+    this.units = this.los.filter(lo => lo.lotype == 'unit');
+    this.panelVideos = this.los.filter(lo => lo.lotype == 'panelvideo');
+    this.standardLos = this.los.filter(lo => lo.lotype !== 'unit' && lo.lotype !== 'panelvideo');
+  }
 
-    if (!this.img) {
-      if (this.talks.length > 0) {
-        this.img = this.talks[0].folder + '/' + this.talks[0].img;
-      } else {
-        if (this.labs.length > 0) {
-          this.img = this.labs[0].folder + '/' + this.labs[0].img;
-        }
-      }
+  setDefaultImage(): void {
+    if (!this.img && this.los.length > 0) {
+      this.img = this.los[0].img;
     }
   }
 
@@ -51,8 +39,6 @@ export class Topic extends CompositeLearningObject {
     this.topicUrl = this.properties!.courseurl.substring(5) + '/' + this.folder;
 
     publishTemplate(topicPath, 'index.html', 'topic.njk', this);
-    publishTemplate(topicPath, 'ajaxlabel.html', 'ajaxlabel.njk', this);
-    publishTemplate(topicPath, 'indexmoodle.html', 'indexmoodle.njk', this);
     publishLos(topicPath, this.los);
     sh.cd('..');
   }
