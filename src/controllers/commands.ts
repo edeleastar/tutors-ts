@@ -49,18 +49,9 @@ export class Commands {
     } else {
       const rootLearningObject = createRoot(options);
       if (rootLearningObject) {
-        let site = 'public-site';
+        let site = 'public-site-uk';
         if (options.private) {
-          site = 'private-site';
-        }
-        if (options.uikit) {
-          nunjucks.configure(this.rootPath + '/src/viewskit', {
-            autoescape: false
-          });
-          site = 'public-site-uk';
-          if (options.private) {
-            site = 'private-site-uk';
-          }
+          site = 'private-site-uk';
         }
         rootLearningObject.publish(site);
       } else {
