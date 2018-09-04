@@ -2,6 +2,7 @@ import { copyResource } from './loutils';
 const glob = require('glob');
 import { LearningObject } from './learningobjects';
 import { readFile } from '../utils/futils';
+import * as fs from "fs";
 
 export abstract class WebLearningObject extends LearningObject {
   constructor(parent: LearningObject, resourceId: string) {
@@ -52,7 +53,10 @@ export class Git extends WebLearningObject {
     super.reap('github');
     this.absoluteLink = true;
     this.lotype = 'github';
-    this.videoid = readFile('videoid');
+    this.videoid = 'none';
+    if (fs.existsSync('videoid')) {
+      this.videoid = readFile('videoid');
+    }
   }
 
   publish(path: string): void {
