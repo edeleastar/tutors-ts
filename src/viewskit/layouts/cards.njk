@@ -10,21 +10,17 @@
 
 {% macro unitCards (los) %}
   {% for lo in los %}
-    <div class="uk-section uk-section-secondary uk-preserve-color uk-padding-small">
-      <div class="uk-container">
-        <div class="uk-panel  uk-light uk-margin-medium uk-flex uk-flex-center">
-          <h3> {{ lo.title }} </h3>
-        </div>
-        <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
+    <div class="uk-card uk-card-body uk-background-default">
+      <h3 class="uk-card-title"> {{ lo.title }} </h3>
+       <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
           {% for lo in lo.los %}
             <div>
               {{ card (lo, './' + lo.parentFolder + '/') }}
             </div>
           {% endfor %}
-        </div>
-      </div>
-    </div>
-    <br>
+       </div>
+     </div>
+    <hr class="uk-divider-icon">
   {% endfor %}
 {% endmacro %}
 
