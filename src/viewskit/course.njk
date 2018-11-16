@@ -1,11 +1,17 @@
 {% from "head-component/header.njk" import header %}
 {% from "layouts/cards.njk" import standardCards %}
 {% from "layouts/toc.njk" import toc %}
+{% from "layouts/cards.njk" import panelVideoCards, unitCards %}
 
 {% extends "main.html" %}
 
 {% block content %}
   {{ toc(lo) }}
   {{ header(lo) }}
+
+  <div class="uk-container uk-padding-small">
+    {{ panelVideoCards (lo.panelVideos) }}
+    {{ unitCards(lo.units) }}
+  </div>
   {{ standardCards(lo.los, false) }}
 {% endblock %}

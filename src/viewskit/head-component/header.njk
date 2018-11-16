@@ -10,6 +10,8 @@
     {{ title(lo, iswall, wallTitle) }}
     {{ home(lo, iswall) }}
     {{ companion(lo.properties) }}
-    {{ walls(lo) }}
+    {% if lo.properties.toolbarOff != 1 %}
+      {{ walls(lo) }}
+    {% endif %}
   </div>
 {% endmacro %}

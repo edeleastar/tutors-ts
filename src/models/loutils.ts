@@ -82,6 +82,16 @@ function reapLoType(pattern: string, parent: LearningObject, locreator: (parent:
   return los;
 }
 
+export function findTopLos(los: Array<LearningObject>, lotype: string): LearningObject[] {
+  let result: LearningObject[] = [];
+  los.forEach(lo => {
+    if (lo.lotype === lotype) {
+      result.push(lo);
+    }
+  });
+  return result;
+}
+
 export function findLos(los: Array<LearningObject>, lotype: string): LearningObject[] {
   let result: LearningObject[] = [];
   los.forEach(lo => {

@@ -4,6 +4,8 @@
   <div class="uk-padding">
     {% if iswall %}
       {{ iconlink("index.html", "To the top level Topics for this Module", "moduleHome", "fa-4x") }}
+      {% elif (lo.parent.lotype == 'unit') %}
+      {{ iconlink("../../index.html", "To the top level Topics for this Module", "moduleHome", "fa-4x") }}
       {% elif (lo.lotype == 'topic') %}
       {{ iconlink("../index.html", "To the top level Topics for this Module", "moduleHome", "fa-4x") }}
       {% elif (lo.properties.parent) %}

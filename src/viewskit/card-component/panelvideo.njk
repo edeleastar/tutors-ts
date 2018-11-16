@@ -1,11 +1,25 @@
 {% macro panelvideo (lo) %}
 
   <div class="uk-card uk-card-default uk-box-shadow-xlarge">
+
     <div class="uk-card-header">
+
       <h5 class="uk-card-title"> {{ lo.title }} </h5>
+
+      {#<div uk-grid>#}
+        {#<div class="uk-width-expand@m">#}
+          {#<h5 class="uk-card-title"> {{ lo.title }} </h5>#}
+        {#</div>#}
+        {#{% if lo.slides %}#}
+          {#<div class="uk-width-1-6@m">#}
+            {#<p> <a href="./{{lo.folder}}/{{lo.slides}}"> slides </a></p>#}
+          {#</div>#}
+        {#{% endif %}#}
+      {#</div>#}
     </div>
     <div class="uk-card-media-top">
-      <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ lo.videoid }}"  allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
+      <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ lo.videoid }}"
+              allow="autoplay; encrypted-media" allowfullscreen uk-responsive></iframe>
     </div>
   </div>
 {% endmacro %}

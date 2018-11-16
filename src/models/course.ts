@@ -13,6 +13,8 @@ interface LoWall {
 export class Course extends CompositeLearningObject {
   options: CommandOptions;
   walls: LoWall[] = [];
+  panelVideos? : LearningObject[]
+  units: Array<LearningObject>;
 
   insertCourseRef(los: Array<LearningObject>): void {
     los.forEach(lo => {
@@ -57,6 +59,10 @@ export class Course extends CompositeLearningObject {
     this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'archive') });
 
     var videoTalks = findTalksWithVideos(this.los);
+    this.panelVideos = this.los.filter(lo => lo.lotype === "panelvideo");
+    this.los = this.los.filter(lo => lo.lotype !== "panelvideo");
+    this.units = this.los.filter(lo => lo.lotype == 'unit');
+    this.los = this.los.filter(lo => lo.lotype != 'unit');
   }
 
   publish(path: string): void {
@@ -66,6 +72,7 @@ export class Course extends CompositeLearningObject {
     }
     publishTemplate(path, 'index.html', 'course.njk', this);
     copyFileToFolder(this.img!, path);
+    publishLos(path, this.units);
     publishLos(path, this.los);
 
     this.walls.forEach(loWall => {

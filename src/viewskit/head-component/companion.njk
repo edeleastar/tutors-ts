@@ -2,22 +2,24 @@
 {% from "styles.njk" import icons, titles %}
 
 {% macro companion(properties) %}
-  {% if properties.adobeconnect or properties.moodle or properties.slack or properties.youtube %}
-    <div class="uk-card uk-card-default uk-padding-small">
-      <ul class="uk-iconnav">
-        {% if properties.adobeconnect %}
-          {{ iconlink (properties.adobeconnect, "To Adobe connect ...", "adobeconnect", "fa-2x") }}
-        {% endif %}
-        {% if properties.moodle %}
-          {{ iconlink (properties.moodle, "To Moodle ...", "moodle", "fa-2x") }}
-        {% endif %}
-        {% if properties.slack %}
-          {{ iconlink (properties.slack, "To Slack Channel ...", "slack", "fa-2x") }}
-        {% endif %}
-        {% if properties.youtube %}
-          {{ iconlink (properties.youtube, "To Youtube Channel ...", "youtube", "fa-2x") }}
-        {% endif %}
-      </ul>
-    </div>
+  {% if properties.toolBarOff != false %}
+    {% if properties.adobeconnect or properties.moodle or properties.slack or properties.youtube %}
+      <div class="uk-card uk-card-default uk-padding-small">
+        <ul class="uk-iconnav">
+          {% if properties.adobeconnect %}
+            {{ iconlink (properties.adobeconnect, "To Adobe connect ...", "adobeconnect", "fa-2x") }}
+          {% endif %}
+          {% if properties.moodle %}
+            {{ iconlink (properties.moodle, "To Moodle ...", "moodle", "fa-2x") }}
+          {% endif %}
+          {% if properties.slack %}
+            {{ iconlink (properties.slack, "To Slack Channel ...", "slack", "fa-2x") }}
+          {% endif %}
+          {% if properties.youtube %}
+            {{ iconlink (properties.youtube, "To Youtube Channel ...", "youtube", "fa-2x") }}
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
   {% endif %}
 {% endmacro %}
