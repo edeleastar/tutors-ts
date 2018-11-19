@@ -33,6 +33,8 @@
           {% if (isWall == true) %}
             {% if lo.parent.lotype == 'unit' %}
               {{ card (lo, lo.parent.parentFolder + '/' + lo.parentFolder + '/') }}
+            {% elseif (lo.parent.lotype == 'course') %}
+              {{ card (lo, '../') }}
             {% else %}
               {{ card (lo, lo.parentFolder + '/') }}
             {% endif %}
