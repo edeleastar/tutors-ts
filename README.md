@@ -51,7 +51,7 @@ tutors
 
 A folder called './public-site-uk' will be generated containing a html site of the course.
 
-You could also identify a course this portfoio:
+You could also identify a course this portfolio:
 
 - <http://edeleastar.github.io>
 
@@ -59,4 +59,4 @@ The source repos for the above courses are here:
 
 - <https://github.com/edeleastar-portfolio>
 
-Any repo with a 'src' suffix is a 'source' report for tutors-ts. If you clone it and run `tutore-ts' in the cloded folder the site will be genersted in 'public-site-uk'
+Any repo with a 'src' suffix is a 'source' repo for tutors-ts. If you clone it and run `tutors-ts' in the cloned folder the site will be generated in 'public-site-uk'
