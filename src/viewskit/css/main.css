@@ -11,6 +11,7 @@ html, body {
 }
 .footer {
   background: white;
+  text-align: right;
 }
 .content {
   flex: 1;

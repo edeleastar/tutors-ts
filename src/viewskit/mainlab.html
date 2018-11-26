@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/{{ lo.properties.highlightstyle }}.min.css"
+          rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      {% include  "css/lab.css"  %}
+      {% include "css/main.css" %}
+    </style>
+  </head>
+
+  <body class="uk-background-muted">
+    <div class="wrapper">
+      <div class="content">
+        <div style="height:1000px;">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+      <div class="footer"> <p> Powered by <a
+          href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a>
+        {{ lo.properties.license }} </p>
+      </div>
+    </div>
+  </body>
+
+</html>
