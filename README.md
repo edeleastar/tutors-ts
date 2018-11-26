@@ -60,3 +60,7 @@ The source repos for the above courses are here:
 - <https://github.com/edeleastar-portfolio>
 
 Any repo with a 'src' suffix is a 'source' repo for tutors-ts. If you clone it and run `tutors-ts' in the cloned folder the site will be generated in 'public-site-uk'
+
+## License
+
+[MIT](https://github.com/atom/atom/blob/master/LICENSE.md)
