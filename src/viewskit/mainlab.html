@@ -28,19 +28,17 @@
     </style>
   </head>
 
-  <body class="uk-background-muted">
-    <div class="wrapper">
-      <div class="content">
-        <div style="height:1000px;">
-          {% block content %}
-          {% endblock %}
-        </div>
-      </div>
-      <div class="footer"> <p> Powered by <a
-          href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a>
-        {{ lo.properties.license }} </p>
+  {% block content %}
+  {% endblock %}
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> {{ lo.properties.license }}
       </div>
     </div>
+  </div>
+
   </body>
 
 </html>
