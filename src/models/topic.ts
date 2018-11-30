@@ -25,7 +25,7 @@ export class Topic extends CompositeLearningObject {
 
   setDefaultImage(): void {
     if (!this.img && this.los.length > 0) {
-      this.img = this.los[0].img;
+      this.img = this.los[0].folder!! + '/' + this.los[0].img;
     }
   }
 
