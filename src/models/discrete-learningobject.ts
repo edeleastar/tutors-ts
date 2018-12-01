@@ -43,6 +43,20 @@ export class Talk extends DiscreteLearningObject {
   }
 }
 
+export class PanelTalk extends DiscreteLearningObject {
+  videoid = 'none';
+
+  constructor(parent: LearningObject) {
+    super(parent);
+    this.icon = 'object group';
+    this.lotype = 'paneltalk';
+    this.reap('*.pdf');
+    if (fs.existsSync('videoid')) {
+      this.videoid = readFile('videoid');
+    }
+  }
+}
+
 export class Archive extends DiscreteLearningObject {
   constructor(parent: LearningObject) {
     super(parent);

@@ -1,9 +1,17 @@
 {% from "card-component/card.njk" import card %}
 {% from "card-component/panelvideo.njk" import panelvideo %}
+{% from "card-component/paneltalk.njk" import paneltalk %}
 
 {% macro panelVideoCards (los) %}
   {% for lo in los %}
     {{ panelvideo (lo) }}
+    <br>
+  {% endfor %}
+{% endmacro %}
+
+{% macro panelTalkCards (los) %}
+  {% for lo in los %}
+    {{ paneltalk (lo) }}
     <br>
   {% endfor %}
 {% endmacro %}
@@ -50,6 +58,7 @@
 {% macro topicCards(parent, los, isWall) %}
   <div class="uk-container uk-padding-small">
     {{ panelVideoCards (parent.panelVideos) }}
+    {{ panelTalkCards (parent.panelTalks) }}
     {{ unitCards(parent.units) }}
     {{ standardCards (parent.standardLos, false) }}
     <hr class="uk-divider-icon">

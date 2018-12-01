@@ -14,6 +14,7 @@ export class Course extends CompositeLearningObject {
   options: CommandOptions;
   walls: LoWall[] = [];
   panelVideos?: LearningObject[];
+  panelTalks?: LearningObject[];
   units: Array<LearningObject>;
 
   insertCourseRef(los: Array<LearningObject>): void {
@@ -59,6 +60,7 @@ export class Course extends CompositeLearningObject {
     this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'archive') });
 
     this.panelVideos = this.los.filter(lo => lo.lotype === 'panelvideo');
+    this.panelTalks = this.los.filter(lo => lo.lotype === 'paneltalk');
     this.los = this.los.filter(lo => lo.lotype !== 'panelvideo');
     this.units = this.los.filter(lo => lo.lotype == 'unit');
     this.los = this.los.filter(lo => lo.lotype != 'unit');

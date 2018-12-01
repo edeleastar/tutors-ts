@@ -7,6 +7,7 @@ export class Topic extends CompositeLearningObject {
   topicUrl?: string;
   units: Array<LearningObject>;
   panelVideos: Array<LearningObject>;
+  panelTalks: Array<LearningObject>;
   standardLos: Array<LearningObject>;
 
   constructor(parent: LearningObject) {
@@ -20,7 +21,8 @@ export class Topic extends CompositeLearningObject {
 
     this.units = this.los.filter(lo => lo.lotype == 'unit');
     this.panelVideos = this.los.filter(lo => lo.lotype == 'panelvideo');
-    this.standardLos = this.los.filter(lo => lo.lotype !== 'unit' && lo.lotype !== 'panelvideo');
+    this.panelTalks = this.los.filter(lo => lo.lotype == 'paneltalk');
+    this.standardLos = this.los.filter(lo => lo.lotype !== 'unit' && lo.lotype !== 'panelvideo' && lo.lotype !== 'paneltalk');
   }
 
   setDefaultImage(): void {

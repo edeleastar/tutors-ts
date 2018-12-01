@@ -1,0 +1,12 @@
+{% from "card-component/head-element.njk" import header, hover %}
+{% from "card-component/visual-elements.njk" import image, video %}
+{% from "card-component/text-elements.njk" import summary, ects %}
+{% from "card-component/url.njk" import urlStart, urlEnd %}
+
+{% macro paneltalk (lo) %}
+  <div class="uk-card uk-card-body uk-background-default">
+    <h3 class="uk-card-title"> {{ lo.title }} </h3>
+    <hr>
+    <embed src="./{{ lo.folder }}/{{ lo.link }}" type="application/pdf" width="100%" height="600px" toolbar="1"></embed>
+  </div>
+{% endmacro %}
