@@ -38,7 +38,7 @@ npm install tutors-ts -g
 This will install the tutors command globally on your workstation. Now, to create a starter template course, enter this command:
 
 ~~~
-tutors new
+tutors-ts --new
 ~~~
 
 This will create a new course, populated with some template talks, resources and labs. To build the course, enter the following:
@@ -46,7 +46,7 @@ This will create a new course, populated with some template talks, resources and
 ~~~
 cd tutors-starter-0
 
-tutors
+tutors-ts
 ~~~
 
 A folder called './public-site-uk' will be generated containing a html site of the course.
