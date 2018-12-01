@@ -1,8 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-const glob = require('glob');
 import { getImageFile, getParentFolder, readPropsFromTree } from '../utils/futils';
-import { getHeader, padRight, parse, parseWithoutHeader } from '../utils/mdutils';
+import { getHeader, parseWithoutHeader } from '../utils/mdutils';
 import { Properties } from './properties';
 
 export abstract class LearningObject {
@@ -23,7 +22,7 @@ export abstract class LearningObject {
   lotype: string;
   properties?: Properties;
 
-  constructor(parent?: LearningObject) {
+  protected constructor(parent?: LearningObject) {
     if (parent) {
       this.parent = parent;
     }
@@ -52,7 +51,7 @@ export abstract class LearningObject {
 export abstract class CompositeLearningObject extends LearningObject {
   los: Array<LearningObject> = [];
 
-  constructor(parent?: LearningObject) {
+  protected constructor(parent?: LearningObject) {
     super(parent);
   }
 }

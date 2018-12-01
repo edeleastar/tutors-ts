@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Eamonn de Leastar (edeleastar@wit.ie)",
-  "license": "MIT Licence",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/edeleastar/tutors-ts.git"
@@ -16,26 +16,26 @@
     "tutors-ts": "./tutor-ts.js"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.91",
-    "@types/node": "^7.0.22",
-    "@types/shelljs": "^0.7.1",
+    "@types/lodash": "^4.14.118",
+    "@types/node": "^10.12.11",
+    "@types/shelljs": "^0.8.0",
     "@types/yamljs": "^0.2.30",
-    "commander": "^2.9.0",
-    "glob": "^7.0.3",
-    "jimp": "^0.2.28",
-    "lodash": "^4.17.4",
-    "marked": "^0.3.5",
+    "commander": "^2.19.0",
+    "glob": "^7.1.3",
+    "jimp": "^0.6.0",
+    "lodash": "^4.17.11",
+    "marked": "^0.5.2",
     "npm": "^6.4.1",
-    "nunjucks": "^2.5.2",
+    "nunjucks": "^3.1.4",
     "path": "^0.12.7",
-    "shelljs": "^0.7.7",
-    "ts-node": "^3.0.4",
-    "yamljs": "^0.2.10"
+    "shelljs": "^0.8.3",
+    "ts-node": "^7.0.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "prettier": "1.14.0",
-    "tslint": "^5.3.2",
-    "typescript": "^2.7.1"
+    "prettier": "1.15.3",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.1"
   },
   "prettier": {
     "singleQuote": true,

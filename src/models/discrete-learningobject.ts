@@ -7,7 +7,7 @@ import { copyResource } from './loutils';
 import { readFile, resizeImage } from '../utils/futils';
 
 export abstract class DiscreteLearningObject extends LearningObject {
-  constructor(parent: LearningObject) {
+  protected constructor(parent: LearningObject) {
     super(parent);
   }
 

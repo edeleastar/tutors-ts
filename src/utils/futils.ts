@@ -4,7 +4,7 @@ import * as sh from 'shelljs';
 import { Properties } from '../models/properties';
 import * as yaml from 'yamljs';
 
-var _ = require('lodash');
+const _ = require('lodash');
 const Jimp = require('jimp');
 
 sh.config.silent = true;
@@ -150,8 +150,6 @@ export function readPropsFromTree(): Properties {
 export function resizeImage(path: string) {
   Jimp.read(path, (err: any, lenna: any) => {
     if (err) {
-      //console.log(path);
-      //console.log(err.message);
       return;
     }
     lenna.resize(Jimp.AUTO, 200).write(path);

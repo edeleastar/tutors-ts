@@ -2,7 +2,7 @@ import { LearningObject } from './learningobjects';
 import { Topic } from './topic';
 import * as sh from 'shelljs';
 import { copyFileToFolder, resizeImage } from '../utils/futils';
-import { publishLos, publishTemplate } from './loutils';
+import { publishLos } from './loutils';
 
 export class Unit extends Topic {
   constructor(parent: LearningObject) {

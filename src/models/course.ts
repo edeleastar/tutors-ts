@@ -1,6 +1,6 @@
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { Topic } from './topic';
-import { findLos, findTalksWithVideos, publishLos, publishTemplate, reapLos } from './loutils';
+import { findLos, publishLos, publishTemplate, reapLos } from './loutils';
 import { copyFileToFolder, getCurrentDirectory, getIgnoreList } from '../utils/futils';
 import { CommandOptions } from '../controllers/commands';
 
@@ -13,7 +13,7 @@ interface LoWall {
 export class Course extends CompositeLearningObject {
   options: CommandOptions;
   walls: LoWall[] = [];
-  panelVideos? : LearningObject[]
+  panelVideos?: LearningObject[];
   units: Array<LearningObject>;
 
   insertCourseRef(los: Array<LearningObject>): void {
@@ -58,9 +58,8 @@ export class Course extends CompositeLearningObject {
     this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'github') });
     this.walls.push({ course: this, isWall: true, los: findLos(this.los, 'archive') });
 
-    var videoTalks = findTalksWithVideos(this.los);
-    this.panelVideos = this.los.filter(lo => lo.lotype === "panelvideo");
-    this.los = this.los.filter(lo => lo.lotype !== "panelvideo");
+    this.panelVideos = this.los.filter(lo => lo.lotype === 'panelvideo');
+    this.los = this.los.filter(lo => lo.lotype !== 'panelvideo');
     this.units = this.los.filter(lo => lo.lotype == 'unit');
     this.los = this.los.filter(lo => lo.lotype != 'unit');
   }

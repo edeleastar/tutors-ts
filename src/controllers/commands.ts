@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 
-const nunjucks = require('nunjucks');
 import program = require('commander');
 import { newCommand } from './newcommand';
 import { CompositeLearningObject } from '../models/learningobjects';

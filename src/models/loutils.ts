@@ -109,7 +109,7 @@ export function findTalksWithVideos(los: Array<LearningObject>): LearningObject[
   let result: LearningObject[] = [];
   los.forEach(lo => {
     if (lo.lotype === 'talk') {
-      var talk = lo as Talk;
+      const talk = lo as Talk;
       if (talk.videoid !== 'none') {
         result.push(lo);
       }

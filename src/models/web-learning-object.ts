@@ -1,15 +1,13 @@
 import { copyResource } from './loutils';
-const glob = require('glob');
 import { LearningObject } from './learningobjects';
 import { readFile } from '../utils/futils';
 import * as fs from 'fs';
 
 export abstract class WebLearningObject extends LearningObject {
-  constructor(parent: LearningObject, resourceId: string) {
+  protected constructor(parent: LearningObject, resourceId: string) {
     super(parent);
     this.link = readFile(resourceId);
   }
-
   publish(path: string): void {}
 }
 

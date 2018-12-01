@@ -1,4 +1,3 @@
-import program = require('commander');
 import * as fs from 'fs';
 import * as sh from 'shelljs';
 import { ExecOutputReturnValue } from 'shelljs';
