@@ -73,12 +73,8 @@ export class Portfolio extends CompositeLearningObject {
           course.link = course.properties!.courseurl!;
         } else {
           course.link = course.folder + '/index.html';
-        }
-        verifyFolder(coursePath);
-        if (!course.absoluteLink) {
+          verifyFolder(coursePath);
           course.publish(coursePath);
-        } else {
-          copyFileToFolder(course.img!, coursePath);
         }
         sh.cd(this.homeDir);
       }

@@ -4,7 +4,13 @@
 {% from "card-component/url.njk" import urlStart, urlEnd %}
 
 {% macro card (lo, path) %}
-  <div class="uk-card uk-card-default {{ hover(lo) }} uk-card-small uk-text-center uk-text-baseline uk-animation-fade">
+
+  {% set cardType = "uk-card-default" %}
+  {% if (lo.properties.highlight == true) %}
+    {% set cardType = "uk-card-secondary" %}
+  {% endif %}
+
+  <div class="uk-card {{ cardType }} {{ hover(lo) }} uk-card-small uk-text-center uk-text-baseline uk-animation-fade">
     {{ urlStart(lo, path) }}
     {{ header(lo) }}
     {{ image(lo, path) }}
@@ -13,4 +19,6 @@
     {{ summary(lo) }}
     {{ ects(lo) }}
   </div>
+
+
 {% endmacro %}
