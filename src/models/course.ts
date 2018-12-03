@@ -61,7 +61,7 @@ export class Course extends CompositeLearningObject {
 
     this.panelVideos = this.los.filter(lo => lo.lotype === 'panelvideo');
     this.panelTalks = this.los.filter(lo => lo.lotype === 'paneltalk');
-    this.los = this.los.filter(lo => lo.lotype !== 'panelvideo');
+    this.los = this.los.filter(lo => lo.lotype !== 'panelvideo' && lo.lotype !== 'paneltalk');
     this.units = this.los.filter(lo => lo.lotype == 'unit');
     this.los = this.los.filter(lo => lo.lotype != 'unit');
   }

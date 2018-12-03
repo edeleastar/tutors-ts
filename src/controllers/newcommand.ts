@@ -22,7 +22,7 @@ function generateCourseFolderNames(): string[] {
 
 function updateYaml(folderNames: string[]): void {
   let yaml = `
-title: 'A collection of recent Modules in Modern Computer Science'
+title: 'A Portfolio of Modules'
 credits: 'Department of Computing & Mathematics, WIT'
 courseGroups:
   - title: 'Module Group Label'
