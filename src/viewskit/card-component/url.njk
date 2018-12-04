@@ -1,5 +1,5 @@
 {% macro urlStart (lo, path) %}
-  {% if (not lo.properties.disable) %}
+  {% if (not lo.properties.disable) or (lo.course.options.private) %}
     {% if (lo.lotype == "course") and (lo.link) %}
       {% set url = lo.link %}
       {% elif (lo.absoluteLink) %}
@@ -15,7 +15,7 @@
 {% endmacro %}
 
 {% macro urlEnd(lo) %}
-  {% if (not lo.properties.disable) %}
+  {% if (not lo.properties.disable) or (lo.course.options.private) %}
     </a>
   {% endif %}
 {% endmacro %}
