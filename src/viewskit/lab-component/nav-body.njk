@@ -4,12 +4,14 @@
     <div class="ui inverted labeled icon left inline vertical sidebar menu">
       <br><br>
       {% for lab in lo.course.walls[1].los %}
-        {% if lab.parent.lotype == 'unit' %}
-          <a class="item"
-             href="{{ lab.properties.courseurl }}/{{ lab.parent.parent.folder }}/{{ lab.parentFolder }}/{{ lab.folder }}/{{ lab.link }}">{{ lab.title }} </a>
-        {% else %}
-          <a class="item"
-             href="{{ lab.properties.courseurl }}/{{ lab.parentFolder }}/{{ lab.folder }}/{{ lab.link }}">{{ lab.title }} </a>
+        {% if (not lab.properties.disable) %}
+          {% if lab.parent.lotype == 'unit' %}
+            <a class="item"
+               href="{{ lab.properties.courseurl }}/{{ lab.parent.parent.folder }}/{{ lab.parentFolder }}/{{ lab.folder }}/{{ lab.link }}">{{ lab.title }} </a>
+          {% else %}
+            <a class="item"
+               href="{{ lab.properties.courseurl }}/{{ lab.parentFolder }}/{{ lab.folder }}/{{ lab.link }}">{{ lab.title }} </a>
+          {% endif %}
         {% endif %}
       {% endfor %}
     </div>
