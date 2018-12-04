@@ -1,4 +1,4 @@
 export class Properties {
-  highlightstyle = 'solarized-light';
+  highlightstyle = 'railscasts';
   [key: string]: string;
 }
