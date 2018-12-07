@@ -8,7 +8,13 @@
   {{ portfoliotoc(lo) }}
   {{ header(lo) }}
   {% for courseGroup in lo.courseGroups %}
-    <h4 class="uk-heading-divider uk-text-center"> {{ courseGroup.title }}</h4>
-    {{ standardCards(courseGroup.courses, false) }}
+    <div class="uk-container uk-padding-small">
+      <div class="uk-card uk-card-body uk-background-default">
+        <h3 class="uk-card-title"> {{ courseGroup.title }} </h3>
+        <hr>
+        {{ standardCards(courseGroup.courses, false) }}
+      </div>
+      <hr class="uk-divider-icon">
+    </div>
   {% endfor %}
 {% endblock %}
