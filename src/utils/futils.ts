@@ -147,11 +147,15 @@ export function readPropsFromTree(): Properties {
   return properties;
 }
 
-export function resizeImage(path: string) {
+export function resizeImage(path: string, disabled: string) {
   Jimp.read(path, (err: any, lenna: any) => {
     if (err) {
       return;
     }
+    // if (disabled == 'true') {
+    //   lenna.blur(5);
+    //   lenna.fade(0.7);
+    // }
     lenna.resize(Jimp.AUTO, 200).write(path);
     process.stdout.write('.');
   });

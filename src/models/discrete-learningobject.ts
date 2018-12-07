@@ -23,8 +23,9 @@ export abstract class DiscreteLearningObject extends LearningObject {
 
   publish(path: string): void {
     copyResource(this.folder!, path);
+    const disable = this.properties!!.disable;
     if (this.img) {
-      resizeImage(path + '/' + this.folder + '/' + this.img);
+      resizeImage(path + '/' + this.folder + '/' + this.img, disable);
     }
   }
 }
