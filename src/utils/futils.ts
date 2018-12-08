@@ -148,11 +148,12 @@ export function readPropsFromTree(): Properties {
 }
 
 export function resizeImage(path: string, disabled: string) {
+  const isDisabled = disabled;
   Jimp.read(path, (err: any, lenna: any) => {
     if (err) {
       return;
     }
-    // if (disabled == 'true') {
+    // if (isDisabled == 'true') {
     //   lenna.blur(5);
     //   lenna.fade(0.7);
     // }
