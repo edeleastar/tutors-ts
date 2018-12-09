@@ -122,11 +122,13 @@ function readYaml(path: string): Properties {
 }
 
 export function readPropsFromTree(): Properties {
-  const properties = new Properties();
+  let properties = new Properties();
   let path = 'properties.yaml';
   for (let i = 0; i < 5; i++) {
     if (fs.existsSync(path)) {
-      return readYaml(path);
+      const yamlData = readYaml(path);
+      _.defaults(properties, yamlData);
+      path = '../' + path;
     } else {
       path = '../' + path;
     }
@@ -147,8 +149,8 @@ export function readPropsFromTree(): Properties {
   return properties;
 }
 
-export function resizeImage(path: string, disabled: string) {
-  const isDisabled = disabled;
+export function resizeImage(path: string) {
+  //  const isDisabled = disabled;
   Jimp.read(path, (err: any, lenna: any) => {
     if (err) {
       return;
