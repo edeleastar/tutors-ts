@@ -2,12 +2,14 @@
 
 {% macro image (lo, path) %}
   <div class="uk-card-body">
-    {% if (lo.properties.faPanelicon  and lo.lotype == "course") %}
-      <i class="{{ lo.properties.faPanelicon }}" style="color:{{ lo.properties.faColour }}"></i>
+    {% if (lo.properties.faPanelicon and lo.lotype == "course") %}
+      <i class="{{ lo.properties.faPanelicon }} fa-10x" style="color:{{ lo.properties.faColour }}"></i>
     {% elseif (lo.absoluteLink and lo.lotype == "course") %}
       <img src="{{ lo.properties.courseurl }}/{{ lo.img }}">
     {% elseif (lo.img) %}
       <img src="{{ path }}{{ lo.folder }}/{{ lo.img }}">
+    {% elseif (lo.properties.faPanelicon) %}
+      <i class="{{ lo.properties.faPanelicon }} fa-10x" style="color:{{ lo.properties.faColour }}"></i>
     {% endif %}
   </div>
 {% endmacro %}
