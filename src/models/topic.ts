@@ -2,6 +2,7 @@ import * as sh from 'shelljs';
 import { CompositeLearningObject, LearningObject } from './learningobjects';
 import { publishTemplate, publishLos, reapLos } from './loutils';
 import { copyFileToFolder, resizeImage } from '../utils/futils';
+import * as fs from 'fs';
 
 export class Topic extends CompositeLearningObject {
   topicUrl?: string;
@@ -27,7 +28,10 @@ export class Topic extends CompositeLearningObject {
 
   setDefaultImage(): void {
     if (!this.img && this.los.length > 0) {
-      this.img = this.los[0].folder!! + '/' + this.los[0].img;
+      const img = this.los[0].folder!! + '/' + this.los[0].img;
+      if (fs.existsSync(img)) {
+        this.img = img;
+      }
     }
   }
 
