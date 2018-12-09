@@ -1,0 +1,8 @@
+{% from "card-component/visual-elements.njk" import icon %}
+
+
+{% macro courseIcon (lo) %}
+  {#<div class="uk-padding uk-align-left">#}
+    <i class="{{ lo.properties.faPanelicon }} fa-4x" style="color:{{ lo.properties.faColour }}"></i>
+  {#</div>#}
+{% endmacro %}

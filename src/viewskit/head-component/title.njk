@@ -1,12 +1,21 @@
+{% from "head-component/course-icon.njk" import courseIcon %}
+
 {% macro title(lo, isWall, wallTitle) %}
   <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small">
-    <h2> {{ lo.title }} </h2>
-    <div class="uk-text-muted uk-text-small">
-      {% if isWall %}
-        {{ wallTitle }}
-      {% else %}
-        {{ lo.properties.credits }}
-      {% endif %}
+    <div uk-grid>
+      <div class="uk-width-1-5@m">
+        {{ courseIcon(lo) }}
+      </div>
+      <div class="uk-width-expand@m uk-text-left">
+        <h2> {{ lo.title }} </h2>
+        <div class="uk-text-muted uk-text-small">
+          {% if isWall %}
+            {{ wallTitle }}
+          {% else %}
+            {{ lo.properties.credits }}
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
 {% endmacro %}
