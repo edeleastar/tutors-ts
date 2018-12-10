@@ -4,7 +4,11 @@
   <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small">
     <div uk-grid>
       <div class="uk-width-1-5@m">
-        {{ courseIcon(lo) }}
+        {% if (lo.properties.favicon and lo.lotype == 'portfolio') %}
+          <img src="./{{lo.properties.favicon}}" width="80" class="uk-border-rounded">
+        {% else %}
+          {{ courseIcon(lo) }}
+        {% endif %}
       </div>
       <div class="uk-width-expand@m uk-text-left">
         <h2> {{ lo.title }} </h2>

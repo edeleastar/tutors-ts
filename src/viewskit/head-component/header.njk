@@ -3,6 +3,7 @@
 {% from "head-component/home.njk" import home %}
 {% from "head-component/title.njk" import title %}
 {% from "head-component/toclink.njk" import tocLink %}
+{% from "head-component/crestlink.njk" import crestLink %}
 
 {% macro header(lo, iswall, wallTitle) %}
   <div class="uk-flex uk-flex-center uk-flex-middle uk-text-center uk-padding-small" uk-grid>
@@ -13,5 +14,6 @@
     {% if lo.properties.toolbarOff != 1 %}
       {{ walls(lo) }}
     {% endif %}
+    {{ crestLink(lo) }}
   </div>
 {% endmacro %}

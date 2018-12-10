@@ -1,0 +1,9 @@
+{% macro crestLink(lo) %}
+  {% if (lo.properties.crest) %}
+    <div class="uk-padding">
+      <a href="{{lo.properties.cresturl}}">
+        <img src="{{lo.properties.courseurl}}/{{lo.properties.crest}}" width="60">
+      </a>
+    </div>
+  {% endif %}
+{% endmacro %}
