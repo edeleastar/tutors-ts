@@ -68,7 +68,7 @@ export class Portfolio extends CompositeLearningObject {
       for (let course of courseGroup.courses) {
         const coursePath = absPath + '/' + course.folder;
         sh.cd(course.folder!);
-        if (course.properties!.courseurl!) {
+        if (course.properties!.submodule! != 'true') {
           course.absoluteLink = true;
           course.link = course.properties!.courseurl!;
         } else {
@@ -81,6 +81,12 @@ export class Portfolio extends CompositeLearningObject {
     }
     publishTemplate(absPath, 'index.html', 'portfolio.njk', this);
     publishLos(path, this.los);
+    if (this.properties!!.favicon) {
+      copyFileToFolder(this.properties!!.favicon, path);
+    }
+    if (this.properties!!.crest) {
+      copyFileToFolder(this.properties!!.crest, path);
+    }
 
     copyFileToFolder('favicon.ico', absPath);
   }

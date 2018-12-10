@@ -76,6 +76,13 @@ export class Course extends CompositeLearningObject {
     publishLos(path, this.units);
     publishLos(path, this.los);
 
+    if (this.properties!!.favicon) {
+      copyFileToFolder(this.properties!!.favicon, path);
+    }
+    if (this.properties!!.crest) {
+      copyFileToFolder(this.properties!!.crest, path);
+    }
+
     this.walls.forEach(loWall => {
       if (loWall.los.length > 0) {
         publishTemplate(path, '/' + loWall.los[0].lotype + 'wall.html', 'wall.njk', loWall);
