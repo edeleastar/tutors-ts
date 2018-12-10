@@ -108,16 +108,6 @@ function readYaml(path: string): Properties {
   const properties = new Properties();
   const yamlData = yaml.load(path);
   _.defaults(yamlData, properties);
-
-  if (!yamlData.courseurl) {
-    yamlData.courseurl = readFileFromTree('courseurl');
-  }
-  if (!yamlData.credits) {
-    yamlData.credits = readFileFromTree('credits');
-  }
-  if (yamlData.courseurl && yamlData.courseurl[yamlData.courseurl.length - 1] != '/') {
-    yamlData.courseurl += '/';
-  }
   return yamlData;
 }
 
@@ -136,12 +126,6 @@ export function readPropsFromTree(): Properties {
 
   if (!properties.courseurl) {
     properties.courseurl = readFileFromTree('courseurl');
-  }
-  if (!properties.credits) {
-    properties.credits = readFileFromTree('credits');
-  }
-  if (!properties.gitter) {
-    properties.gitter = readFileFromTree('gitter');
   }
   if (properties.courseurl && properties.courseurl[properties.courseurl.length - 1] != '/') {
     properties.courseurl += '/';
