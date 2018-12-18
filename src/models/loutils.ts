@@ -100,7 +100,7 @@ export function findTopLos(los: Array<LearningObject>, lotype: string): Learning
 export function findLos(los: Array<LearningObject>, lotype: string): LearningObject[] {
   let result: LearningObject[] = [];
   los.forEach(lo => {
-    if (lo.lotype === lotype && !lo.properties!!.disable) {
+    if (lo.lotype === lotype && (lo.hasOwnProperty('properties') && !lo.properties!!.disable)) {
       result.push(lo);
     }
     if (lo instanceof Topic) {
