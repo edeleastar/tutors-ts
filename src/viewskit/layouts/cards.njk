@@ -18,6 +18,7 @@
 
 {% macro unitCards (los) %}
   {% for lo in los %}
+    {{ panelVideoCards (lo.panelVideos) }}
     <div class="uk-card uk-card-body uk-background-default">
       <h3 class="uk-card-title"> {{ lo.title }} </h3>
       <hr>
