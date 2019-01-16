@@ -5,9 +5,14 @@ import { copyFileToFolder, resizeImage } from '../utils/futils';
 import { publishLos } from './loutils';
 
 export class Unit extends Topic {
+
+  standardLos: Array<LearningObject>;
+
   constructor(parent: LearningObject) {
     super(parent);
     this.lotype = 'unit';
+
+    this.standardLos = this.los.filter(lo =>  lo.lotype !== 'panelvideo');
   }
 
   publish(path: string): void {
