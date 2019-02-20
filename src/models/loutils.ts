@@ -1,5 +1,7 @@
 import * as fs from 'fs';
+
 const glob = require('glob');
+const nodePath = require('path');
 import * as sh from 'shelljs';
 import { LearningObject } from './learningobjects';
 import { Course } from './course';
@@ -9,6 +11,8 @@ import { writeFile } from '../utils/futils';
 import { Archive, PanelTalk, Reference, Talk } from './discrete-learningobject';
 import { Git, PanelVideo, Video, Web } from './web-learning-object';
 import { Unit } from './unit';
+import { CommandOptions } from '../controllers/commands';
+
 const nunjucks = require('nunjucks');
 
 export function reapLos(parent: LearningObject): Array<LearningObject> {
@@ -127,7 +131,15 @@ export function findTalksWithVideos(los: Array<LearningObject>): LearningObject[
 }
 
 export function publishTemplate(path: string, file: string, template: string, lo: any): void {
-  writeFile(path, file, nunjucks.render(template, { lo: lo }));
+  const options = lo.course.options as CommandOptions;
+  if (options.json) {
+    if (template === 'course.njk' || template == 'lab.njk') {
+      const fileName = nodePath.parse(file).name + '.json';
+      writeFile(path, fileName, nunjucks.render('json-' + template, { lo: lo }));
+    }
+  } else {
+    writeFile(path, file, nunjucks.render(template, { lo: lo }));
+  }
 }
 
 export function publishLos(path: string, los: Array<LearningObject>): void {
