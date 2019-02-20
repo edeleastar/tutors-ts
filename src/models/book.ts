@@ -13,6 +13,7 @@ export class Chapter {
   title = '';
   shortTitle = '';
   content = '';
+  contentArray: string[] = [];
   contentWithoutHeader = '';
 }
 
@@ -35,12 +36,16 @@ export class Book extends LearningObject {
   reapChapters(mdFiles: Array<string>): Array<Chapter> {
     const chapters: Array<Chapter> = [];
     mdFiles.forEach(chapterName => {
+      let text = parse(chapterName);
+      text = text.replace(/"/g, "'");
+      let items = text.split('\n');
       const chapter = {
         file: chapterName,
         title: getHeader(chapterName),
         shortTitle: chapterName.substring(chapterName.indexOf('.') + 1, chapterName.lastIndexOf('.')),
         content: parse(chapterName),
-        contentWithoutHeader: parseWithoutHeader(chapterName)
+        contentWithoutHeader: parseWithoutHeader(chapterName),
+        contentArray: items
       };
       chapters.push(chapter);
     });
