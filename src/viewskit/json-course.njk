@@ -1,0 +1,16 @@
+{#{% from "json/los-json.njk" import losJson %}#}
+{#{% from "json/topic-json.njk" import topicJson %}#}
+{% from "json/lo-json.njk" import loJson %}
+
+{% block content %}
+{
+  "courseurl": "{{lo.properties.courseurl}}",
+  {{loJson(lo)}},
+  "topics" : [
+  {% for lo in lo.los %} {
+    {{loJson(lo)}}
+    }{% if (not loop.last) %},{% endif %}
+  {% endfor %}
+  ]
+}
+{% endblock %}

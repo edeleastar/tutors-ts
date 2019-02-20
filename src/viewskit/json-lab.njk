@@ -1,0 +1,20 @@
+{% from "json/lo-json.njk" import loJson %}
+
+{% block content %}
+  {
+  {{ loJson(lo) }},
+  "chapters" : [
+  {% for chapter in lo.chapters %}
+    {
+    "title": "{{ chapter.title }}",
+    "shortTitle": "{{ chapter.shortTitle }}",
+    "content": [
+     {% for line in chapter.contentArray%}
+      "{{line}}",
+     {% endfor %}
+    ]
+    }{% if (not loop.last) %},{% endif %}
+  {% endfor %}
+  ]
+  }
+{% endblock %}
