@@ -10,7 +10,7 @@
     "shortTitle": "{{ chapter.shortTitle }}",
     "content": [
      {% for line in chapter.contentArray%}
-      "{{line}}",
+      "{{line}}" {% if (not loop.last) %},{% endif %}
      {% endfor %}
     ]
     }{% if (not loop.last) %},{% endif %}

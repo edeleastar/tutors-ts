@@ -1,18 +1,14 @@
 {% macro loJson(lo, prefix) %}
-  {% if prefix %}
-    {% set pre = prefix + '/' %}
-  {% endif %}
+  {% if prefix %} {% set pre = prefix + '/' %} {% endif %}
+  "properties" : {{ lo.jsonProperties }},
   "type" : "{{ lo.lotype }}",
   "title" : "{{ lo.title }}",
   "folder" : "{{ lo.folder }}",
   "link" : "{{ pre }}{{ lo.folder }}/{{ lo.link }}",
   "img" : "{{ pre }}{{ lo.folder }}/{{ lo.img }}",
   "objectives" : "{{ lo.objectivesWithoutHeader }}",
-  "los": [
-  {% for sublo in lo.allLos %} {
-    {{ loJson(sublo,  lo.folder ) }}
-    }
-    {% if (not loop.last) %},{% endif %}
-  {% endfor %}
-  ]
+  "los": [ {% for sublo in lo.allLos %} {
+  {{ loJson(sublo,  lo.folder ) }}
+  } {% if (not loop.last) %},{% endif %}
+{% endfor %} ]
 {% endmacro %}
