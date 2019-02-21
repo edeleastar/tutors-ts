@@ -21,6 +21,7 @@ export abstract class LearningObject {
   absoluteLink?: boolean;
   lotype: string;
   properties?: Properties;
+  jsonProperties?: string;
 
   protected constructor(parent?: LearningObject) {
     if (parent) {
@@ -34,6 +35,11 @@ export abstract class LearningObject {
     this.parentFolder = getParentFolder();
     this.img = getImageFile(pattern);
     this.properties = readPropsFromTree();
+    if (fs.existsSync('properties.yaml')) {
+      this.jsonProperties = JSON.stringify(this.properties);
+    } else {
+      this.jsonProperties = '{}';
+    }
     if (fs.existsSync(pattern + '.md')) {
       this.title = getHeader(pattern + '.md');
       this.title = this.title + ' ';
