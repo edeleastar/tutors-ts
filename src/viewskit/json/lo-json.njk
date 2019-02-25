@@ -5,7 +5,11 @@
   "img" : "{{ pre }}{{ lo.folder }}/{{ lo.img }}",
   "videoid" : "{{ lo.videoid }}",
   "objectives" : "{{ lo.objectivesWithoutHeader }}",
-  "properties" : {{ lo.jsonProperties }},
+    {% if lo.jsonProperties %}
+      "properties" : {{ lo.jsonProperties }},
+    {% else %}
+      "properties" : {},
+    {% endif %}
     {% if prefix %}
       "folder" : "{{ prefix }}/{{ lo.folder }}",
     {% else %}

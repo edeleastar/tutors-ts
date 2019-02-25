@@ -4,7 +4,7 @@ const glob = require('glob');
 import { LearningObject } from './learningobjects';
 import { getHeader, parse, parseWithoutHeader } from '../utils/mdutils';
 import * as path from 'path';
-import { copyFolder, getDirectories, getImageFile, initEmptyPath, readFile, resizeImage } from '../utils/futils';
+import { copyFolder, getDirectories, getImageFile, initEmptyPath, readFile, readFullFile, resizeImage } from '../utils/futils';
 import * as sh from 'shelljs';
 import { publishTemplate } from './loutils';
 
@@ -14,6 +14,7 @@ export class Chapter {
   shortTitle = '';
   content = '';
   contentArray: string[] = [];
+  // contentArrayMd: string[] = [];
   contentWithoutHeader = '';
 }
 
@@ -39,13 +40,20 @@ export class Book extends LearningObject {
       let text = parse(chapterName);
       text = text.replace(/"/g, "'");
       let items = text.split('\n');
+
+      const mdContent = readFullFile(chapterName);
+      const mdContentFiltered: string[] = [];
+      mdContent.forEach(line => {
+        mdContentFiltered.push(line.replace(/"/g, "'"));
+      });
       const chapter = {
         file: chapterName,
         title: getHeader(chapterName),
         shortTitle: chapterName.substring(chapterName.indexOf('.') + 1, chapterName.lastIndexOf('.')),
         content: parse(chapterName),
         contentWithoutHeader: parseWithoutHeader(chapterName),
-        contentArray: items
+        contentArray: items,
+        contentArrayMd: mdContentFiltered
       };
       chapters.push(chapter);
     });

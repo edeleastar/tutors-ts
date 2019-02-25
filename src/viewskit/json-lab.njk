@@ -12,6 +12,11 @@
      {% for line in chapter.contentArray%}
       "{{line}}" {% if (not loop.last) %},{% endif %}
      {% endfor %}
+    ],
+    "contentMd": [
+    {% for line in chapter.contentArrayMd%}
+      "{{line}}" {% if (not loop.last) %},{% endif %}
+    {% endfor %}
     ]
     }{% if (not loop.last) %},{% endif %}
   {% endfor %}

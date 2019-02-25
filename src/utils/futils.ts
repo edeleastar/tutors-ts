@@ -29,6 +29,19 @@ export function readFile(path: string): string {
   return '';
 }
 
+export function readFullFile(path: string): string[] {
+  if (fs.existsSync(path)) {
+    const array = fs
+      .readFileSync(path)
+      .toString()
+      .split('\n');
+    return array;
+  } else {
+    console.log('unable to locate ' + path);
+  }
+  return [];
+}
+
 export function readFileFromTree(path: string): string {
   for (let i = 0; i < 5; i++) {
     if (fs.existsSync(path)) {
