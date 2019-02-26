@@ -16,8 +16,6 @@
   {% endif %}
   "folder" : "{{ lo.folder }}",
   "link" : "{{ lo.folder }}/{{ lo.link }}"
-
-  {#{{ loJson(lo) }}#}
   }{% if (not loop.last) %},{% endif %}
 {% endfor %} ]
   }

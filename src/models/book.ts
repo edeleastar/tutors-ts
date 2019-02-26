@@ -22,7 +22,6 @@ export class Chapter {
   title = '';
   shortTitle = '';
   content = '';
-  // contentArrayMd: string[] = [];
   contentWithoutHeader = '';
   contentMd = ''
 }
@@ -46,11 +45,6 @@ export class Book extends LearningObject {
   reapChapters(mdFiles: Array<string>): Array<Chapter> {
     const chapters: Array<Chapter> = [];
     mdFiles.forEach(chapterName => {
-      // const mdContent = readFullFile(chapterName);
-      // const mdContentFiltered: string[] = [];
-      // mdContent.forEach(line => {
-      //   mdContentFiltered.push(line.replace(/"/g, "'"));
-      // });
       const wholeFile = readWholeFile(chapterName);
       const chapter = {
         file: chapterName,
@@ -58,7 +52,6 @@ export class Book extends LearningObject {
         shortTitle: chapterName.substring(chapterName.indexOf('.') + 1, chapterName.lastIndexOf('.')),
         content: parse(chapterName),
         contentWithoutHeader: parseWithoutHeader(chapterName),
-        // contentArrayMd: mdContentFiltered,
         contentMd : JSON.stringify(wholeFile)
       };
       chapters.push(chapter);

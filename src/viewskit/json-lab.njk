@@ -8,17 +8,7 @@
     {
     "title": "{{ chapter.title }}",
     "shortTitle": "{{ chapter.shortTitle }}",
-    {#"content": [#}
-     {#{% for line in chapter.contentArray%}#}
-      {#"{{line}}" {% if (not loop.last) %},{% endif %}#}
-     {#{% endfor %}#}
-    {#],#}
     "contentMd" : {{  chapter.contentMd }}
-    {#"contentMd": [#}
-    {#{% for line in chapter.contentArrayMd%}#}
-      {#"{{line}}" {% if (not loop.last) %},{% endif %}#}
-    {#{% endfor %}#}
-    {#]#}
     }{% if (not loop.last) %},{% endif %}
   {% endfor %}
   ]
