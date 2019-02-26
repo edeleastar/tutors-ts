@@ -134,7 +134,7 @@ export function publishTemplate(path: string, file: string, template: string, lo
   const options = lo.course.options as CommandOptions;
   if (options.json) {
     writeFile(path, file, nunjucks.render(template, { lo: lo }));
-    if (template === 'course.njk' || template == 'lab.njk') {
+    if (template === 'course.njk' || template == 'lab.njk' || template == 'topic.njk') {
       const fileName = nodePath.parse(file).name + '.json';
       writeFile(path, fileName, nunjucks.render('json-' + template, { lo: lo }));
     }

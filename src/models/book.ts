@@ -4,7 +4,16 @@ const glob = require('glob');
 import { LearningObject } from './learningobjects';
 import { getHeader, parse, parseWithoutHeader } from '../utils/mdutils';
 import * as path from 'path';
-import { copyFolder, getDirectories, getImageFile, initEmptyPath, readFile, readFullFile, resizeImage } from '../utils/futils';
+import {
+  copyFolder,
+  getDirectories,
+  getImageFile,
+  initEmptyPath,
+  readFile,
+  readFullFile,
+  readWholeFile,
+  resizeImage
+} from '../utils/futils';
 import * as sh from 'shelljs';
 import { publishTemplate } from './loutils';
 
@@ -13,9 +22,9 @@ export class Chapter {
   title = '';
   shortTitle = '';
   content = '';
-  contentArray: string[] = [];
   // contentArrayMd: string[] = [];
   contentWithoutHeader = '';
+  contentMd = ''
 }
 
 export class Book extends LearningObject {
@@ -37,23 +46,20 @@ export class Book extends LearningObject {
   reapChapters(mdFiles: Array<string>): Array<Chapter> {
     const chapters: Array<Chapter> = [];
     mdFiles.forEach(chapterName => {
-      let text = parse(chapterName);
-      text = text.replace(/"/g, "'");
-      let items = text.split('\n');
-
-      const mdContent = readFullFile(chapterName);
-      const mdContentFiltered: string[] = [];
-      mdContent.forEach(line => {
-        mdContentFiltered.push(line.replace(/"/g, "'"));
-      });
+      // const mdContent = readFullFile(chapterName);
+      // const mdContentFiltered: string[] = [];
+      // mdContent.forEach(line => {
+      //   mdContentFiltered.push(line.replace(/"/g, "'"));
+      // });
+      const wholeFile = readWholeFile(chapterName);
       const chapter = {
         file: chapterName,
         title: getHeader(chapterName),
         shortTitle: chapterName.substring(chapterName.indexOf('.') + 1, chapterName.lastIndexOf('.')),
         content: parse(chapterName),
         contentWithoutHeader: parseWithoutHeader(chapterName),
-        contentArray: items,
-        contentArrayMd: mdContentFiltered
+        // contentArrayMd: mdContentFiltered,
+        contentMd : JSON.stringify(wholeFile)
       };
       chapters.push(chapter);
     });

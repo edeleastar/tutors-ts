@@ -23,9 +23,9 @@
   "los": [
     {% for sublo in lo.allLos %} {
       {% if sublo.parent.lotype == 'unit' %}
-        {{ loJson(sublo,  sublo.parent.parent.folder + '/' + lo.folder ) }}
+        {{ loJson(sublo,    lo.folder ) }}
       {% else %}
-        {{ loJson(sublo,  lo.folder ) }}
+        {{ loJson(sublo) }}
       {% endif %}
     } {% if (not loop.last) %},{% endif %}
   {% endfor %} ]
