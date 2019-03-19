@@ -2,7 +2,7 @@
   {% if prefix %} {% set pre = prefix + '/' %} {% endif %}
   "type" : "{{ lo.lotype }}",
   "title" : "{{ lo.title }}",
-  "img" : "{{ pre }}{{ lo.folder }}/{{ lo.img }}",
+  "img" : "{{ lo.img }}",
   "videoid" : "{{ lo.videoid }}",
   "objectives" : "{{ lo.objectivesWithoutHeader }}",
     {% if lo.jsonProperties %}
@@ -18,12 +18,12 @@
     {% if lo.absoluteLink == true %}
       "link" : "{{ lo.link }}",
     {% else %}
-      "link" : "{{ pre }}{{ lo.folder }}/{{ lo.link }}",
+      "link" : "{{ lo.link }}",
     {% endif %}
   "los": [
     {% for sublo in lo.allLos %} {
       {% if sublo.parent.lotype == 'unit' %}
-        {{ loJson(sublo,    lo.folder ) }}
+        {{ loJson(sublo) }}
       {% else %}
         {{ loJson(sublo) }}
       {% endif %}
