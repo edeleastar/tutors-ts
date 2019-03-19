@@ -1,32 +1,19 @@
-{% macro loJson(lo, prefix) %}
-  {% if prefix %} {% set pre = prefix + '/' %} {% endif %}
+{% macro loJson(lo) %}
+  {% if lo.jsonProperties %}
+    "properties" : {{ lo.jsonProperties }},
+  {% else %}
+    "properties" : {},
+  {% endif %}
   "type" : "{{ lo.lotype }}",
   "title" : "{{ lo.title }}",
   "img" : "{{ lo.img }}",
   "videoid" : "{{ lo.videoid }}",
   "objectives" : "{{ lo.objectivesWithoutHeader }}",
-    {% if lo.jsonProperties %}
-      "properties" : {{ lo.jsonProperties }},
-    {% else %}
-      "properties" : {},
-    {% endif %}
-    {% if prefix %}
-      "folder" : "{{ prefix }}/{{ lo.folder }}",
-    {% else %}
-      "folder" : "{{ lo.folder }}",
-    {% endif %}
-    {% if lo.absoluteLink == true %}
-      "link" : "{{ lo.link }}",
-    {% else %}
-      "link" : "{{ lo.link }}",
-    {% endif %}
+  "folder" : "{{ lo.folder }}",
+  "link" : "{{ lo.link }}",
   "los": [
-    {% for sublo in lo.allLos %} {
-      {% if sublo.parent.lotype == 'unit' %}
-        {{ loJson(sublo) }}
-      {% else %}
-        {{ loJson(sublo) }}
-      {% endif %}
+  {% for sublo in lo.allLos %} {
+    {{ loJson(sublo) }}
     } {% if (not loop.last) %},{% endif %}
   {% endfor %} ]
 {% endmacro %}
