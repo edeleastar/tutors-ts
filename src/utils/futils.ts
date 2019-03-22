@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as sh from 'shelljs';
-import {Properties} from '../models/properties';
+import { Properties } from '../models/properties';
 import * as yaml from 'yamljs';
 
 const _ = require('lodash');
@@ -19,9 +19,9 @@ export function writeFile(folder: string, filename: string, contents: string): v
 export function readFile(path: string): string {
   if (fs.existsSync(path)) {
     const array = fs
-        .readFileSync(path)
-        .toString()
-        .split('\n');
+      .readFileSync(path)
+      .toString()
+      .split('\n');
     return array[0];
   } else {
     console.log('unable to locate ' + path);
@@ -32,9 +32,9 @@ export function readFile(path: string): string {
 export function readFullFile(path: string): string[] {
   if (fs.existsSync(path)) {
     const array = fs
-        .readFileSync(path)
-        .toString()
-        .split('\n');
+      .readFileSync(path)
+      .toString()
+      .split('\n');
     return array;
   } else {
     console.log('unable to locate ' + path);
@@ -44,14 +44,12 @@ export function readFullFile(path: string): string[] {
 
 export function readWholeFile(path: string): string {
   if (fs.existsSync(path)) {
-    const array = fs
-        .readFileSync(path)
-        .toString();
+    const array = fs.readFileSync(path).toString();
     return array;
   } else {
     console.log('unable to locate ' + path);
   }
-  return "";
+  return '';
 }
 
 export function readFileFromTree(path: string): string {
@@ -81,7 +79,7 @@ export function getParentFolder(): string {
 }
 
 export function getDirectories(srcpath: string): string[] {
-  return fs.readdirSync(srcpath).filter(function (file) {
+  return fs.readdirSync(srcpath).filter(function(file) {
     return fs.statSync(path.join(srcpath, file)).isDirectory();
   });
 }
@@ -119,9 +117,9 @@ export function getIgnoreList(): string[] {
   const ignoreList: string[] = [];
   if (fs.existsSync('mbignore')) {
     const array = fs
-        .readFileSync('mbignore')
-        .toString()
-        .split('\n');
+      .readFileSync('mbignore')
+      .toString()
+      .split('\n');
     for (let i = 0; i < array.length; i++) {
       ignoreList[i] = array[i].trim();
     }
