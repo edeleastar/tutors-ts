@@ -4,7 +4,6 @@
   {
   {{ loJson(lo) }},
   "topics" : [ {% for lo in lo.los %} {
-    {#"folder" : "{{ lo.folder }}"#}
     {{ loJson(lo) }}
   }{% if (not loop.last) %},{% endif %}
 {% endfor %} ]
