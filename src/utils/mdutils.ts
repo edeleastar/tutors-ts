@@ -32,7 +32,7 @@ export function getHeader(fileName: string): string {
   } else {
     header = array[0];
   }
-  return header;
+  return header.replace('\r', '');
 }
 
 const replicate = function(len: number, c: string) {
