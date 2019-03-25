@@ -22,7 +22,7 @@ export function readFile(path: string): string {
       .readFileSync(path)
       .toString()
       .split('\n');
-    return array[0];
+    return array[0].replace('\r', '');;
   } else {
     console.log('unable to locate ' + path);
   }
