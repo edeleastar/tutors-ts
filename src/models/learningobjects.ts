@@ -46,6 +46,7 @@ export abstract class LearningObject {
 
       this.objectivesWithoutHeader = parseWithoutHeader(pattern + '.md');
       this.objectivesWithoutHeader = this.objectivesWithoutHeader.replace(/(\r\n|\n|\r)/gm, '');
+      this.objectivesWithoutHeader = this.objectivesWithoutHeader.replace(/\"/g, "'");
     } else {
       this.title = pattern;
     }

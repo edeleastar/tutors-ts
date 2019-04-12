@@ -35,7 +35,8 @@ export function getHeader(fileName: string): string {
   header = header.replace('\r', '');
   header = header.replace('\t', '');
   header = header.replace('"', '');
-  return header
+  header = header.replace(/\"/g, "'");
+  return header;
 }
 
 const replicate = function(len: number, c: string) {
