@@ -44,6 +44,10 @@ export function getHeader(fileName: string): string {
   } else {
     header = array[0];
   }
+  header = header.replace('\r', '');
+  header = header.replace('\t', '');
+  header = header.replace('"', '');
+  header = header.replace(/\"/g, "'");
   return header;
 }
 

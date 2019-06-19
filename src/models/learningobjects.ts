@@ -44,11 +44,16 @@ export abstract class LearningObject {
     if (fs.existsSync(pattern + '.md')) {
       this.title = getHeader(pattern + '.md');
       this.title = this.title + ' ';
+<<<<<<< HEAD
       // this.title = padRight(this.title, 40 - this.title.length, '_' );
       // this.objectives = parse(pattern + '.md');
       this.objectivesMd = withoutHeader(pattern + '.md');
+=======
+
+>>>>>>> 168ccd25b720309b5b2c285031d41f88e08dfdee
       this.objectivesWithoutHeader = parseWithoutHeader(pattern + '.md');
       this.objectivesWithoutHeader = this.objectivesWithoutHeader.replace(/(\r\n|\n|\r)/gm, '');
+      this.objectivesWithoutHeader = this.objectivesWithoutHeader.replace(/\"/g, "'");
     } else {
       this.title = pattern;
     }

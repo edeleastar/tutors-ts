@@ -131,7 +131,7 @@ export function findTalksWithVideos(los: Array<LearningObject>): LearningObject[
 }
 
 export function publishTemplate(path: string, file: string, template: string, lo: any): void {
-  const options = lo.course.options as CommandOptions;
+  //  const options = lo.course.options as CommandOptions;
   writeFile(path, file, nunjucks.render(template, { lo: lo }));
   if (template === 'course.njk' || template == 'lab.njk') {
     const fileName = nodePath.parse(file).name + '.json';
