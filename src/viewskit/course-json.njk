@@ -1,0 +1,51 @@
+{% macro properties(lo) %}
+  {% if lo.jsonProperties %}
+    "properties" : {{ lo.jsonProperties }}
+  {% endif %}
+{% endmacro %}
+
+{% macro base(lo, url) %}
+  {{ properties(lo) }},
+  "type" : "{{ lo.lotype }}",
+  "title" : "{{ lo.title }}",
+  "img" : "{{ url }}/{{ lo.img }}",
+  {{ video(topic) }}
+  "summary" : "{{ lo.objectivesMd }}",
+  "route" : "{{ url }}"
+{% endmacro %}
+
+{% macro video(lo) %}
+  {% if lo.videoid and lo.videoid != "none" %}
+    "video" : "http://www.youtube.com/watch?v={{ lo.videoid }}",
+  {% endif %}
+{% endmacro %}
+
+{% macro units(lo, url) %}
+  {% if lo.lotype == "unit" %}
+    ,"los" : [
+    {% for sublo in lo.allLos %} {
+      {{ base(sublo, url+'/'+sublo.folder) }}
+      } {% if (not loop.last) %},{% endif %}
+    {% endfor %} ]
+  {% endif %}
+{% endmacro %}
+
+{% macro jsonTopic(topic, url) %}
+  {{ base(topic, url+topic.folder) }},
+  "los": [
+  {% for lo in topic.allLos %} {
+    {{ base(lo, url+topic.folder+'/'+lo.folder) }}
+    {{ units(lo, url+topic.folder+'/'+lo.folder) }}
+    } {% if (not loop.last) %},{% endif %}
+  {% endfor %} ]
+{% endmacro %}
+
+{% block content %}
+  {
+  {{ base(lo, lo.course.properties.courseurl) }},
+  "topics" : [ {% for topic in lo.los %} {
+  {{ jsonTopic(topic, lo.course.properties.courseurl) }}
+  }{% if (not loop.last) %},{% endif %}
+{% endfor %} ]
+  }
+{% endblock %}

@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { getImageFile, getParentFolder, readPropsFromTree } from '../utils/futils';
-import { getHeader, parseWithoutHeader } from '../utils/mdutils';
+import { getHeader, withoutHeader, parseWithoutHeader } from '../utils/mdutils';
 import { Properties } from './properties';
 
 export abstract class LearningObject {
@@ -15,6 +15,7 @@ export abstract class LearningObject {
   folder?: string;
   parentFolder?: string;
   objectives?: string;
+  objectivesMd?: string;
   objectivesWithoutHeader?: string;
   credits?: string;
   url?: string;
@@ -45,6 +46,7 @@ export abstract class LearningObject {
       this.title = this.title + ' ';
       // this.title = padRight(this.title, 40 - this.title.length, '_' );
       // this.objectives = parse(pattern + '.md');
+      this.objectivesMd = withoutHeader(pattern + '.md');
       this.objectivesWithoutHeader = parseWithoutHeader(pattern + '.md');
       this.objectivesWithoutHeader = this.objectivesWithoutHeader.replace(/(\r\n|\n|\r)/gm, '');
     } else {

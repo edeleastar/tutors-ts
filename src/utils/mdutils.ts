@@ -9,6 +9,18 @@ export function parse(fileName: string): string {
   return marked(mdContent);
 }
 
+export function withoutHeader(fileName: string): string {
+  let content = fs.readFileSync(fileName).toString();
+  const line1 = content.indexOf('\n');
+  content = content.substring(line1 + 1, content.length);
+  content = content.trim();
+  const line2 = content.indexOf('\n');
+  if (line2 > -1) {
+    content = content.substring(0, line2);
+  }
+  return content;
+}
+
 export function parseWithoutHeader(fileName: string): string {
   let content = fs.readFileSync(fileName).toString();
   const line1 = content.indexOf('\n');
