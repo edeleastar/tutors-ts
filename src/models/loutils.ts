@@ -138,7 +138,7 @@ export function publishTemplate(path: string, file: string, template: string, lo
     writeFile(path, fileName, nunjucks.render('json-' + template, { lo: lo }));
   }
   if (template === 'course.njk') {
-    const fileName = nodePath.parse(file).name + 'course.json';
+    const fileName = 'tutors.json';
     writeFile(path, fileName, nunjucks.render('course-json.njk', { lo: lo }));
   }
 }

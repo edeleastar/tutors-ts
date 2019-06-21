@@ -36,6 +36,10 @@ export abstract class LearningObject {
     this.parentFolder = getParentFolder();
     this.img = getImageFile(pattern);
     this.properties = readPropsFromTree();
+    if (this.properties.courseurl) {
+      let domain = this.properties.courseurl.substring(this.properties.courseurl.indexOf('//') + 2);
+      this.properties.basecourseurl = domain;
+    }
     if (fs.existsSync('properties.yaml')) {
       this.jsonProperties = JSON.stringify(this.properties);
     } else {

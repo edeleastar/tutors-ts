@@ -8,15 +8,30 @@
   {{ properties(lo) }},
   "type" : "{{ lo.lotype }}",
   "title" : "{{ lo.title }}",
-  "img" : "{{ url }}/{{ lo.img }}",
-  {{ video(topic) }}
+  "img" : "https://{{ url }}/{{ lo.img }}",
+  {{ video(lo, url) }}
   "summary" : "{{ lo.objectivesMd }}",
-  "route" : "{{ url }}"
+
+  {% if lo.lotype == "course" or lo.lotype == "topic"%}
+    "route" : "#{{ lo.lotype }}/{{ url }}"
+  {% elseif lo.lotype == "talk"  %}
+    "pdf" : "https://{{ url }}/{{ lo.link }}",
+    "route" : "#{{ lo.lotype }}/{{ url }}/{{ lo.link }}"
+  {% elseif lo.lotype == "lab" %}
+    "route" : "#{{ lo.lotype }}/{{ url }}"
+  {% elseif lo.lotype == "archive" %}
+    "route" : "https://{{ url }}/{{ lo.link }}"
+  {% elseif lo.lotype == "unit" %}
+    "route" : "#topic/{{ url }}"
+  {% else %}
+    "route" : "{{ lo.link }}"
+  {% endif %}
+
 {% endmacro %}
 
-{% macro video(lo) %}
+{% macro video(lo, url) %}
   {% if lo.videoid and lo.videoid != "none" %}
-    "video" : "http://www.youtube.com/watch?v={{ lo.videoid }}",
+    "video" : "#video/{{ url }}/{{ lo.videoid }}",
   {% endif %}
 {% endmacro %}
 
@@ -42,9 +57,9 @@
 
 {% block content %}
   {
-  {{ base(lo, lo.course.properties.courseurl) }},
-  "topics" : [ {% for topic in lo.los %} {
-  {{ jsonTopic(topic, lo.course.properties.courseurl) }}
+  {{ base(lo, lo.course.properties.basecourseurl) }},
+  "los" : [ {% for topic in lo.los %} {
+  {{ jsonTopic(topic, lo.course.properties.basecourseurl) }}
   }{% if (not loop.last) %},{% endif %}
 {% endfor %} ]
   }
