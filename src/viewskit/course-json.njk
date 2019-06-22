@@ -11,7 +11,7 @@
   "img" : "https://{{ url }}/{{ lo.img }}",
   {{ video(lo, url) }}
   "summary" : "{{ lo.objectivesMd }}",
-
+  "id": "{{ lo.folder }}",
   {% if lo.lotype == "course" or lo.lotype == "topic"%}
     "route" : "#{{ lo.lotype }}/{{ url }}"
   {% elseif lo.lotype == "talk"  %}
@@ -26,12 +26,12 @@
   {% else %}
     "route" : "{{ lo.link }}"
   {% endif %}
-
 {% endmacro %}
 
 {% macro video(lo, url) %}
   {% if lo.videoid and lo.videoid != "none" %}
-    "video" : "#video/{{ url }}/{{ lo.videoid }}",
+{#    "video" : "#video/{{ url }}/{{ lo.videoid }}",#}
+    "video" : "https://www.youtube.com/embed/{{ lo.videoid }}",
   {% endif %}
 {% endmacro %}
 
