@@ -51,6 +51,9 @@ export abstract class LearningObject {
       // this.title = padRight(this.title, 40 - this.title.length, '_' );
       // this.objectives = parse(pattern + '.md');
       this.objectivesMd = withoutHeader(pattern + '.md');
+      this.objectivesMd = this.objectivesMd.replace(/(\r\n|\n|\r)/gm, '');
+      this.objectivesMd = this.objectivesMd.replace(/\"/g, "'");
+      this.objectivesMd = this.objectivesMd.replace(/\t/g, ' ');
       this.objectivesWithoutHeader = parseWithoutHeader(pattern + '.md');
       this.objectivesWithoutHeader = this.objectivesWithoutHeader.replace(/(\r\n|\n|\r)/gm, '');
       this.objectivesWithoutHeader = this.objectivesWithoutHeader.replace(/\"/g, "'");
