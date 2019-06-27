@@ -4,7 +4,17 @@ const glob = require('glob');
 import { LearningObject } from './learningobjects';
 import { getHeader, parse, parseWithoutHeader } from '../utils/mdutils';
 import * as path from 'path';
-import { copyFolder, getDirectories, getImageFile, initEmptyPath, readFile, readFullFile, readWholeFile, resizeImage } from '../utils/futils';
+import {
+  copyFolder,
+  getDirectories,
+  getImageFile,
+  initEmptyPath,
+  initPath,
+  readFile,
+  readFullFile,
+  readWholeFile,
+  resizeImage
+} from '../utils/futils';
 import * as sh from 'shelljs';
 import { publishTemplate } from './loutils';
 
@@ -69,7 +79,7 @@ export class Book extends LearningObject {
   publish(path: string): void {
     sh.cd(this.folder!);
     const labPath = path + '/' + this.folder;
-    initEmptyPath(labPath);
+    initPath(labPath);
     this.directories.forEach(directory => {
       copyFolder(directory, labPath);
     });

@@ -108,6 +108,10 @@ export function initEmptyPath(path: string): void {
   sh.mkdir('-p', path);
 }
 
+export function initPath(path: string): void {
+  sh.mkdir('-p', path);
+}
+
 export function copyFolder(src: string, dest: string): void {
   sh.mkdir('-p', dest);
   sh.cp('-rf', src, dest);
@@ -158,15 +162,15 @@ export function readPropsFromTree(): Properties {
 
 export function resizeImage(path: string) {
   //  const isDisabled = disabled;
-  Jimp.read(path, (err: any, lenna: any) => {
-    if (err) {
-      return;
-    }
-    // if (isDisabled == 'true') {
-    //   lenna.blur(5);
-    //   lenna.fade(0.7);
-    // }
-    lenna.resize(Jimp.AUTO, 200).write(path);
-    process.stdout.write('.');
-  });
+  // Jimp.read(path, (err: any, lenna: any) => {
+  //   if (err) {
+  //     return;
+  //   }
+  //   // if (isDisabled == 'true') {
+  //   //   lenna.blur(5);
+  //   //   lenna.fade(0.7);
+  //   // }
+  //   lenna.resize(Jimp.AUTO, 200).write(path);
+  //   process.stdout.write('.');
+  // });
 }
