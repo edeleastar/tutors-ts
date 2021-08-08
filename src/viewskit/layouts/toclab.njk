@@ -9,7 +9,7 @@
           {% for lab in labs %}
             {% if (not lab.properties.disable) %}
               <li>
-                <a class="item" href="{{ lab.properties.courseurl }}/{{ lab.parentFolder }}/{{ lab.folder }}/{{ lab.link }}">{{ icon(lab.lotype) }}{{ lab.title }}
+                <a class="item" href=".{{ lab.properties.courseurl }}/{{ lab.parentFolder }}/{{ lab.folder }}/{{ lab.link }}">{{ icon(lab.lotype) }}{{ lab.title }}
                 </a>
               </li>
             {% endif %}

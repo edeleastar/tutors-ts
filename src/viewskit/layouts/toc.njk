@@ -9,7 +9,7 @@
           {% if (not topic.properties.disable) %}
             <ul class="uk-nav">
               <li class="uk-parent">
-                <a class="item" href="{{ lo.properties.courseurl }}/{{ topic.folder }}/{{ topic.link }}">
+                <a class="item" href=".{{ lo.properties.courseurl }}/{{ topic.link }}">
                   {{ icon(topic.lotype) }}{{ topic.title }}
                 </a>
                 <ul class="uk-nav-sub">
@@ -31,7 +31,7 @@
                                 {% for lo in resource.los %}
                                   <div>
                                     <a class="item"
-                                       href="{{ lo.properties.courseurl }}/{{ topic.folder }}/{{ lo.parent.folder }}/{{ lo.folder }}/{{ lo.link }}">{{ icon(lo.lotype) }}{{ lo.title }}
+                                       href=".{{ lo.properties.courseurl }}/{{ topic.folder }}/{{ lo.parent.folder }}/{{ lo.folder }}/{{ lo.link }}">{{ icon(lo.lotype) }}{{ lo.title }}
                                       {% if resource.lotype == 'talk' and resource.videoid != 'none' %}
                                         {{ icon("film") }}
                                       {% endif %}
@@ -41,7 +41,7 @@
                               </ul>
                             {% else %}
                               <a class="item"
-                                 href="{{ lo.properties.courseurl }}/{{ topic.folder }}/{{ resource.folder }}/{{ resource.link }}">{{ icon(resource.lotype) }}{{ resource.title }}
+                                 href=".{{ lo.properties.courseurl }}/{{ topic.folder }}/{{ resource.folder }}/{{ resource.link }}">{{ icon(resource.lotype) }}{{ resource.title }}
                                 {% if resource.lotype == 'talk' and resource.videoid != 'none' %}
                                   {{ icon("film") }}
                                 {% endif %}

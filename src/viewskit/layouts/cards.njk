@@ -25,7 +25,7 @@
        <div class="uk-child-width-1-4@s uk-flex uk-flex-center" uk-grid uk-height-match="target: > div > .uk-card">
           {% for lo in lo.standardLos %}
             <div>
-              {{ card (lo, './' + lo.parentFolder + '/') }}
+              {{ card (lo, '../' + lo.parentFolder + '/') }}
             </div>
           {% endfor %}
        </div>
